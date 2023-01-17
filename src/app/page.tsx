@@ -1,11 +1,4 @@
-import Template from "@/components/Template/Template";
-
-const Home = () => {
-  return (
-    <>
-      MY portfolio page
-      <Template />
-    </>
-  );
+const Page = () => {
+  return <>MY portfolio page</>;
 };
-export default Home;
+export default Page;

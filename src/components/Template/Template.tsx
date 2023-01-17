@@ -1,7 +1,12 @@
+import { FC, ReactNode } from "react";
 import styles from "./Template.module.scss";
 
-const Template = () => {
-  return <div className={styles.template}>Template</div>;
+interface TemplateProps {
+  children: ReactNode;
+}
+
+const Template: FC<TemplateProps> = ({ children }) => {
+  return <div className={styles.template}>{children}</div>;
 };
 
 export default Template;
