@@ -1,0 +1,17 @@
+@import "../../assets/styles/colors";
+@font-face {
+    font-family: "mulish";
+    src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+}
+
+.heading {
+    p {
+        color: $grayColor;
+        font-family: "mulish";
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 2.8px;
+        text-transform: uppercase;
+    }
+}

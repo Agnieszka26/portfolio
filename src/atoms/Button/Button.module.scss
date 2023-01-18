@@ -1,13 +1,27 @@
+@import "../../assets/styles/colors";
+
 .button {
-    padding: 2rem;
+    padding: 16px;
+    transition: all 0.5s;
+    cursor: pointer;
+    font-size: larger;
+
     &.color {
         &-dark {
-            color: $lightColor;
-            background-color: $darkColor;
-        }
-        &-light {
+            box-shadow: 0.5rem 0.5rem $darkColor;
+            border: 3px solid $darkColor;
             color: $darkColor;
             background-color: $lightColor;
         }
+        &-light {
+            box-shadow: 0.5rem 0.5rem $darkColor;
+            color: $lightColor;
+            background-color: $darkColor;
+            border: 3px solid $lightColor;
+        }
+    }
+    &:hover {
+        box-shadow: none;
+        transform: translate(8px, 8px);
     }
 }

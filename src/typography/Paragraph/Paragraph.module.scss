@@ -7,6 +7,14 @@
 .paragraph {
     font-family: "mulish", "Roboto";
     color: $lightColor;
-    font-size: medium;
-    // letter-spacing: 3px;
+    font-size: 24px;
+    padding: 0.5rem 0;
+    &.color {
+        &-dark {
+            color: $darkColor;
+        }
+        &-light {
+            color: $lightColor;
+        }
+    }
 }

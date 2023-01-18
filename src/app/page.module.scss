@@ -4,8 +4,17 @@
 .page {
     @include center;
     margin: 0;
-    padding: 0;
+    padding: 0rem 6.5rem;
     background: $primaryColor;
     background: linear-gradient(90deg, $primaryColor 0%, $secondaryColor 100%);
     height: 100vh;
+    .containerLeft {
+        // padding: 2rem;
+        width: 50%;
+    }
+    .containerRight {
+        width: 50%;
+        height: 100%;
+        position: relative;
+    }
 }

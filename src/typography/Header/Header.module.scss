@@ -8,4 +8,14 @@
     font-family: "AbrilFatface", "Roboto";
     color: $lightColor;
     letter-spacing: 3px;
+    font-size: 48px;
+    padding: 1rem 0;
+    &.color {
+        &-dark {
+            color: $darkColor;
+        }
+        &-light {
+            color: $lightColor;
+        }
+    }
 }

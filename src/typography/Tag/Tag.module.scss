@@ -1,0 +1,25 @@
+@import "../../assets/styles/colors";
+@import "../../assets/styles/mixins/index.scss";
+@font-face {
+    font-family: "mulish";
+    src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+}
+
+.tag {
+    background: $primaryColor;
+    padding: 1rem;
+    width: fit-content;
+    @include center;
+    // margin: 0;
+
+    p {
+        text-align: center;
+        font-family: "mulish";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        color: $darkColor;
+        margin: 0;
+    }
+}

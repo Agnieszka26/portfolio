@@ -1,6 +1,7 @@
 $primaryColor: rgb(226, 19, 96);
 $secondaryColor: rgb(0, 208, 255);
 $lightColor: rgb(255, 255, 255);
+$grayColor: rgb(183, 180, 185);
 $darkColor: rgb(0, 0, 0);
 
 :export {
@@ -8,4 +9,5 @@ $darkColor: rgb(0, 0, 0);
   secondaryColor: $secondaryColor;
   lightColor: $lightColor;
   darkColor: $darkColor;
+  grayColor: $grayColor;
 }

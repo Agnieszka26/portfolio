@@ -1,12 +1,16 @@
+import cn from "classnames";
 import { FC } from "react";
 import styles from "./Paragraph.module.scss";
 
 interface ParagraphProps {
   text: string;
+  color: "dark" | "light";
 }
 
-const Paragraph: FC<ParagraphProps> = ({ text }) => {
-  return <h1 className={styles.paragraph}>{text}</h1>;
+const Paragraph: FC<ParagraphProps> = ({ text, color }) => {
+  return (
+    <p className={cn(styles.paragraph, styles[`color-${color}`])}>{text}</p>
+  );
 };
 
 export default Paragraph;
