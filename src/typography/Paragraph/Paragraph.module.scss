@@ -1,0 +1,12 @@
+@import "../../assets/styles/colors";
+@font-face {
+    font-family: "mulish";
+    src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+}
+
+.paragraph {
+    font-family: "mulish", "Roboto";
+    color: $lightColor;
+    font-size: medium;
+    // letter-spacing: 3px;
+}

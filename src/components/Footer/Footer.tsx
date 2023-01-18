@@ -1,9 +1,7 @@
 import { FC } from "react";
 import styles from "./Footer.module.scss";
 
-interface FooterProps {
-  // children: ReactNode;
-}
+interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
   return <footer className={styles.footer}>footer</footer>;

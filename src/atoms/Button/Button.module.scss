@@ -1,0 +1,13 @@
+.button {
+    padding: 2rem;
+    &.color {
+        &-dark {
+            color: $lightColor;
+            background-color: $darkColor;
+        }
+        &-light {
+            color: $darkColor;
+            background-color: $lightColor;
+        }
+    }
+}

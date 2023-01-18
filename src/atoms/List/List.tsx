@@ -7,10 +7,6 @@ interface ListProps {}
 
 const listElementData = [
   {
-    link: RoutesPath.HOME,
-    text: "Home",
-  },
-  {
     link: RoutesPath.MY_WORK,
     text: "my work",
   },
