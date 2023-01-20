@@ -4,25 +4,27 @@ import Title from "@/typography/Title/Title";
 import { FC } from "react";
 import styles from "./About.module.scss";
 
-interface AboutProps {
-  // children: ReactNode;
-}
-
-const About: FC<AboutProps> = ({}) => {
+const About: FC = () => {
   return (
     <div className={styles.about}>
       <div className={styles.containerLeft}>
         <Header text="What I do?" color={"dark"} />
       </div>
       <div className={styles.containerRight}>
-        <Title text="Design" />
+        <Title text="Coding" />
         <Paragraph
-          text="I design beautiful and powerful websites for modern businesses. Any business today needs a website that wins customers’ trust and helps you do your business well. I make sure your website is up to that standard."
+          text="My interests have always revolved around exact sciences and
+          programming allows me to broaden my passions. I have strong technical
+          and analytical skills, with the ability to analyze an existing code base and
+          convert requests into specific software solutions. I have a great desire and need for continuous
+          learning and further professional development aimed at improving my
+          competences in the frontend developer profession."
           color="dark"
         />
-        <Title text="Design" />
+
+        <Title text="Development" />
         <Paragraph
-          text="I design beautiful and powerful websites for modern businesses. Any business today needs a website that wins customers’ trust and helps you do your business well. I make sure your website is up to that standard."
+          text="I love learning new technologies. I work with various libraries and framework. I build websites using React and Next.js. I was taking part in building mobile application using React Native."
           color="dark"
         />
       </div>

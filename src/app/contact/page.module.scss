@@ -1,0 +1,11 @@
+@import "../../assets/styles/mixins/index.scss";
+
+.page {
+    @include center;
+    padding: 12rem 3rem 1rem;
+}
+
+.container {
+    @include center;
+    @include responsive;
+}
