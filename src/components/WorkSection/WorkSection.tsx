@@ -7,15 +7,10 @@ const WorkSection: FC = () => {
   return (
     <section className={styles.workSection}>
       {projectsDetails.map(
-        ({
-          heading,
-          header,
-          paragraph,
-          image,
-          tags,
-          linkToGithub,
-          linkToLive,
-        }) => (
+        (
+          { heading, header, paragraph, image, tags, linkToGithub, linkToLive },
+          index
+        ) => (
           <Project
             key={header}
             heading={heading}
@@ -25,6 +20,7 @@ const WorkSection: FC = () => {
             tags={tags}
             linkToGithub={linkToGithub}
             linkToLive={linkToLive}
+            index={index}
           />
         )
       )}

@@ -15,6 +15,7 @@ interface ProjectProps {
   image: StaticImageData;
   linkToGithub: string;
   linkToLive: string;
+  index: number;
 }
 
 const Project: FC<ProjectProps> = ({
@@ -25,6 +26,7 @@ const Project: FC<ProjectProps> = ({
   image,
   linkToGithub,
   linkToLive,
+  index,
 }) => {
   return (
     <div className={styles.project}>
@@ -53,8 +55,6 @@ const Project: FC<ProjectProps> = ({
             className={styles.img}
             src={image}
             alt="preview project"
-            width={550}
-            height={375}
             quality={100}
           />
         </a>
