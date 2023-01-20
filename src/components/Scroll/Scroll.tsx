@@ -1,11 +1,7 @@
 import { FC } from "react";
 import styles from "./Scroll.module.scss";
 
-interface ScrollProps {
-  // children: ReactNode;
-}
-
-const Scroll: FC<ScrollProps> = () => {
+const Scroll: FC = () => {
   return (
     <div className={styles.scrollContainer}>
       <div className={styles.scrollLine}></div>

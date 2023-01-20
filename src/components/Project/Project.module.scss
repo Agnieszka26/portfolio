@@ -1,0 +1,22 @@
+@import "../../assets/styles/mixins/index.scss";
+@import "../../assets/styles/colors";
+.project {
+    @include center;
+    @include responsive;
+}
+
+.containerRight {
+    .a {
+        position: relative;
+
+        .img {
+            border-radius: 20px;
+            box-shadow: 12px 14px 15px 3px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+.tagContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

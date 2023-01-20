@@ -1,18 +1,9 @@
 @import "../../assets/styles/mixins/index.scss";
 
 .workSection {
-    margin: 2rem auto;
-    padding: 0rem 6.5rem;
-    .containerLeft {
-        width: 50%;
-    }
-    .containerRight {
-        width: 50%;
-    }
-}
-.tagContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 75%;
+    // margin: 2rem auto;
+    // padding: 1rem;
+    // @media (min-width: 765px) {
+    //     padding: 0rem 6.5rem;
+    // }
 }

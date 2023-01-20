@@ -1,3 +1,33 @@
-.footer {
-    padding: 2rem;
+@import "../../assets/styles/colors";
+@import "../../assets/styles/mixins/index.scss";
+
+@font-face {
+    font-family: "mulish";
+    src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+}
+
+.footerContainer {
+    background: $primaryColor;
+    background: linear-gradient(90deg, $primaryColor 0%, $secondaryColor 100%);
+    .footer {
+        display: flex;
+        @include responsive;
+    }
+    .paragraphReserved {
+        font-family: "mulish", "Roboto";
+        font-size: 12px;
+        padding: 0.5rem 0;
+        color: $lightColor;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        span {
+            img {
+                padding: 0 1rem;
+                height: 32px;
+                width: 32px;
+            }
+        }
+        @include center;
+    }
 }

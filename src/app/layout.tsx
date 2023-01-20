@@ -10,7 +10,7 @@ export default function RootLayout({
     <html>
       <head />
 
-      <body>
+      <body style={{ margin: "0", padding: "0", boxSizing: "border-box" }}>
         <Navbar />
         {children}
         <Footer />

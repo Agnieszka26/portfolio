@@ -1,0 +1,18 @@
+@import "../../assets/styles/mixins/index.scss";
+
+.about {
+    display: flex;
+
+    @include responsive;
+    // padding: 3rem 5rem;
+}
+
+// display: flex;
+// padding: 2rem 6.5rem;
+// .containerLeft {
+//     width: 50%;
+// }
+// .containerRight {
+//     width: 50%;
+// }
+//}
