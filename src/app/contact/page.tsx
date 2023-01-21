@@ -1,15 +1,11 @@
 import Button from "@/atoms/Button/Button";
 import About from "@/components/About/About";
 import Header from "@/typography/Header/Header";
-import Head from "next/head";
 import styles from "./page.module.scss";
 
 const Contact = () => {
   return (
     <>
-      <Head>
-        <title> Agna - Contact me</title>
-      </Head>
       <div className={styles.page}>
         <div className={styles.container}>
           <div className={styles.containerLeft}>
