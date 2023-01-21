@@ -7,10 +7,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html style={{ scrollBehavior: "smooth" }}>
       <head />
 
-      <body style={{ margin: "0", padding: "0", boxSizing: "border-box" }}>
+      <body
+        style={{
+          margin: "0",
+          padding: "0",
+          boxSizing: "border-box",
+        }}
+      >
         <Navbar />
         {children}
         <Footer />

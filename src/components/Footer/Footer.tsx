@@ -26,7 +26,7 @@ const Footer: FC = () => {
             color="light"
           />
           <a href="mailto:agna.medrek@gmail.com">
-            <Button text={"sent email"} color={"dark"} />
+            <Button text={"send email"} color={"dark"} />
           </a>
         </div>
       </footer>

@@ -1,4 +1,5 @@
 import Button from "@/atoms/Button/Button";
+import Caption from "@/typography/Caption/Caption";
 import Header from "@/typography/Header/Header";
 import Heading from "@/typography/Heading/Heading";
 import Paragraph from "@/typography/Paragraph/Paragraph";
@@ -41,7 +42,7 @@ const Project: FC<ProjectProps> = ({
         <Paragraph color="dark" text={paragraph} />
 
         <a href={linkToGithub} target="_blank" rel="noreferrer">
-          <Button text={"see this project"} color={"light"} />
+          <Button text={"go to code"} color={"light"} />
         </a>
       </div>
       <div className={styles.containerRight}>
@@ -57,6 +58,7 @@ const Project: FC<ProjectProps> = ({
             alt="preview project"
             quality={100}
           />
+          <Caption text={"see this project live →"} />
         </a>
       </div>
     </div>
