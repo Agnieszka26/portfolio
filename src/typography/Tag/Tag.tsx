@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "./tag.module.scss";
+import styles from "./Tag.module.scss";
 
 interface TagProps {
   text: string;
