@@ -1,0 +1,16 @@
+@import "../../assets/styles/colors";
+@font-face {
+    font-family: "mulish";
+    src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+}
+
+.caption {
+    font-family: "mulish", "Roboto";
+    color: $grayColor;
+    font-size: 20px;
+    padding: 0.5rem 0;
+    text-align: right;
+    visibility: hidden;
+    transition: visibility 0.1s;
+    //  display: none;
+}

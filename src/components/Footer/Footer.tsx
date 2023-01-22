@@ -15,7 +15,7 @@ const Footer: FC = () => {
         </div>
         <div className={styles.containerRight}>
           <Paragraph
-            text="I am junior developer who looking for a job. I would love to take part in exiting projects. Do you want to see more projects on github ?"
+            text="I am junior developer who is looking for a job. I would love to take part in exiting projects. Do you want to see more projects on github ?"
             color="light"
           />
           <a href="https://github.com/Agnieszka26">
@@ -26,7 +26,7 @@ const Footer: FC = () => {
             color="light"
           />
           <a href="mailto:agna.medrek@gmail.com">
-            <Button text={"sent email"} color={"dark"} />
+            <Button text={"send email"} color={"dark"} />
           </a>
         </div>
       </footer>

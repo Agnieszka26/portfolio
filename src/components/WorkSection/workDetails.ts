@@ -10,7 +10,7 @@ export const projectsDetails = [
     header: "Users App",
     tags: ["TypeScript", "redux-toolkit", "react"],
     paragraph:
-      "Retrieving users with Redux. \n Application has 3 buttons: \n •load - reloads 10 users to the state that stores users; \n •reset - resetting the list of users; \n •add - retrieves the list again, but only adds one user to the existing one. \nDepending on which button is pressed, a different snackbar is displayed. In the contacts tab, depending on the success or failure, a different message is also displayed.",
+      "Retrieving users with Redux. \n Application has 3 buttons: \n •load - reloads 10 users to the state that stores users; \n •reset - resetting the list of users; \n •add - retrieves the list again, but only add  one user to the existing list. \nDepending on which button is pressed, a different snackbar is displayed. In the contacts tab, depending on the success or failure, a different message is also displayed.",
     image: reduxPreview,
     linkToGithub: "https://github.com/Agnieszka26/ReduxSzkolaReacta",
     linkToLive: "https://app-redux-toolkit.web.app",
@@ -38,8 +38,7 @@ export const projectsDetails = [
     heading: "latest work",
     header: "Expense Calculator",
     tags: ["JavaScript", "react", "bootstrap"],
-    paragraph:
-      "The application contains two lists, the first list presents expenses (name, amount, category) and the second list is revenue (name, amount, category);\nIn addition, the application has an add form that has:\n-radio field specifying whether it is an expense or income\n- input field of text type with name\n- input field of the number type with the amount\n-select field with category\n-add button.",
+    paragraph: `The application contains two lists, the first list presents expenses (name, amount, category) and the second list is revenue (name, amount, category);\nIn addition, the application has an add form that has:\n-radio field specifying whether it is an expense or income\n- input field of text type with name\n- input field of the number type with the amount\n-"select" field with category\n-"add" button.`,
     image: kalkulator,
     linkToGithub: "https://github.com/Agnieszka26/kalkulatorWydatkow",
     linkToLive: "https://expense-calculator-aga.web.app",
@@ -49,7 +48,7 @@ export const projectsDetails = [
     header: "Pokédex App",
     tags: ["JavaScript", "react", "API communication"],
     paragraph:
-      "Who does not like pokémos? After entering the main page, you can see the input in which the user will enter the number of pokemons to be displayed. A list of the given number of pokemons is rendered in the form of tiles. There is a pokemon searchbar. The tiles consist of a picture, name and type of pokemon. After clicking on the tile, we are transferred to the page with the details of the pokemon.",
+      "Who does not like pokémos? After entering the main page, you can see the input in which the user will enter a number of pokémons to be displayed. A list of the given number of pokemons is rendered in the form of tiles. There is a pokemon searchbar. The tiles consist of a picture, name and type of pokemon. After clicking on the tile, we are transferred to the page with the details of the pokemon.",
     image: pokemons,
     linkToGithub: "https://github.com/Agnieszka26/pokemon",
     linkToLive: "https://pokemons-aga.web.app/",

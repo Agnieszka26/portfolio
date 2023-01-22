@@ -1,9 +1,13 @@
 import { FC } from "react";
 import styles from "./Scroll.module.scss";
 
-const Scroll: FC = () => {
+interface ScrollProps {
+  onClick?: () => void;
+}
+
+const Scroll: FC<ScrollProps> = ({ onClick }) => {
   return (
-    <div className={styles.scrollContainer}>
+    <div className={styles.scrollContainer} onClick={onClick}>
       <div className={styles.scrollLine}></div>
       <div className={styles.scrollText}>
         <p>SCROLL</p>

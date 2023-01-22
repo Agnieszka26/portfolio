@@ -7,9 +7,12 @@
 .paragraph {
     font-family: "mulish", "Roboto";
     color: $lightColor;
-    font-size: 24px;
+    font-size: 16px;
     padding: 0.5rem 0;
     white-space: pre-line;
+    @media (min-width: 765px) {
+        font-size: 18px;
+    }
     &.color {
         &-dark {
             color: $darkColor;

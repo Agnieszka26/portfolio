@@ -1,0 +1,11 @@
+@import "../../assets/styles/colors";
+.list {
+    position: fixed;
+    top: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: $primaryColor;
+    background: linear-gradient(90deg, $primaryColor 0%, $secondaryColor 100%);
+    width: 100%;
+}
