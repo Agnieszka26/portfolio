@@ -11,7 +11,7 @@ const About: FC = () => {
     <div className={styles.about}>
       <div className={styles.containerLeft}>
         <ScrollAnimation animateIn="animate__fadeInUp ">
-          <Header text="What I do?" color={"dark"} />
+          <Header text="What do I do?" color={"dark"} />
         </ScrollAnimation>
       </div>
       <div className={styles.containerRight}>

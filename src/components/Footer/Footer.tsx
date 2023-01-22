@@ -15,7 +15,7 @@ const Footer: FC = () => {
         </div>
         <div className={styles.containerRight}>
           <Paragraph
-            text="I am junior developer who looking for a job. I would love to take part in exiting projects. Do you want to see more projects on github ?"
+            text="I am junior developer who is looking for a job. I would love to take part in exiting projects. Do you want to see more projects on github ?"
             color="light"
           />
           <a href="https://github.com/Agnieszka26">
