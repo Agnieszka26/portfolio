@@ -1,9 +1,21 @@
+"use client";
 import Button from "@/atoms/Button/Button";
 import About from "@/components/About/About";
 import Header from "@/typography/Header/Header";
+import { useEffect } from "react";
 import styles from "./page.module.scss";
 
 const Contact = () => {
+  useEffect(
+    () => () => {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    },
+    []
+  );
   return (
     <>
       <div className={styles.page}>
