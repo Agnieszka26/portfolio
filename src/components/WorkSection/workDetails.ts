@@ -3,8 +3,19 @@ import kalkulator from "../../../public/kalkulator.png";
 import mailingSystemPreview from "../../../public/mailingSystemPreview.png";
 import pokemons from "../../../public/pokemony.png";
 import reduxPreview from "../../../public/redux-preview.png";
+import testyZeglarskie from "../../../public/testyZeglarskie.png"
 
 export const projectsDetails = [
+  {
+    heading: "latest work",
+    header: "Sailor Merry Testy Żeglarskie",
+    tags: ["JavaScript", "ReactNative", "react"],
+    paragraph:
+      "The application is available both on the web and on google play. It was created so that users can learn about sailing. In the application you can test your knowledge in the field of sailing.",
+    image: testyZeglarskie,
+    linkToGithub: "https://github.com/Agnieszka26/SaliorMerryTestyZeglarskie",
+    linkToLive: "https://sailormerry-testy-zeglarskie-web.vercel.app/",
+  },
   {
     heading: "latest work",
     header: "Users App",
