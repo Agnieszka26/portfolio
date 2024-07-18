@@ -5,7 +5,7 @@ import classNames from 'classnames';
 const Description = ({ section }: { section?: { title: string; paragraph: string }[] }) => {
   return <div className={classNames(styles.box)}>
     {section?.map(({ title, paragraph }) => {
-      return <div >
+      return <div key={title}>
         {paragraph === "" ? <Title text={title} /> : <p className={styles.subtitle}>{title}</p>}
 
         {paragraph && <Paragraph text={paragraph} color={"dark"} />}
