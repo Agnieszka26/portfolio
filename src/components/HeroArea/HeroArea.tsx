@@ -13,7 +13,7 @@ interface HeroAreaProps {
 }
 
 const HeroArea: FC<HeroAreaProps> = ({ executeScroll }) => {
-  const myRef = useRef(null);
+
   useEffect(() => {
     init();
   });
@@ -21,13 +21,13 @@ const HeroArea: FC<HeroAreaProps> = ({ executeScroll }) => {
     <div className={styles.heroArea}>
       <div className={styles.containerLeft} data-aos="fade-up">
         <Header
-          text={`Hi, I’m Agnieszka,  React Frontend Developer`}
+          text={`Hi, I’m Agnieszka, Frontend Developer`}
           color="light"
         />
 
         <Paragraph
           color="light"
-          text={`My interests are centered around web design and development, frontend technologies and programming software used to create websites. My skills include JavaScript, CSS, HTML. I work with React, Next.js and React Native frameworks.`}
+          text={`I am a dedicated and experienced mid-level developer specializing in front-end development. With a strong foundation in modern web technologies, I bring innovative solutions to complex problems and deliver high-quality user experiences.`}
         />
         <Link href={RoutesPath.MY_WORK}>
           <Button text={"see my work"} color={"dark"} />

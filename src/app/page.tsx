@@ -1,7 +1,8 @@
 "use client";
 import About from "@/components/About/About";
 import HeroArea from "@/components/HeroArea/HeroArea";
-import WorkSection from "@/components/WorkSection/WorkSection";
+import ProjectsSection from "@/components/ProjectSection/ProjectsSection";
+import { professionalProjectsDetails } from "@/components/ProjectSection/workDetails";
 import { createRef, useEffect } from "react";
 
 const Page = () => {
@@ -15,12 +16,15 @@ const Page = () => {
         behavior: "smooth",
       });
     },
-    []
+    [],
   );
   return (
     <>
       <HeroArea executeScroll={executeScroll} />
-      <WorkSection scrollRef={scrollRef} />
+      <ProjectsSection
+        scrollRef={scrollRef}
+        projectsDetails={professionalProjectsDetails}
+      />
       <About />
     </>
   );

@@ -14,7 +14,7 @@ const Contact = () => {
         behavior: "smooth",
       });
     },
-    []
+    [],
   );
   return (
     <>

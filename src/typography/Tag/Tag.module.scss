@@ -1,26 +1,26 @@
 @import "../../assets/styles/colors";
 @import "../../assets/styles/mixins/index.scss";
 @font-face {
-    font-family: "mulish";
-    src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+  font-family: "mulish";
+  src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
 }
 
 .tag {
-    background: $primaryColor;
+  background: $primaryColor;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  @include center;
+  @media (min-width: 765px) {
     padding: 0.5rem;
-    margin-right: 1rem;
-    @include center;
-    @media (min-width: 765px) {
-        padding: 0.5rem;
-    }
-    p {
-        text-align: center;
-        font-family: "mulish";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 32px;
-        color: $darkColor;
-        margin: 0;
-    }
+  }
+  p {
+    text-align: center;
+    font-family: "mulish";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 32px;
+    color: $darkColor;
+    margin: 0;
+  }
 }

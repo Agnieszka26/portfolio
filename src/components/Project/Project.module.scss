@@ -1,45 +1,47 @@
 @import "../../assets/styles/mixins/index.scss";
 @import "../../assets/styles/colors";
 .project {
-    @include center;
-    @include responsive;
-    &:nth-child(even) {
-        flex-direction: row-reverse;
-    }
+  @include center;
+  @include responsive;
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
 }
 
 .containerRight {
-    .a {
-        position: relative;
-        text-decoration: none;
+  .a {
+    position: relative;
+    text-decoration: none;
 
-        &:hover {
-            p {
-                visibility: visible;
-            }
-            img {
-                scale: (1.1);
-                box-shadow: 12px 14px 15px 3px rgba(0, 0, 0, 0.3);
-            }
-        }
-
-        img {
-            border-radius: 20px;
-            box-shadow: 8px 10px 12px 3px rgba(0, 0, 0, 0.2);
-            max-width: 82vw;
-            max-height: 375px;
-            width: auto;
-            height: auto;
-            transition: scale 0.2s, box-shadow 0.2s;
-            @media (min-width: 765px) {
-                max-width: 45vw;
-                max-height: 400px;
-            }
-        }
+    &:hover {
+      p {
+        visibility: visible;
+      }
+      img {
+        scale: (1.1);
+        box-shadow: 12px 14px 15px 3px rgba(0, 0, 0, 0.3);
+      }
     }
+
+    img {
+      border-radius: 20px;
+      box-shadow: 8px 10px 12px 3px rgba(0, 0, 0, 0.2);
+      max-width: 82vw;
+      max-height: 375px;
+      width: auto;
+      height: auto;
+      transition:
+        scale 0.2s,
+        box-shadow 0.2s;
+      @media (min-width: 765px) {
+        max-width: 45vw;
+        max-height: 400px;
+      }
+    }
+  }
 }
 .tagContainer {
-    display: flex;
-    // align-items: center;
-    // justify-content: space-between;
+  display: flex;
+  // align-items: center;
+  // justify-content: space-between;
 }

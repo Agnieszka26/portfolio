@@ -1,19 +1,31 @@
+import { StaticImageData } from "next/image";
 import { FC, MutableRefObject } from "react";
 import Project from "../Project/Project";
-import { projectsDetails } from "./workDetails";
-import styles from "./WorkSection.module.scss";
 
-interface WorkSectionProps {
+
+interface ProjectsSectionProps {
   scrollRef?: MutableRefObject<HTMLDivElement | null>;
+  projectsDetails: {
+    heading: string;
+    header: string;
+    tags: string[];
+    paragraph: string;
+    image: StaticImageData;
+    linkToGithub: string;
+    linkToLive: string;
+  }[];
 }
 
-const WorkSection: FC<WorkSectionProps> = ({ scrollRef }) => {
+const ProjectsSection: FC<ProjectsSectionProps> = ({
+  scrollRef,
+  projectsDetails,
+}) => {
   return (
-    <section className={styles.workSection} ref={scrollRef}>
+    <section ref={scrollRef}>
       {projectsDetails.map(
         (
           { heading, header, paragraph, image, tags, linkToGithub, linkToLive },
-          index
+          index,
         ) => (
           <Project
             key={header}
@@ -26,10 +38,10 @@ const WorkSection: FC<WorkSectionProps> = ({ scrollRef }) => {
             linkToLive={linkToLive}
             index={index}
           />
-        )
+        ),
       )}
     </section>
   );
 };
 
-export default WorkSection;
+export default ProjectsSection;

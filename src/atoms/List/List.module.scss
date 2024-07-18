@@ -1,11 +1,11 @@
 .list {
-    display: none;
-    @media (min-width: 765px) {
-        display: flex;
-        flex: auto;
-        justify-content: flex-end;
-        padding-left: 20%;
-        list-style-type: none;
-        margin-right: 3rem;
-    }
+  display: none;
+  @media (min-width: 765px) {
+    display: flex;
+    flex: auto;
+    justify-content: flex-end;
+    padding-left: 20%;
+    list-style-type: none;
+    margin-right: 3rem;
+  }
 }

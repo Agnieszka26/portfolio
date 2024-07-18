@@ -1,9 +1,9 @@
 "use client";
 
+import ProjectsSection from "@/components/ProjectSection/ProjectsSection";
+import { hobbyProjectsDetails } from "@/components/ProjectSection/workDetails";
 import { createRef, useEffect } from "react";
 import styles from "../contact/page.module.scss";
-import ProjectsSection from "@/components/ProjectSection/ProjectsSection";
-import { professionalProjectsDetails } from "@/components/ProjectSection/workDetails";
 
 const Work = () => {
   useEffect(
@@ -21,7 +21,7 @@ const Work = () => {
     <div className={styles.page}>
       <ProjectsSection
         scrollRef={scrollRef}
-        projectsDetails={professionalProjectsDetails}
+        projectsDetails={hobbyProjectsDetails}
       />
     </div>
   );

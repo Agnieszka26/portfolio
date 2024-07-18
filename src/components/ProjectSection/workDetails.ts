@@ -3,9 +3,15 @@ import kalkulator from "../../../public/kalkulator.png";
 import mailingSystemPreview from "../../../public/mailingSystemPreview.png";
 import pokemons from "../../../public/pokemony.png";
 import reduxPreview from "../../../public/redux-preview.png";
-import testyZeglarskie from "../../../public/testyZeglarskie.png"
+import testyZeglarskie from "../../../public/testyZeglarskie.png";
+import kettlo from "../../../public/kettlo.png";
+import trudly from "../../../public/trudly.png";
+import smartwear from "../../../public/smartwear.png";
+import trudly_mini from "../../../public/trudly_mini.png";
 
-export const projectsDetails = [
+import { RoutesPath } from "@/constants";
+
+export const hobbyProjectsDetails = [
   {
     heading: "latest work",
     header: "Sailor Merry Testy Żeglarskie",
@@ -63,5 +69,48 @@ export const projectsDetails = [
     image: pokemons,
     linkToGithub: "https://github.com/Agnieszka26/pokemon",
     linkToLive: "https://pokemons-aga.web.app/",
+  },
+];
+
+export const professionalProjectsDetails = [
+  {
+    heading: "latest work",
+    header: "Kettlo.pl",
+    tags: ["TypeScript", "Next.js", "styledComponents"],
+    paragraph:
+      "The Kettlo Website is a sophisticated, high-performance web application designed to promote and facilitate downloads of the Kettlo mobile application available on Google Play and the App Store. This site is built with modern web technologies to ensure scalability, maintainability, and a seamless user experience. ",
+    image: kettlo,
+    linkToGithub: RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/kettlo",
+    linkToLive: "https://kettlo.com/pl",
+  },
+  {
+    heading: "latest work",
+    header: "trudly.com",
+    tags: ["TypeScript", "materialUI", "Next.js"],
+    paragraph:
+      "The trudly.com  is a robust, secure, and user-friendly platform, leveraging advanced web technologies to support charitable activities and donations. With a focus on responsive design, secure authentication, and efficient payment processing, it provides a seamless experience for users and companies looking to contribute to noble causes.",
+    image: trudly,
+    linkToGithub: RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/trudly",
+    linkToLive: "https://trudly.com/",
+  },
+  {
+    heading: "latest work",
+    header: "mini.trudly",
+    tags: ["TypeScript", "TailwindCSS", "Next.js"],
+    paragraph:
+      "Trudly-Mini is a web application designed to facilitate charitable contributions through online shopping. By integrating seamlessly with various online retailers, the app enables users to support their favorite charities effortlessly. The platform leverages modern web technologies to provide a secure, scalable, and user-friendly experience.",
+    image: trudly_mini,
+    linkToGithub: RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/trudly-mini",
+    linkToLive: "https://mini.trudly.com/",
+  },
+  {
+    heading: "latest work",
+    header: "SmartWear",
+    tags: ["TypeScript", "TailwindCSS", "Next.js"],
+    paragraph:
+      `SmartWear’s landing page is designed to provide an engaging and informative introduction to its innovative products. By leveraging modern web technologies like Next.js, TypeScript, Tailwind CSS, and Recharts, SmartWear delivers a seamless and interactive user experience, making it easy for users to connect with and benefit from their smart assets.`,
+    image: smartwear,
+    linkToGithub: RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/smartwear",
+    linkToLive: "https://smartwear.click/",
   },
 ];

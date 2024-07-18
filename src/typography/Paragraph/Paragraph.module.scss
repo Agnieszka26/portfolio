@@ -1,24 +1,24 @@
 @import "../../assets/styles/colors";
 @font-face {
-    font-family: "mulish";
-    src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+  font-family: "mulish";
+  src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
 }
 
 .paragraph {
-    font-family: "mulish", "Roboto";
-    color: $lightColor;
-    font-size: 16px;
-    padding: 0.5rem 0;
-    white-space: pre-line;
-    @media (min-width: 765px) {
-        font-size: 18px;
+  font-family: "mulish", "Roboto";
+  color: $lightColor;
+  font-size: 16px;
+  padding: 0.5rem 0;
+  white-space: pre-line;
+  @media (min-width: 765px) {
+    font-size: 18px;
+  }
+  &.color {
+    &-dark {
+      color: $darkColor;
     }
-    &.color {
-        &-dark {
-            color: $darkColor;
-        }
-        &-light {
-            color: $lightColor;
-        }
+    &-light {
+      color: $lightColor;
     }
+  }
 }

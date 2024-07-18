@@ -1,22 +1,23 @@
 @import "../../assets/styles/colors";
 @font-face {
-    font-family: "AbrilFatface";
-    src: url("../../fonts/Abril_Fatface/AbrilFatface-Regular.ttf") format("truetype");
+  font-family: "AbrilFatface";
+  src: url("../../fonts/Abril_Fatface/AbrilFatface-Regular.ttf")
+    format("truetype");
 }
 
 .header {
-    font-family: "AbrilFatface", "Roboto";
-    color: $lightColor;
-    letter-spacing: 3px;
-    font-size: 48px;
-    padding: 1rem 0;
-    margin: 0;
-    &.color {
-        &-dark {
-            color: $darkColor;
-        }
-        &-light {
-            color: $lightColor;
-        }
+  font-family: "AbrilFatface", "Roboto";
+  color: $lightColor;
+  letter-spacing: 3px;
+  font-size: 48px;
+  padding: 1rem 0;
+  margin: 0;
+  &.color {
+    &-dark {
+      color: $darkColor;
     }
+    &-light {
+      color: $lightColor;
+    }
+  }
 }

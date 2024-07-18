@@ -18,19 +18,14 @@ const About: FC = () => {
         <ScrollAnimation animateIn="animate__fadeInUp ">
           <Title text="Coding" />
           <Paragraph
-            text="My interests have always revolved around exact sciences and
-          programming allows me to broaden my passions. I have strong technical
-          and analytical skills, with the ability to analyze an existing code base and
-          convert requests into specific software solutions. I have a great desire and need for continuous
-          learning and further professional development aimed at improving my
-          competences in the frontend developer profession."
+            text="With a deep-rooted passion for the exact sciences, programming has become my medium to explore and expand my interests. I possess strong technical and analytical skills, enabling me to analyze existing codebases and transform requirements into concrete software solutions. My commitment to continuous learning drives my ongoing professional development, enhancing my competencies as a frontend developer."
             color="dark"
           />
         </ScrollAnimation>
         <ScrollAnimation animateIn="animate__fadeInUp ">
           <Title text="Development" />
           <Paragraph
-            text="I love learning new technologies. I work with various libraries and framework. I build websites using React and Next.js. I was taking part in building mobile application using React Native."
+            text="I thrive on the excitement of learning new technologies and applying them to real-world projects. I specialize in building robust, responsive websites using React and Next.js. Additionally, I have contributed to mobile application development with React Native. My experience with a variety of libraries and frameworks allows me to deliver high-quality, user-centric applications."
             color="dark"
           />
         </ScrollAnimation>

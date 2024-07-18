@@ -47,9 +47,7 @@ const Project: FC<ProjectProps> = ({
           <Heading text={heading} />
           <Header text={header} color="dark" />
           <div className={styles.tagContainer}>
-            {tags?.map((tag) => (
-              <Tag key={tag} text={tag} />
-            ))}
+            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
           </div>
           <Paragraph color="dark" text={paragraph} />
 

@@ -1,0 +1,28 @@
+@import "../../assets/styles/mixins/index.scss";
+@import "../../assets/styles/colors";
+.page {
+	@include responsive;
+	margin-top: 7rem;
+}
+.subtitle {
+	font-family: "mulish", "Roboto";
+	font-size: 24px;
+	padding: 0;
+	white-space: pre-line;
+}
+
+.box {
+	box-shadow: 0.5rem 0.5rem $darkColor;
+	border: 3px solid $darkColor;
+	color: $darkColor;
+	background-color: $lightColor;
+	padding: 1rem;
+	margin: 0.5rem;
+}
+
+.gridContainer {
+	margin-top: 4rem;
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr 2fr;
+}

@@ -11,23 +11,31 @@ const Footer: FC = () => {
     <div className={styles.footerContainer}>
       <footer className={styles.footer}>
         <div className={styles.containerLeft}>
-          <Header text="Want to work?" color={"light"} />
+          <Header text="Seeking Opportunities" color={"light"} />
+          <Paragraph
+            text="As a developer actively seeking new career opportunities, I am eager to contribute to exciting projects and advance my skills in a professional environment. "
+            color="light"
+          />
         </div>
         <div className={styles.containerRight}>
           <Paragraph
-            text="I am junior developer who is looking for a job. I would love to take part in exiting projects. Do you want to see more projects on github ?"
+            text="Explore my portfolio on GitHub for a deeper look at my projects:"
             color="light"
           />
           <a href="https://github.com/Agnieszka26">
             <Button text={"view github"} color={"dark"} />
           </a>
           <Paragraph
-            text="Please, do not hesitate and reach me by sending an email at agna.medrek@gmail.com"
+            text="Please feel free to reach out via email to discuss potential collaborations:"
             color="light"
           />
           <a href="mailto:agna.medrek@gmail.com">
             <Button text={"send email"} color={"dark"} />
           </a>
+          <Paragraph
+            text="I look forward to connecting with you!"
+            color="light"
+          />
         </div>
       </footer>
       <div className={styles.paragraphReserved}>

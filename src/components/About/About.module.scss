@@ -1,6 +1,6 @@
 @import "../../assets/styles/mixins/index.scss";
 
 .about {
-    display: flex;
-    @include responsive;
+  display: flex;
+  @include responsive;
 }
