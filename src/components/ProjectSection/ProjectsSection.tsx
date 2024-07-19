@@ -7,6 +7,8 @@ interface ProjectsSectionProps {
   projectsDetails: Project[];
 }
 
+//TODO::    if linkToGithub  ?? RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/kettlo",
+
 const ProjectsSection: FC<ProjectsSectionProps> = ({
   scrollRef,
   projectsDetails,
