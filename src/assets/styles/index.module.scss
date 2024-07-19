@@ -19,6 +19,40 @@
   background-color: $lightColor;
   padding: 1rem;
   margin: 0.5rem;
+  h1{
+    font-family: "AbrilFatface", "Roboto";
+    color: $darkColor;
+    letter-spacing: 3px;
+    font-size: 36px;
+    padding: 1rem 0;
+    margin: 0;
+  }
+  h2{
+    font-family:"mulish", "Roboto";
+    color: $darkColor;
+    padding: 1rem 0;
+    font-size:32px;
+
+    margin: 0;
+  }
+  h3{
+    font-family:"mulish", "Roboto";
+    color: $darkColor;
+
+    font-size:24px;
+
+    margin: 0;
+  }
+  p{
+    font-family: "mulish", "Roboto";
+    color: $darkColor;
+    font-size: 16px;
+
+    white-space: pre-line;
+    @media (min-width: 765px) {
+      font-size: 18px;
+    }
+  }
 }
 
 .gridContainer {

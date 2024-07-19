@@ -1,3 +1,4 @@
+import { RoutesPath } from "@/constants";
 import { Project } from "@/types";
 import { FC, MutableRefObject } from "react";
 import ProjectComponent from "../Project/Project";
@@ -6,8 +7,6 @@ interface ProjectsSectionProps {
   scrollRef?: MutableRefObject<HTMLDivElement | null>;
   projectsDetails: Project[];
 }
-
-//TODO::    if linkToGithub  ?? RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/kettlo",
 
 const ProjectsSection: FC<ProjectsSectionProps> = ({
   scrollRef,
@@ -32,7 +31,7 @@ const ProjectsSection: FC<ProjectsSectionProps> = ({
               paragraph={paragraph}
               image={image[0].thumbnails.full.url}
               tags={tags}
-              linkToGithub={linkToGithub}
+              linkToGithub={linkToGithub ?? RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/" + header}
               linkToLive={linkToLive}
               index={index}
             />
