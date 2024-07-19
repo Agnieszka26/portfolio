@@ -1,19 +1,10 @@
-import { StaticImageData } from "next/image";
+import { Project } from "@/types";
 import { FC, MutableRefObject } from "react";
-import Project from "../Project/Project";
-
+import ProjectComponent from "../Project/Project";
 
 interface ProjectsSectionProps {
   scrollRef?: MutableRefObject<HTMLDivElement | null>;
-  projectsDetails: {
-    heading: string;
-    header: string;
-    tags: string[];
-    paragraph: string;
-    image: StaticImageData;
-    linkToGithub: string;
-    linkToLive: string;
-  }[];
+  projectsDetails: Project[];
 }
 
 const ProjectsSection: FC<ProjectsSectionProps> = ({
@@ -24,21 +15,27 @@ const ProjectsSection: FC<ProjectsSectionProps> = ({
     <section ref={scrollRef}>
       {projectsDetails.map(
         (
-          { heading, header, paragraph, image, tags, linkToGithub, linkToLive },
+          { header, paragraph, image, tags: t, linkToGithub, linkToLive },
           index,
-        ) => (
-          <Project
-            key={header}
-            heading={heading}
-            header={header}
-            paragraph={paragraph}
-            image={image}
-            tags={tags}
-            linkToGithub={linkToGithub}
-            linkToLive={linkToLive}
-            index={index}
-          />
-        ),
+        ) => {
+          const tags = t
+            .split(",")
+            .map((item) => item.trim().replace(/^"|"$/g, ""));
+
+          return (
+            <ProjectComponent
+              key={header}
+              heading={"latest work"}
+              header={header}
+              paragraph={paragraph}
+              image={image[0].thumbnails.full.url}
+              tags={tags}
+              linkToGithub={linkToGithub}
+              linkToLive={linkToLive}
+              index={index}
+            />
+          );
+        },
       )}
     </section>
   );

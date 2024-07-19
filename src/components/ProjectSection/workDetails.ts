@@ -107,8 +107,7 @@ export const professionalProjectsDetails = [
     heading: "latest work",
     header: "SmartWear",
     tags: ["TypeScript", "TailwindCSS", "Next.js"],
-    paragraph:
-      `SmartWear’s landing page is designed to provide an engaging and informative introduction to its innovative products. By leveraging modern web technologies like Next.js, TypeScript, Tailwind CSS, and Recharts, SmartWear delivers a seamless and interactive user experience, making it easy for users to connect with and benefit from their smart assets.`,
+    paragraph: `SmartWear’s landing page is designed to provide an engaging and informative introduction to its innovative products. By leveraging modern web technologies like Next.js, TypeScript, Tailwind CSS, and Recharts, SmartWear delivers a seamless and interactive user experience, making it easy for users to connect with and benefit from their smart assets.`,
     image: smartwear,
     linkToGithub: RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/smartwear",
     linkToLive: "https://smartwear.click/",

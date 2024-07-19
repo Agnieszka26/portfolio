@@ -14,8 +14,6 @@ export default function SourceCodeNotAvailable({
 }: {
   params: { slug: ParamsSlug };
 }) {
-
-
   useEffect(
     () => () => {
       window.scroll({
@@ -27,10 +25,7 @@ export default function SourceCodeNotAvailable({
     [],
   );
   return (
-
     <div className={styles.page}>
-
-
       <Header text={"Sorry, the code is not available!"} color={"dark"} />
 
       <Paragraph
@@ -48,18 +43,12 @@ export default function SourceCodeNotAvailable({
         <Button text={"Instagram"} color={"light"} />
       </a>
 
-
       <div className={styles.gridContainer}>
-
         <Description section={descriptions[params.slug]?.overview} />
         <Description section={descriptions[params.slug]?.technologies} />
         <Description section={descriptions[params.slug]?.backend} />
         <Description section={descriptions[params.slug]?.keyFeatures} />
-
       </div>
-
-
     </div>
-
   );
 }

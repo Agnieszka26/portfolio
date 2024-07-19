@@ -13,17 +13,13 @@ interface HeroAreaProps {
 }
 
 const HeroArea: FC<HeroAreaProps> = ({ executeScroll }) => {
-
   useEffect(() => {
     init();
   });
   return (
     <div className={styles.heroArea}>
       <div className={styles.containerLeft} data-aos="fade-up">
-        <Header
-          text={`Hi, I’m Agnieszka, Frontend Developer`}
-          color="light"
-        />
+        <Header text={`Hi, I’m Agnieszka, Frontend Developer`} color="light" />
 
         <Paragraph
           color="light"

@@ -5,7 +5,7 @@ import Heading from "@/typography/Heading/Heading";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import Tag from "@/typography/Tag/Tag";
 import "animate.css/animate.min.css";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { FC } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
 import {
@@ -20,14 +20,13 @@ interface ProjectProps {
   header: string;
   tags?: string[];
   paragraph: string;
-  image: StaticImageData;
+  image: string;
   linkToGithub: string;
   linkToLive: string;
   index: number;
-  onScroll?: () => void;
 }
 
-const Project: FC<ProjectProps> = ({
+const ProjectComponent: FC<ProjectProps> = ({
   heading,
   header,
   tags,
@@ -43,6 +42,7 @@ const Project: FC<ProjectProps> = ({
         <ScrollAnimation
           animateIn={directionAnimationOnScroll(isEven(index))}
           animateOnce={true}
+          offset={index === 0 ? 0 : 100}
         >
           <Heading text={heading} />
           <Header text={header} color="dark" />
@@ -72,6 +72,8 @@ const Project: FC<ProjectProps> = ({
               src={image}
               alt="preview project"
               quality={100}
+              width={500}
+              height={500}
             />
             <Caption text={"see this project live →"} />
           </a>
@@ -81,4 +83,4 @@ const Project: FC<ProjectProps> = ({
   );
 };
 
-export default Project;
+export default ProjectComponent;

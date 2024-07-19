@@ -1,32 +1,11 @@
-"use client";
-import About from "@/components/About/About";
-import HeroArea from "@/components/HeroArea/HeroArea";
-import ProjectsSection from "@/components/ProjectSection/ProjectsSection";
-import { professionalProjectsDetails } from "@/components/ProjectSection/workDetails";
-import { createRef, useEffect } from "react";
+import HomePage from "@/components/Homepage";
+import getProjects from "@/lib/getProjects";
 
-const Page = () => {
-  const scrollRef = createRef<HTMLDivElement>();
-  const executeScroll = () => scrollRef.current!.scrollIntoView();
-  useEffect(
-    () => () => {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    },
-    [],
+const Page = async () => {
+  const projects = await getProjects();
+  const professionalProjectsDetails = projects.filter(
+    ({ type }) => type === "professional",
   );
-  return (
-    <>
-      <HeroArea executeScroll={executeScroll} />
-      <ProjectsSection
-        scrollRef={scrollRef}
-        projectsDetails={professionalProjectsDetails}
-      />
-      <About />
-    </>
-  );
+  return <HomePage professionalProjectsDetails={professionalProjectsDetails} />;
 };
 export default Page;

@@ -1,30 +1,12 @@
-"use client";
+import ProjectPage from "@/components/ProjectPage";
+import getProjects from "@/lib/getProjects";
 
-import { createRef, useEffect } from "react";
-import styles from "../contact/page.module.scss";
-import ProjectsSection from "@/components/ProjectSection/ProjectsSection";
-import { professionalProjectsDetails } from "@/components/ProjectSection/workDetails";
+const Page = async () => {
+  const projects = await getProjects();
+  const professionalProjectsDetails = projects.filter(
+    ({ type }) => type === "professional",
+  );
 
-const Work = () => {
-  useEffect(
-    () => () => {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    },
-    [],
-  );
-  const scrollRef = createRef<HTMLDivElement>();
-  return (
-    <div className={styles.page}>
-      <ProjectsSection
-        scrollRef={scrollRef}
-        projectsDetails={professionalProjectsDetails}
-      />
-    </div>
-  );
+  return <ProjectPage projectsDetails={professionalProjectsDetails} />;
 };
-
-export default Work;
+export default Page;
