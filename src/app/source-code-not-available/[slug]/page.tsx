@@ -5,7 +5,7 @@ import { descriptions } from "@/constants/desctiptions";
 import Header from "@/typography/Header/Header";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import { useEffect } from "react";
-import styles from "../../../assets/styles/index.module.scss";
+import styles from "@/assets/styles/index.module.scss";
 
 type ParamsSlug = "trudly" | "trudly_mini" | "kettlo" | "smartwear";
 
@@ -14,7 +14,8 @@ export default function SourceCodeNotAvailable({
 }: {
   params: { slug: ParamsSlug };
 }) {
-  const { overview, technologies, backend, keyFeatures } = descriptions[params.slug]
+
+
   useEffect(
     () => () => {
       window.scroll({
@@ -50,10 +51,10 @@ export default function SourceCodeNotAvailable({
 
       <div className={styles.gridContainer}>
 
-        <Description section={overview} />
-        <Description section={technologies} />
-        <Description section={backend} />
-        <Description section={keyFeatures} />
+        <Description section={descriptions[params.slug]?.overview} />
+        <Description section={descriptions[params.slug]?.technologies} />
+        <Description section={descriptions[params.slug]?.backend} />
+        <Description section={descriptions[params.slug]?.keyFeatures} />
 
       </div>
 
