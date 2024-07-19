@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import Description from "./Description/Description";
 
 
-export default function TechnicalDescriptionPage({ detail }: { detail: Detail }) {
+export default function TechnicalDescriptionPage({ detail }: { detail?: Detail }) {
   useEffect(
     () => () => {
       window.scroll({
@@ -37,13 +37,13 @@ export default function TechnicalDescriptionPage({ detail }: { detail: Detail })
       <a href="https://www.instagram.com/amedrek/">
         <Button text={"Instagram"} color={"light"} />
       </a>
-
+{detail &&
       <div className={styles.gridContainer}>
         <Description text={detail.overview} />
         <Description text={detail.keyFeatures} />
         <Description text={detail.technologies} />
         <Description text={detail.backend} />
-      </div>
+      </div>}
     </div>
   );
 }

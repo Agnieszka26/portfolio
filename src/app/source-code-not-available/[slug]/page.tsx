@@ -12,7 +12,7 @@ const Page = async ({
   const detail = details.filter(
     ({ header }) => header === params.slug,
   );
-  console.log('details', detail)
+
   return (
     <TechnicalDescriptionPage detail={detail[0]}/>
   );
