@@ -1,8 +1,15 @@
-$primaryColor: rgb(226, 19, 96);
-$secondaryColor: rgb(0, 208, 255);
+$primaryColor: #a21b4d;
+$secondaryColor: #00d0ff;
 $lightColor: rgb(255, 255, 255);
 $grayColor: rgb(137, 137, 137);
 $darkColor: rgb(0, 0, 0);
+$fontSizeXS: 14px;
+$fontSizeSm: 16px;
+$fontSizeMd: 20px;
+$fontSizeLg: 20px;
+$fontSizeXl: 24px;
+$fontSizeL: 36px;
+$fontSizeXXl: 42px;
 
 :export {
   primaryColor: $primaryColor;
@@ -10,4 +17,10 @@ $darkColor: rgb(0, 0, 0);
   lightColor: $lightColor;
   darkColor: $darkColor;
   grayColor: $grayColor;
+  fontSizeXS: $fontSizeXS;
+  fontSizeSm: $fontSizeSm;
+  fontSizeMd: $fontSizeMd;
+  fontSizeLg: $fontSizeLg;
+  fontSizeL: $fontSizeL;
+  fontSizeXl: $fontSizeXl;
 }

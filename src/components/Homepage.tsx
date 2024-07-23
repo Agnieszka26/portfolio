@@ -10,8 +10,8 @@ const HomePage = ({
 }: {
   professionalProjectsDetails: Project[];
 }) => {
-  const scrollRef = createRef<HTMLDivElement>();
-  const executeScroll = () => scrollRef.current!.scrollIntoView();
+  const toElScrollRef = createRef<HTMLDivElement>();
+  const executeScroll = () => toElScrollRef.current?.scrollIntoView();
   useEffect(
     () => () => {
       window.scroll({
@@ -26,7 +26,7 @@ const HomePage = ({
     <>
       <HeroArea executeScroll={executeScroll} />
       <ProjectsSection
-        scrollRef={scrollRef}
+        toElScrollRef={toElScrollRef}
         projectsDetails={professionalProjectsDetails}
       />
       <About />

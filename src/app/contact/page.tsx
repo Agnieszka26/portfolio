@@ -1,24 +1,15 @@
 "use client";
 import styles from "@/assets/styles/index.module.scss";
+import Animation from "@/atoms/Animation/Animation";
 import Button from "@/atoms/Button/Button";
 import About from "@/components/About/About";
 import Header from "@/typography/Header/Header";
-import { useEffect } from "react";
-import ScrollAnimation from "react-animate-on-scroll";
-
+import Link from "next/link";
 const Contact = () => {
-  useEffect(() => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, []);
-
   return (
     <>
       <div className={styles.page}>
-        <ScrollAnimation animateIn="animate__fadeInUp " offset={0}>
+        <Animation x={0} y={-20}>
           <div className={styles.container}>
             <div className={styles.containerLeft}>
               <Header
@@ -27,12 +18,12 @@ const Contact = () => {
               />
             </div>
             <div className={styles.containerRight}>
-              <a href="https://www.linkedin.com/in/agnieszka-m%C4%99drek/">
+              <Link href="https://www.linkedin.com/in/agnieszka-m%C4%99drek/">
                 <Button text={"go LinkedIn"} color={"light"} />
-              </a>
+              </Link>
             </div>
           </div>
-        </ScrollAnimation>
+        </Animation>
       </div>
       <About />
     </>

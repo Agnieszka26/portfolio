@@ -5,11 +5,14 @@ import Image from "next/image";
 import { FC } from "react";
 import logo from "../../../public/logo.svg";
 import styles from "./Footer.module.scss";
+import s from "@/assets/styles/index.module.scss";
+import cn from "classnames";
+import Link from "next/link";
 
 const Footer: FC = () => {
   return (
     <div className={styles.footerContainer}>
-      <footer className={styles.footer}>
+      <footer className={cn(styles.footer, s.container)}>
         <div className={styles.containerLeft}>
           <Header text="Seeking Opportunities" color={"light"} />
           <Paragraph
@@ -22,16 +25,16 @@ const Footer: FC = () => {
             text="Explore my portfolio on GitHub for a deeper look at my projects:"
             color="light"
           />
-          <a href="https://github.com/Agnieszka26">
+          <Link href="https://github.com/Agnieszka26">
             <Button text={"view github"} color={"dark"} />
-          </a>
+          </Link>
           <Paragraph
             text="Please feel free to reach out via email to discuss potential collaborations:"
             color="light"
           />
-          <a href="mailto:agna.medrek@gmail.com">
+          <Link href="mailto:agna.medrek@gmail.com">
             <Button text={"send email"} color={"dark"} />
-          </a>
+          </Link>
           <Paragraph
             text="I look forward to connecting with you!"
             color="light"

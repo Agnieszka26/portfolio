@@ -14,22 +14,19 @@
     @include responsive;
     .a {
       text-decoration: none;
-      padding: 0;
-      margin: 0;
+
       p {
-        padding: 0;
-        margin: 0;
       }
     }
   }
   .paragraphReserved {
     font-family: "mulish", "Roboto";
     font-size: 12px;
-    padding: 0.5rem 0;
+
     color: $lightColor;
     display: flex;
     align-items: center;
-    margin: 0;
+
     span {
       img {
         padding: 0 1rem;

@@ -1,24 +1,18 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
-
+import styles from "@/assets/styles/index.module.scss";
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html style={{ scrollBehavior: "smooth" }}>
+    <html style={{ scrollBehavior: "smooth" }} lang="en">
       <head />
 
-      <body
-        style={{
-          margin: "0",
-          padding: "0",
-          boxSizing: "border-box",
-        }}
-      >
+      <body className={styles.body}>
         <Navbar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

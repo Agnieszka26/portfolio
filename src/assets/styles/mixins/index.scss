@@ -4,31 +4,32 @@
   align-items: center;
 }
 
+@mixin bgGradient {
+  background: $primaryColor;
+  background: linear-gradient(90deg, $primaryColor 0%, $secondaryColor 100%);
+}
+
 @mixin responsive {
-  padding: 6rem 3.5rem;
   flex-wrap: wrap;
   @media (min-width: 765px) {
     flex-wrap: nowrap;
-    padding: 3rem 3.5rem;
   }
 
   .containerLeft {
     width: 100%;
-    padding: 1rem;
+
     @media (min-width: 765px) {
       width: 50%;
-      padding: 1rem 2rem;
     }
   }
   .containerRight {
     width: 100%;
-    padding: 1rem;
+
     @media (min-width: 765px) {
       display: block;
       width: 50%;
       height: 100%;
       position: relative;
-      padding: 1rem 2rem;
     }
   }
 }

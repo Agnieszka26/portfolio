@@ -3,18 +3,10 @@ import getDetails from "@/lib/getDtails";
 
 type ParamsSlug = "trudly" | "trudly.mini" | "kettlo" | "smartwear";
 
-const Page = async ({
-  params,
-}: {
-  params: { slug: ParamsSlug };
-}) => {
+const Page = async ({ params }: { params: { slug: ParamsSlug } }) => {
   const details = await getDetails();
-  const detail = details.filter(
-    ({ header }) => header === params.slug,
-  );
+  const detail = details.filter(({ header }) => header === params.slug);
 
-  return (
-    <TechnicalDescriptionPage detail={detail[0]}/>
-  );
-}
+  return <TechnicalDescriptionPage detail={detail[0]} />;
+};
 export default Page;

@@ -6,13 +6,19 @@ import styles from "./ListElement.module.scss";
 interface ListElementProps {
   link: string;
   text: string;
+  handleCloseHamburger: () => void;
   active?: boolean;
 }
 
-const ListElement: FC<ListElementProps> = ({ link, text, active }) => {
+const ListElement: FC<ListElementProps> = ({
+  link,
+  text,
+  active,
+  handleCloseHamburger,
+}) => {
   return (
     <li className={cn(styles.listElement, styles[`active-${active}`])}>
-      <Link href={link}>
+      <Link href={link} onClick={handleCloseHamburger}>
         {text}
 
         <div className={styles.decorationLine}></div>

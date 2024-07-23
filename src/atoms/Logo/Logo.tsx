@@ -3,18 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import logo from "../../../public/logo.svg";
+
 import styles from "./Logo.module.scss";
-
-interface LogoProps {
-  // children: ReactNode;
-}
-
-const Logo: FC<LogoProps> = ({}) => {
+const Logo: FC = () => {
   return (
-    <Link href={RoutesPath.HOME}>
-      <div className={styles.logo}>
-        <Image src={logo} alt={"logo"} height="75" width="75" />
-      </div>
+    <Link href={RoutesPath.HOME} className={styles.logo}>
+      <Image src={logo} alt={"logo"} height="50" width="50" />
     </Link>
   );
 };

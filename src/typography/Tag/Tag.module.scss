@@ -18,9 +18,18 @@
     font-family: "mulish";
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
+    @media (min-width: 768px) {
+      font-size: $fontSizeMd;
+    }
+    @media (min-width: 1280px) {
+      font-size: $fontSizeMd;
+    }
+
+    @media (min-width: 1536px) {
+      font-size: $fontSizeLg;
+    }
     line-height: 32px;
-    color: $darkColor;
+    color: $lightColor;
     margin: 0;
   }
 }

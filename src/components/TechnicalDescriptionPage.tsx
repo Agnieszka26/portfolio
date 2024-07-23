@@ -6,9 +6,14 @@ import Header from "@/typography/Header/Header";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import { useEffect } from "react";
 import Description from "./Description/Description";
+import cn from "classnames";
+import Link from "next/link";
 
-
-export default function TechnicalDescriptionPage({ detail }: { detail?: Detail }) {
+export default function TechnicalDescriptionPage({
+  detail,
+}: {
+  detail?: Detail;
+}) {
   useEffect(
     () => () => {
       window.scroll({
@@ -20,7 +25,7 @@ export default function TechnicalDescriptionPage({ detail }: { detail?: Detail }
     [],
   );
   return (
-    <div className={styles.page}>
+    <div className={cn(styles.page, styles.container)}>
       <Header text={"Sorry, the code is not available!"} color={"dark"} />
 
       <Paragraph
@@ -30,20 +35,21 @@ export default function TechnicalDescriptionPage({ detail }: { detail?: Detail }
         color={"dark"}
       />
 
-      <a href="https://www.linkedin.com/in/agnieszka-m%C4%99drek/">
+      <Link href="https://www.linkedin.com/in/agnieszka-m%C4%99drek/">
         <Button text={"LinkedIn"} color={"light"} />
-      </a>
+      </Link>
 
-      <a href="https://www.instagram.com/amedrek/">
+      <Link href="https://www.instagram.com/amedrek/">
         <Button text={"Instagram"} color={"light"} />
-      </a>
-{detail &&
-      <div className={styles.gridContainer}>
-        <Description text={detail.overview} />
-        <Description text={detail.keyFeatures} />
-        <Description text={detail.technologies} />
-        <Description text={detail.backend} />
-      </div>}
+      </Link>
+      {detail && (
+        <div className={styles.gridContainer}>
+          <Description text={detail.overview} />
+          <Description text={detail.keyFeatures} />
+          <Description text={detail.technologies} />
+          <Description text={detail.backend} />
+        </div>
+      )}
     </div>
   );
 }

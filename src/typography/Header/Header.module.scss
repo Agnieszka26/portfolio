@@ -9,9 +9,20 @@
   font-family: "AbrilFatface", "Roboto";
   color: $lightColor;
   letter-spacing: 3px;
-  font-size: 48px;
+
   padding: 1rem 0;
   margin: 0;
+
+  font-size: $fontSizeXl;
+
+  @media (min-width: 1280px) {
+    font-size: $fontSizeXXl;
+  }
+
+  @media (min-width: 1536px) {
+    font-size: $fontSizeXXl;
+  }
+
   &.color {
     &-dark {
       color: $darkColor;

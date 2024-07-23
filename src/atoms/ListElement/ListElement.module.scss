@@ -9,6 +9,7 @@
   align-items: center;
   font-family: "Mulish Bold";
   padding: 0.5rem;
+
   a {
     align-items: center;
     text-decoration: none;
@@ -16,17 +17,27 @@
     padding: 0 2rem;
     text-align: center;
     position: relative;
-    .decorationLine {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-      height: 6px;
-      width: 100%;
-      background-color: $primaryColor;
-      margin-top: -3px;
-      transition: height 0.2s;
+    @media (min-width: 768px) {
+      font-size: $fontSizeMd;
     }
+    @media (min-width: 1280px) {
+      font-size: $fontSizeMd;
+    }
+
+    @media (min-width: 1536px) {
+      font-size: $fontSizeLg;
+    }
+  }
+  .decorationLine {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    height: 6px;
+    width: 100%;
+    background-color: $primaryColor;
+    margin-top: -3px;
+    transition: height 0.2s;
 
     &:hover {
       .decorationLine {
