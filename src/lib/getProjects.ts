@@ -11,9 +11,9 @@ export default function getProjects(): Promise<Project[]> {
           "paragraph_en",
           "tags",
           "linkToLive",
-          "images",
           "linkToGithub",
           "type",
+          "publicUrl"
         ],
       })
       .eachPage(
@@ -24,9 +24,9 @@ export default function getProjects(): Promise<Project[]> {
             const paragraph = record.get("paragraph_en");
             const tags = record.get("tags");
             const linkToLive = record.get("linkToLive");
-            const image = record.get("images");
             const linkToGithub = record.get("linkToGithub");
             const type = record.get("type");
+            const image = record.get("publicUrl");
 
             projects.push({
               id,

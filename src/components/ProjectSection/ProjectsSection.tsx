@@ -26,7 +26,7 @@ const ProjectsSection: FC<ProjectsSectionProps> = ({ projectsDetails, toElScroll
               heading={"latest work"}
               header={header}
               paragraph={paragraph}
-              image={image[0].thumbnails.full.url}
+              image={image}
               tags={tags}
               linkToGithub={
                 linkToGithub ??

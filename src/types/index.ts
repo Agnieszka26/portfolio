@@ -25,7 +25,7 @@ export type Project = {
   header: string;
   tags: string;
   paragraph: string;
-  image: ImageDb[];
+  image: string;
   linkToGithub: string;
   linkToLive: string;
   type: string;

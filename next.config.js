@@ -7,9 +7,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "v5.airtableusercontent.com",
+        hostname: "khkeguistlgztrrbfozt.supabase.co",
         port: "",
-        pathname: "/v3/**",
+        pathname: "/storage/v1/object/sign/portfolio/**",
       },
     ],
   },
