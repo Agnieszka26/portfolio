@@ -7,12 +7,9 @@ interface ScrollProps {
 
 const Scroll: FC<ScrollProps> = ({ onClick }) => {
   return (
-    <div className={styles.scrollContainer} onClick={onClick}>
-      <div className={styles.scrollLine}></div>
-      <div className={styles.scrollText}>
-        <p>SCROLL</p>
-      </div>
-    </div>
+    <div className={styles.revealWrapper} onClick={onClick}>
+    <p className={styles.revealText}>SCROLL</p>
+  </div>
   );
 };
 

@@ -46,8 +46,9 @@
 .heroArea {
   @include bgGradient;
   padding-top: 8rem;
-  height: 50vh;
-  margin-bottom: 6rem;
+  width: 100%;;
+  height: 52vh;
+
   @media (min-width: 765px) {
     height: 100vh;
     margin-bottom: 6rem;

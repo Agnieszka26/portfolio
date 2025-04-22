@@ -29,7 +29,6 @@ const HomePage = ({
         toElScrollRef={toElScrollRef}
         projectsDetails={professionalProjectsDetails}
       />
-      <About />
     </>
   );
 };
