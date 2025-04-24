@@ -1,5 +1,13 @@
+const createNextIntlPlugin = require('next-intl/plugin');
+ 
+const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  i18n: {
+    localeDetection: false,
+    defaultLocale: 'en',
+    locales: ['en', 'pl',],
+  },
   experimental: {
     appDir: true,
   },
@@ -14,5 +22,6 @@ const nextConfig = {
     ],
   },
 };
-
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);
+// const withNextIntl = createNextIntlPlugin();
+// export default withNextIntl(nextConfig);
