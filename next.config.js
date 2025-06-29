@@ -1,13 +1,10 @@
-const createNextIntlPlugin = require('next-intl/plugin');
- 
-const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
+const createNextIntlPlugin = require('next-intl/plugin');
+const { i18n } = require('./next-i18next.config.js');
+const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
-  i18n: {
-    localeDetection: false,
-    defaultLocale: 'en',
-    locales: ['en', 'pl',],
-  },
+  i18n,
+  trailingSlash: true,
   experimental: {
     appDir: true,
   },

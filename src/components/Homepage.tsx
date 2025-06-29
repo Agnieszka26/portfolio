@@ -3,6 +3,7 @@ import About from "@/components/About/About";
 import HeroArea from "@/components/HeroArea/HeroArea";
 import ProjectsSection from "@/components/ProjectSection/ProjectsSection";
 import { Project } from "@/types";
+import { useTranslations } from "next-intl";
 import { createRef, useEffect } from "react";
 
 const HomePage = ({
@@ -12,6 +13,7 @@ const HomePage = ({
 }) => {
   const toElScrollRef = createRef<HTMLDivElement>();
   const executeScroll = () => toElScrollRef.current?.scrollIntoView();
+  const t = useTranslations('HomePage');
   useEffect(
     () => () => {
       window.scroll({
@@ -24,7 +26,9 @@ const HomePage = ({
   );
   return (
     <>
+
       <HeroArea executeScroll={executeScroll} />
+      <h1>{t('title')}</h1>;
       <ProjectsSection
         toElScrollRef={toElScrollRef}
         projectsDetails={professionalProjectsDetails}

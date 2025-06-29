@@ -1,32 +1,36 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import styles from "@/assets/styles/index.module.scss";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import { getLocale, getMessages } from "next-intl/server";
+import { redirect } from "@/i18n/navigation";
 
-export default  function RootLayout({
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { routing } from "@/i18n/routing";
+// import { notFound } from "next/navigation";
+// import { routing } from "@/i18n/routing";
+
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  // const { locale } = await params;
-  // if (!hasLocale(routing.locales, locale)) {
-  //   // notFound();
-  // }
-console.log("params", params);
+  const l = await getLocale();
+  const messages = await getMessages();
+const p =  await params;
+const {locale} = await params;
+ 
   return (
-    <html style={{ scrollBehavior: "smooth" }} lang={'en'}>
+    <html style={{ scrollBehavior: "smooth" }} lang={l}>
       <head />
 
       <body className={styles.body}>
-        {/* <NextIntlClientProvider> */}
+        <NextIntlClientProvider  messages={messages}>
           <Navbar />
           <main>{children}</main>
           <Footer />
-        {/* </NextIntlClientProvider> */}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

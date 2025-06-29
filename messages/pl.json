@@ -1,6 +1,6 @@
 {
     "HomePage": {
-      "login": "Sign in",
+      "title": "Sign in",
       "password": "Password"
     }
 }
