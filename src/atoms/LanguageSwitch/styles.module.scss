@@ -1,16 +1,16 @@
-//----
-
 .label {
   position: relative;
-  color: #9ca3af; /* text-gray-400 */
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
 }
 
 .label.pending {
-  transition: opacity 0.3s ease; /* transition-opacity */
+  transition: opacity 0.3s ease;
 }
 
 .label.pending:disabled {
-  opacity: 0.3; /* [&:disabled]:opacity-30 */
+  opacity: 0.3;
 }
 
 .srOnly {
@@ -26,11 +26,16 @@
 }
 
 .select {
+  font-family: "Inter", sans-serif;
   display: inline-flex;
+  font-weight: 600;
+  font-size: 1rem;
   appearance: none;
   background-color: transparent;
-  padding-top: 0.75rem;   /* py-3 = 0.75rem top & bottom */
+  border: none;
+  color: white;
+  padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  padding-left: 0.5rem;   /* pl-2 = 0.5rem */
-  padding-right: 1.5rem;  /* pr-6 = 1.5rem */
+  padding-left: 0.5rem;
+  padding-right: 1.5rem;
 }
