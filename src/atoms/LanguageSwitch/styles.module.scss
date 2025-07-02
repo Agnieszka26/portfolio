@@ -1,0 +1,36 @@
+//----
+
+.label {
+  position: relative;
+  color: #9ca3af; /* text-gray-400 */
+}
+
+.label.pending {
+  transition: opacity 0.3s ease; /* transition-opacity */
+}
+
+.label.pending:disabled {
+  opacity: 0.3; /* [&:disabled]:opacity-30 */
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.select {
+  display: inline-flex;
+  appearance: none;
+  background-color: transparent;
+  padding-top: 0.75rem;   /* py-3 = 0.75rem top & bottom */
+  padding-bottom: 0.75rem;
+  padding-left: 0.5rem;   /* pl-2 = 0.5rem */
+  padding-right: 1.5rem;  /* pr-6 = 1.5rem */
+}

@@ -26,9 +26,7 @@ const HomePage = ({
   );
   return (
     <>
-
       <HeroArea executeScroll={executeScroll} />
-      <h1>{t('title')}</h1>;
       <ProjectsSection
         toElScrollRef={toElScrollRef}
         projectsDetails={professionalProjectsDetails}

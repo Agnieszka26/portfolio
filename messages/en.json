@@ -1,6 +1,6 @@
 {
-    "HomePage": {
-      "title": "Sign in",
-      "password": "Password"
-    }
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, pl {PL Polski} en {EN English} other {Unknown}}"
+  }
 }

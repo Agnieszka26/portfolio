@@ -1,12 +1,9 @@
-import { createNavigation } from "next-intl/navigation";
 import { defineRouting } from "next-intl/routing";
-import { Locales, locales } from "./locales";
 
 export const routing = defineRouting({
-  locales,
-  defaultLocale: Locales.EN,
+  locales: ["en", "pl"],
+  localeCookie: {
+    name: "NEXT_LOCALE",
+  },
+  defaultLocale: "en",
 });
-
-export const publicPages = ["/"];
-export type Locale = (typeof routing.locales)[number];
-
