@@ -13,7 +13,8 @@ export default function getProjects(): Promise<Project[]> {
           "linkToLive",
           "linkToGithub",
           "type",
-          "publicUrl"
+          "publicUrl",
+          "paragraph_pl",
         ],
       })
       .eachPage(
@@ -27,6 +28,7 @@ export default function getProjects(): Promise<Project[]> {
             const linkToGithub = record.get("linkToGithub");
             const type = record.get("type");
             const image = record.get("publicUrl");
+            const paragraph_pl = record.get("paragraph_pl");
 
             projects.push({
               id,
@@ -37,6 +39,7 @@ export default function getProjects(): Promise<Project[]> {
               image,
               linkToGithub,
               type,
+              paragraph_pl
             });
           });
 
