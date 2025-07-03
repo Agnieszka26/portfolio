@@ -13,7 +13,6 @@ const HomePage = ({
 }) => {
   const toElScrollRef = createRef<HTMLDivElement>();
   const executeScroll = () => toElScrollRef.current?.scrollIntoView();
-  const t = useTranslations('HomePage');
   useEffect(
     () => () => {
       window.scroll({

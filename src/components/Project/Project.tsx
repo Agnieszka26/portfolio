@@ -9,7 +9,7 @@ import Header from "@/typography/Header/Header";
 import Heading from "@/typography/Heading/Heading";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import Tag from "@/typography/Tag/Tag";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { FC, use } from "react";
 import styles from "./Project.module.scss";
@@ -21,7 +21,7 @@ interface ProjectProps {
   header: string;
   tags?: string[];
   paragraph: string;
-  image: string;
+  image: StaticImageData;
   linkToGithub: string;
   linkToLive: string;
   index: number;
