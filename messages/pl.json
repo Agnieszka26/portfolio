@@ -1,0 +1,45 @@
+{
+  "LocaleSwitcher": {
+    "label": "Zmień język",
+    "locale": "{locale, select, pl {PL Polski} en {EN English} other {Unknown}}"
+  },
+  "HeroArea": {
+    "title": "React i Next.js to mój plac zabaw",
+    "description_1": "Jestem Agnieszką - frontend developerką i konsultantką, która nie tylko tworzy aplikacje z React i Next.js, ale także pomaga je optymalizować, skalować i naprawiać.",
+    "description_2": "Zmagasz się z problemami wydajnościowymi? Kodem legacy? Potrzebujesz migracji do Next.js? Wskoczę, przeprowadzę audyt kodu i dostarczę jasne, skuteczne rozwiązania.",
+    "description_3": "Zatrudnij mnie jako swojego frontend developera - przenieśmy Twój projekt na wyższy poziom.", 
+    "ctaButton": "Zatrudnij mnie"
+  },
+    "Section": {
+    "go_to_code": "przejdź do kodu",
+    "latest work": "najnowszy projekt",
+    "see_project": "zobacz na żywo →"
+  },
+  "ContactPage": {
+    "title": "Stwórzmy coś niesamowitego razem",
+    "subtitle": "Masz projekt na myśli, potrzebujesz pomocy przy stronie internetowej, czy po prostu chcesz powiedzieć cześć? Napisz do mnie — zawsze jestem otwarta na kreatywne wyzwania.",
+    "go_linkedin": "LinkedIn",
+    "send_email": "Napisz Do Mnie"
+  },
+  "Navbar": {
+    "my_work": "moje projekty",
+    "hobby_projects": "projekty hobbystyczne",
+    "get_in_touch": "skontaktuj się ze mną"
+  },
+  "Footer": {
+    "title": "Zainspiruj mnie swoim projektem",
+    "description": "Jako programistka aktywnie poszukująca nowych możliwości zawodowych, jestem gotowa przyczynić się do ekscytujących projektów i rozwijać swoje umiejętności w profesjonalnym środowisku.",
+    "label_github": "Zobacz moje portfolio na GitHubie, aby lepiej poznać moje projekty:",
+    "view_github": "Zobacz GitHub",
+    "label_email": "Skontaktuj się ze mną mailowo, aby omówić potencjalne współprace:",
+    "send_email": "Napisz Email",
+    "subtitle": "Czekam na kontakt z Tobą!",
+    "all_rights_reserved": "Wszystkie prawa zastrzeżone"
+  },
+  "TechnicalDescriptionPage": {
+    "title":"Przepraszam, kod nie jest dostępny!",
+    "subtitle":"Kod nie jest dostępny ze względu na NDA. Poniżej znajduje się opis projektu. Jeśli jesteś zainteresowany moimi umiejętnościami programistycznymi, zapraszam do kontaktu:"
+       
+  }
+
+}

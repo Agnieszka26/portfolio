@@ -10,14 +10,12 @@ interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({ text, color, onClick }) => {
   return (
-    // <div className={cn(styles.boxShadow, styles[`color-${color}`])}>
     <button
       onClick={onClick}
       className={cn(styles.button, styles[`color-${color}`])}
     >
       {text}
     </button>
-    // </div>
   );
 };
 

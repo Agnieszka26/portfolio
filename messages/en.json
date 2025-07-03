@@ -1,0 +1,45 @@
+{
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, pl {PL Polski} en {EN English} other {Unknown}}"
+  },
+  "HeroArea": {
+    "title": "React and Next.js are my playground",
+    "description_1": "I'm Agnieszka - a frontend developer and consultant who not only builds applications with React and Next.js, but also helps optimize, scale, and fix them. Hire me as your frontend consultant - let's take your project to the next level.",
+    "description_2": "Struggling with performance issues? Legacy code? Need to migrate to Next.js? I'll jump in, audit the code, and deliver clear, effective solutions.",
+    "description_3": "Hire me as your frontend consultant - let's take your project to the next level.",
+    "ctaButton": "Hire me"
+  },
+  "Section": {
+    "go_to_code": "go to code",
+    "latest work": "latest work",
+    "see_project": "see live version →"
+  },
+  "ContactPage": {
+    "title": "Let's Build Something Awesome Together",
+    "subtitle": "Got a project in mind, need help with a website, or just want to say hi? Drop me a message — I'm always up for a creative challenge.",
+    "go_linkedin": "go to LinkedIn",
+    "send_email": "Email me directly"
+  },
+  "Navbar": {
+    "my_work": "my work",
+    "hobby_projects": "hobby projects",
+    "get_in_touch": "get in touch",
+    "see_project": "see this project live →"
+  },
+  "Footer": {
+    "title": "Seeking Opportunities",
+    "description": "As a developer actively seeking new career opportunities, I am eager to contribute to exciting projects and advance my skills in a professional environment.",
+    "label_github": "Explore my portfolio on GitHub for a deeper look at my projects:",
+    "view_github": "View GitHub",
+    "label_email": "Please feel free to reach out via email to discuss potential collaborations:",
+    "send_email": "Send Email",
+    "subtitle": "I look forward to connecting with you!",
+    "all_rights_reserved": "© All rights reserved"
+  },
+    "TechnicalDescriptionPage": {
+    "title":"Sorry, the code is not available!",
+    "subtitle":"The code is not reachable because of NDA. There is description of the project below, although are you interested to talk about my programming and coding skills? You are welcome to reach me on: "
+       
+  }
+}

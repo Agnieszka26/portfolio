@@ -4,6 +4,20 @@
   src: url("../../fonts/Mulish/static/Mulish-Bold.ttf") format("truetype");
 }
 
+.btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
 .listElement {
   display: flex;
   align-items: center;
@@ -38,11 +52,11 @@
     background-color: $primaryColor;
     margin-top: -3px;
     transition: height 0.2s;
-
-    &:hover {
-      .decorationLine {
-        height: 24px;
-      }
+ 
+  }
+  &:hover {
+    .decorationLine {
+      height: 24px;
     }
   }
 }

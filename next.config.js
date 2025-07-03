@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
+const createNextIntlPlugin = require('next-intl/plugin');
+// const { i18n } = require('./next-i18next.config.js');
+
+const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+  trailingSlash: true,
   images: {
     remotePatterns: [
       {
@@ -14,5 +16,6 @@ const nextConfig = {
     ],
   },
 };
-
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);
+// const withNextIntl = createNextIntlPlugin();
+// export default withNextIntl(nextConfig);

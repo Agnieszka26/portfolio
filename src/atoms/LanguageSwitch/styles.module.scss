@@ -1,0 +1,41 @@
+.label {
+  position: relative;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.label.pending {
+  transition: opacity 0.3s ease;
+}
+
+.label.pending:disabled {
+  opacity: 0.3;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.select {
+  font-family: "Inter", sans-serif;
+  display: inline-flex;
+  font-weight: 600;
+  font-size: 1rem;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.5rem;
+  padding-right: 1.5rem;
+}

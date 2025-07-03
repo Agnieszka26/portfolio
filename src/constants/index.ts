@@ -9,14 +9,14 @@ export enum RoutesPath {
 export const navbarElements = [
   {
     link: RoutesPath.MY_WORK,
-    text: "my work",
+    text: "my_work",
   },
   {
     link: RoutesPath.HOBBY_PROJECTS,
-    text: "hobby projects",
+    text: "hobby_projects",
   },
   {
     link: RoutesPath.GET_IN_TOUCH,
-    text: "get in touch",
+    text: "get_in_touch",
   },
 ];

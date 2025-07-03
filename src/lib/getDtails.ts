@@ -1,10 +1,12 @@
 import { Detail } from "@/types";
 import { base } from "./base";
 
-export default function getDetails(): Promise<Detail[]> {
+export default function getDetails(locale: string): Promise<Detail[]> {
   const details: Detail[] = [];
+  const baseTableName = locale === "en" ? "projects details" : "project details pl";
+  console.log(baseTableName)
   return new Promise((resolve, reject) => {
-    base("projects details")
+    base(baseTableName)
       .select({
         fields: [
           "header",

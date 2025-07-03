@@ -8,30 +8,30 @@ import Paragraph from "@/typography/Paragraph/Paragraph";
 import Link from "next/link";
 import Image from "next/image";
 import image from "@/assets/images/undraw_proud-coder_9prj.svg"
+import { useTranslations } from "next-intl";
 const Contact = () => {
+  const t = useTranslations("ContactPage");
   return (
-    <>
       <div className={styles.page}>
         <Animation x={0} y={-20}>
           <div className={[styles.container, styles.flex].join(" ")}>
             <div className={styles.containerLeft}>
               <Header
-                text="Let's Build Something Awesome Together"
+                text={t("title")}
                 color={"dark"}
               />
               <Paragraph
-                text="Got a project in mind, need help with a website, or just want to say hi?
-      Drop me a message — I'm always up for a creative challenge."
+                text={t("subtitle")}
                 color="dark"
               />
     
               <Link href="https://www.linkedin.com/in/agnieszka-m%C4%99drek/">
-                <Button text={"go LinkedIn"} color={"light"} />
+                <Button text={t("go_linkedin")} color={"light"} />
               </Link>
    
 
               <Link href="mailto:agna.medrek@gmail.com">
-                <Button text={"Email me directly"} color={"light"} />
+                <Button text={t("send_email")} color={"light"} />
               </Link>
          </div>
           
@@ -45,7 +45,7 @@ const Contact = () => {
           
         </Animation>
       </div>
-    </>
+
   );
 };
 

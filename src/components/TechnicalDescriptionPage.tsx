@@ -8,12 +8,14 @@ import { useEffect } from "react";
 import Description from "./Description/Description";
 import cn from "classnames";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function TechnicalDescriptionPage({
   detail,
 }: {
   detail?: Detail;
 }) {
+  const t = useTranslations("TechnicalDescriptionPage");  
   useEffect(
     () => () => {
       window.scroll({
@@ -26,12 +28,10 @@ export default function TechnicalDescriptionPage({
   );
   return (
     <div className={cn(styles.page, styles.container)}>
-      <Header text={"Sorry, the code is not available!"} color={"dark"} />
+      <Header text={t("title")} color={"dark"} />
 
       <Paragraph
-        text={
-          "There is description of the project below, although are you interested to talk about my programming and coding skills? You are welcome to reach me on: "
-        }
+        text={t("subtitle")} 
         color={"dark"}
       />
 

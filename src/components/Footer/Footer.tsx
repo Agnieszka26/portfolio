@@ -8,35 +8,37 @@ import styles from "./Footer.module.scss";
 import s from "@/assets/styles/index.module.scss";
 import cn from "classnames";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const Footer: FC = () => {
+    const t = useTranslations("Footer");
   return (
     <div className={styles.footerContainer}>
       <footer className={cn(styles.footer, s.container)}>
         <div className={styles.containerLeft}>
-          <Header text="Seeking Opportunities" color={"light"} />
+          <Header text={t("title")} color={"light"} />
           <Paragraph
-            text="As a developer actively seeking new career opportunities, I am eager to contribute to exciting projects and advance my skills in a professional environment. "
+            text={t("description")}
             color="light"
           />
         </div>
         <div className={styles.containerRight}>
           <Paragraph
-            text="Explore my portfolio on GitHub for a deeper look at my projects:"
+            text={t("label_github")}
             color="light"
           />
           <Link href="https://github.com/Agnieszka26">
-            <Button text={"view github"} color={"dark"} />
+            <Button text={t("view_github")} color={"dark"} />
           </Link>
           <Paragraph
-            text="Please feel free to reach out via email to discuss potential collaborations:"
+            text={t("label_email")}
             color="light"
           />
           <Link href="mailto:agna.medrek@gmail.com">
-            <Button text={"send email"} color={"dark"} />
+            <Button text={t('send_email')} color={"dark"} />
           </Link>
           <Paragraph
-            text="I look forward to connecting with you!"
+            text={t("subtitle")}
             color="light"
           />
         </div>
@@ -45,7 +47,7 @@ const Footer: FC = () => {
         <span>
           <Image src={logo} alt="logo" />
         </span>
-        © All rights reserved
+        {t("all_rights_reserved")}
       </div>
     </div>
   );
