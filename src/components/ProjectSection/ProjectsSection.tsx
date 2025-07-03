@@ -3,12 +3,17 @@ import { RoutesPath } from "@/constants";
 import { Project } from "@/types";
 import { FC, RefObject } from "react";
 import ProjectComponent from "../Project/Project";
+import {useLocale, useTranslations } from "next-intl";
+
 interface ProjectsSectionProps {
   projectsDetails: Project[];
   toElScrollRef?: RefObject<HTMLDivElement>
 }
 
 const ProjectsSection: FC<ProjectsSectionProps> = ({ projectsDetails, toElScrollRef }) => {
+ const t = useTranslations("Section");
+ const locale = useLocale();
+ 
   return (
     <section className={styles.container} ref={toElScrollRef}>
       {projectsDetails.map(
@@ -29,8 +34,7 @@ const ProjectsSection: FC<ProjectsSectionProps> = ({ projectsDetails, toElScroll
               image={image}
               tags={tags}
               linkToGithub={
-                linkToGithub ??
-                RoutesPath.SOURCE_CODE_NOT_AVAILABLE + "/" + header
+                linkToGithub ?? ""
               }
               linkToLive={linkToLive}
               index={index}

@@ -2,6 +2,7 @@ import { navbarElements } from "@/constants";
 import cn from "classnames";
 import ListElement from "../ListElement/ListElement";
 import styles from "./MobileList.module.scss";
+import { useTranslations } from "next-intl";
 
 const MobileList = ({
   visible,
@@ -10,13 +11,14 @@ const MobileList = ({
   visible: boolean;
   handleCloseHamburger: () => void;
 }) => {
+    const t = useTranslations("Navbar");
   return (
     <ul className={cn(styles.list, visible ? styles.visible : styles.hidden)}>
       {navbarElements.map(({ link, text }, index) => (
         <ListElement
           key={`${text}-${index}`}
           link={link}
-          text={text}
+          text={t(text)}
           handleCloseHamburger={handleCloseHamburger}
         />
       ))}

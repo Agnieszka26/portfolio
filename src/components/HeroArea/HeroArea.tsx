@@ -4,28 +4,25 @@ import Header from "@/typography/Header/Header";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import cn from "classnames";
 import Link from "next/link";
-import { FC } from "react";
+import React, { FC } from "react";
 import Scroll from "../Scroll/Scroll";
+import { useTranslations } from "next-intl";
+
 interface HeroAreaProps {
   executeScroll?: () => void;
 }
 
-const HeroArea: FC<HeroAreaProps> = ({ executeScroll }) => {
+const HeroArea = ({ executeScroll }: HeroAreaProps) => {
+  const t = useTranslations("HeroArea");
   return (
     <div className={cn(styles.heroArea)}>
       <div className={cn(styles.fixedBox, styles.container)}>
         <div className={cn(styles.containerLeft)}>
-          <Header text={`React and Next.js are my playground`} color="light" />
+          <Header text={t("title")} color="light" />
 
-          <Paragraph
-            color="light"
-            text={`I'm Agnieszka - a frontend developer and consultant who not only builds applications with React and Next.js, but also helps optimize, scale, and fix them. 
-
-Struggling with performance issues? Legacy code? Need to migrate to Next.js? I'll jump in, audit the code, and deliver clear, effective solutions. 
-
-Hire me as your frontend consultant - let's take your project to the next level.
-`}
-          />
+          <Paragraph text={t("description_1")} color="light" />
+          <Paragraph text={t("description_2")} color="light" />
+          <Paragraph text={t("description_3")} color="light" />
           <Link
             href={
               "https://docs.google.com/forms/d/e/1FAIpQLSc_qJZfLheGYwedgUzP76BO-qpTuKBLfze30xUDdHWjXf5ptA/viewform"
@@ -33,7 +30,7 @@ Hire me as your frontend consultant - let's take your project to the next level.
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button text={"Hire me"} color={"dark"} />
+            <Button text={t("ctaButton")} color={"dark"} />
           </Link>
         </div>
 

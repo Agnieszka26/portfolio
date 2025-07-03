@@ -5,15 +5,12 @@ import {  NextIntlClientProvider } from "next-intl";
 
 export default async function RootLayout(
  { children, params: { locale } }: {children: React.ReactNode; params: { locale: string } }) {
-  console.log(" RootLayout locale", locale);
   return (
     <html style={{ scrollBehavior: "smooth" }} lang={locale}>
       <head />
 
       <body className={styles.body}>
-        <NextIntlClientProvider 
-        // messages={await import(`../../../messages/${locale}.json`)}
-        >
+        <NextIntlClientProvider>
           <Navbar />
           <main>{children}</main>
           <Footer />

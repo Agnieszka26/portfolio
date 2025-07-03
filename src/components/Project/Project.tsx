@@ -11,8 +11,10 @@ import Paragraph from "@/typography/Paragraph/Paragraph";
 import Tag from "@/typography/Tag/Tag";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, use } from "react";
 import styles from "./Project.module.scss";
+import { useLocale, useTranslations } from "next-intl";
+import { RoutesPath } from "@/constants";
 
 interface ProjectProps {
   heading: string;
@@ -35,19 +37,33 @@ const ProjectComponent: FC<ProjectProps> = ({
   linkToLive,
   index,
 }) => {
+  const t = useTranslations("Section");
+  const locale = useLocale();
   return (
     <div className={styles.project}>
       <div className={styles.containerLeft}>
         <Animation x={animateDirectionLeft(index)}>
-          <Heading text={heading} />
+          <Heading text={t(heading)} />
           <Header text={header} color="dark" />
           <div className={styles.tagContainer}>
             {tags?.map((tag) => <Tag key={tag} text={tag} />)}
           </div>
           <Paragraph color="dark" text={paragraph} />
-          <Link href={linkToGithub} target="_blank" rel="noreferrer">
-            <Button text={"go to code"} color={"light"} />
-          </Link>
+
+          {linkToGithub === "" ? (
+           <Link
+              href={`${RoutesPath.SOURCE_CODE_NOT_AVAILABLE}/${header}`}
+              locale={locale}
+            >
+              <Button text={t("go_to_code")} color={"light"} />
+            </Link>
+          ) : (
+             <Link href={linkToGithub} target="_blank" rel="noreferrer">
+              <Button text={t("go_to_code")} color={"light"} />
+            </Link>
+            
+          )}
+      
         </Animation>
       </div>
       <div className={styles.containerRight}>
@@ -66,7 +82,7 @@ const ProjectComponent: FC<ProjectProps> = ({
               width={500}
               height={500}
             />
-            <Caption text={"see this project live →"} />
+            <Caption text={t("see_project")} />
           </Link>
         </Animation>
       </div>
