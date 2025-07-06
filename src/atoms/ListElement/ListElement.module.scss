@@ -12,51 +12,57 @@
   font: inherit;
   color: inherit;
   cursor: pointer;
-
   display: flex;
   justify-items: center;
   align-items: center;
 }
 
 .listElement {
-  display: flex;
-  align-items: center;
   font-family: "Mulish Bold";
   padding: 0.5rem;
+  text-decoration: none;
 
   a {
     align-items: center;
+    gap: 0.5rem;
     text-decoration: none;
     color: $lightColor;
-    padding: 0 2rem;
+    padding: 0 0;
     text-align: center;
     position: relative;
     @media (min-width: 768px) {
       font-size: $fontSizeMd;
+      padding: 0 2rem;
     }
     @media (min-width: 1280px) {
       font-size: $fontSizeMd;
+      padding: 0 2rem;
     }
 
     @media (min-width: 1536px) {
       font-size: $fontSizeLg;
+      padding: 0 2rem;
     }
   }
   .decorationLine {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    height: 6px;
-    width: 100%;
-    background-color: $primaryColor;
-    margin-top: -3px;
-    transition: height 0.2s;
- 
-  }
-  &:hover {
-    .decorationLine {
-      height: 24px;
+    visibility: hidden;
+
+    @media (min-width: 768px) {
+      visibility: visible;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      height: 6px;
+      width: 100%;
+      background-color: $primaryColor;
+      margin-top: -3px;
+      transition: height 0.2s;
+    }
+    &:hover {
+      .decorationLine {
+        height: 24px;
+      }
     }
   }
 }
