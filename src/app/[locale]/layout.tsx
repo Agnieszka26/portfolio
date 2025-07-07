@@ -2,6 +2,7 @@ import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import styles from "@/assets/styles/index.module.scss";
 import {  NextIntlClientProvider } from "next-intl";
+import { Analytics } from '@vercel/analytics/next';
 
 export default async function RootLayout(
  { children, params: { locale } }: {children: React.ReactNode; params: { locale: string } }) {
@@ -15,6 +16,7 @@ export default async function RootLayout(
           <main>{children}</main>
           <Footer />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
