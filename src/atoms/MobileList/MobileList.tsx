@@ -3,6 +3,7 @@ import cn from "classnames";
 import ListElement from "../ListElement/ListElement";
 import styles from "./MobileList.module.scss";
 import { useTranslations } from "next-intl";
+import LanguageSwitch from "../LanguageSwitch/LanguageSwitch";
 
 const MobileList = ({
   visible,
@@ -32,6 +33,7 @@ const MobileList = ({
         text={"instagram"}
         handleCloseHamburger={handleCloseHamburger}
       />
+      <LanguageSwitch />
     </ul>
   );
 };

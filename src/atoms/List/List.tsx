@@ -10,10 +10,14 @@ const List: FC = () => {
   return (
     <ul className={styles.list}>
       {navbarElements.map(({ link, text }, index) => (
-        <ListElement key={`${text}-${index}`} link={link} text={t(text)} handleCloseHamburger={()=>{}} />
+        <ListElement
+          key={`${text}-${index}`}
+          link={link}
+          text={t(text)}
+          handleCloseHamburger={() => {}}
+        />
       ))}
-<LanguageSwitch />
-
+      <LanguageSwitch />
     </ul>
   );
 };
