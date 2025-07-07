@@ -1,6 +1,8 @@
-export default function Head() {
+import Head from "next/head";
+
+export default function CustomHead() {
   return (
-    <>
+    <Head>
       <title>AGNA - Front-end Developer | Portfolio</title>
       <meta
         name="description"
@@ -62,6 +64,6 @@ export default function Head() {
       <meta name="theme-color" content="#ffffff" />
       <link rel="icon" href="/favicon.ico" />
       <meta name="robots" content="index,follow" />
-    </>
+    </Head>
   );
 }
