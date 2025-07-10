@@ -1,12 +1,12 @@
 import styles from "@/assets/styles/index.module.scss";
 import Button from "@/atoms/Button/Button";
-import Header from "@/typography/Header/Header";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import cn from "classnames";
 import Link from "next/link";
 import React, { FC } from "react";
 import Scroll from "../Scroll/Scroll";
 import { useTranslations } from "next-intl";
+import ScatterText from "./SplitTextScatter";
 
 interface HeroAreaProps {
   executeScroll?: () => void;
@@ -18,8 +18,7 @@ const HeroArea = ({ executeScroll }: HeroAreaProps) => {
     <div className={cn(styles.heroArea)}>
       <div className={cn(styles.fixedBox, styles.container)}>
         <div className={cn(styles.containerLeft)}>
-          <Header text={t("title")} color="light" />
-
+          <ScatterText text={t("title")} />
           <Paragraph text={t("description_1")} color="light" />
           <Paragraph text={t("description_2")} color="light" />
           <Paragraph text={t("description_3")} color="light" />
