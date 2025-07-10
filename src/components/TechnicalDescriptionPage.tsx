@@ -9,6 +9,7 @@ import Description from "./Description/Description";
 import cn from "classnames";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import OrbitingLayout from "./OrbitingLayout/OrbitingLayout";
 
 export default function TechnicalDescriptionPage({
   detail,
@@ -44,10 +45,11 @@ export default function TechnicalDescriptionPage({
       </Link>
       {detail && (
         <div className={styles.gridContainer}>
-          <Description text={detail.overview} />
+          <OrbitingLayout />
+          {/* <Description text={detail.overview} />
           <Description text={detail.keyFeatures} />
           <Description text={detail.technologies} />
-          <Description text={detail.backend} />
+          <Description text={detail.backend} /> */}
         </div>
       )}
     </div>
