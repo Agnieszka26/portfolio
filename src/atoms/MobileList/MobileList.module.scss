@@ -29,11 +29,13 @@
   opacity: 0;
   height: 80%;
   width: 100%;
-  display: grid;
   align-items: center;
   justify-content: center;
   z-index: 0;
   list-style-type: none;
+  display: grid;
+  visibility: visible;
+  z-index: -20;
   @media (min-width: 765px) {
     display: none;
     visibility: hidden;

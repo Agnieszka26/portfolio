@@ -14,7 +14,9 @@ const MobileList = ({
 }) => {
     const t = useTranslations("Navbar");
   return (
-    <ul className={cn(styles.list, visible ? styles.visible : styles.hidden)}>
+    <ul
+     className={cn(styles.list, visible ? styles.visible : styles.hidden)}
+     >
       {navbarElements.map(({ link, text }, index) => (
         <ListElement
           key={`${text}-${index}`}
