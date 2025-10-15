@@ -43,15 +43,17 @@ export default function TechnicalDescriptionPage({
       <Link href="https://www.instagram.com/amedrek/">
         <Button text={"Instagram"} color={"light"} />
       </Link>
-      {detail && (
-        <div className={styles.gridContainer}>
-          <OrbitingLayout />
+      <div style={{height: "100vh"}}>
+
+      {detail &&  <OrbitingLayout><Description text={detail.overview} /> </OrbitingLayout> }
+      </div>
+        {/* <div className={styles.gridContainer}>
           {/* <Description text={detail.overview} />
           <Description text={detail.keyFeatures} />
           <Description text={detail.technologies} />
-          <Description text={detail.backend} /> */}
-        </div>
-      )}
+          <Description text={detail.backend} /> 
+        </div> */}
+ 
     </div>
   );
 }

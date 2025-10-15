@@ -1,0 +1,15 @@
+import admin from "./admin.png"
+import oauth from "./Oauth.png"
+import react from "./react.png"
+import api from "./api.png"
+import authorization from "./autorization.png"
+import next from "./next.png"
+import payU from "./payU.png"
+import rechart from "./rechart.png"
+import rwd from "./rwd.png"
+import sass from "./sass.png"
+import seo from "./seo.png"
+import tailwind from "./tailwind.png"
+import typescript from "./typescripit.png"
+
+export const icons = [admin, oauth, react, api, authorization, next, payU, react, rechart, rwd, sass, seo, tailwind,typescript]
