@@ -1,8 +1,9 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import styles from "@/assets/styles/index.module.scss";
-import {  NextIntlClientProvider } from "next-intl";
-import { Analytics } from '@vercel/analytics/next';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 
 
 export const metadata = {
@@ -39,14 +40,19 @@ export const metadata = {
   },
 };
 
-export default async function RootLayout(
- { children, params: { locale } }: {children: React.ReactNode; params: { locale: string } }) {
+export default async function RootLayout({
+  children,
+  params: { locale },
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
+  const messages = await getMessages();
+
   return (
     <html style={{ scrollBehavior: "smooth" }} lang={locale}>
-      
-
       <body className={styles.body}>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Navbar />
           <main>{children}</main>
           <Footer />

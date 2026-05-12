@@ -30,8 +30,8 @@ const Contact = () => {
           <Image
             src={image}
             alt="contact"
-          className={styles.image}
-           
+            className={styles.image}
+
           />
         </div>
       </Animation>

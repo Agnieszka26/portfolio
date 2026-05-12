@@ -4,7 +4,6 @@ import { base } from "./base";
 export default function getDetails(locale: string): Promise<Detail[]> {
   const details: Detail[] = [];
   const baseTableName = locale === "en" ? "projects details" : "project details pl";
-  console.log(baseTableName)
   return new Promise((resolve, reject) => {
     base(baseTableName)
       .select({
@@ -14,6 +13,9 @@ export default function getDetails(locale: string): Promise<Detail[]> {
           "technologies",
           "backend",
           "keyFeatures",
+          "challenges",
+          "stack",
+          "slides",
         ],
       })
       .eachPage(
@@ -25,6 +27,14 @@ export default function getDetails(locale: string): Promise<Detail[]> {
             const technologies = record.get("technologies");
             const backend = record.get("backend");
             const keyFeatures = record.get("keyFeatures");
+            const challenges = record.get("challenges");
+            const stack = record.get("stack");
+            const slidesRaw = record.get("slides");
+            const slides = Array.isArray(slidesRaw)
+              ? slidesRaw
+              : slidesRaw != null
+                ? [slidesRaw]
+                : undefined;
 
             details.push({
               id,
@@ -33,6 +43,9 @@ export default function getDetails(locale: string): Promise<Detail[]> {
               technologies,
               backend,
               keyFeatures,
+              challenges,
+              stack,
+              slides,
             });
           });
 

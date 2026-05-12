@@ -1,0 +1,100 @@
+@import "../../assets/styles/colors";
+@import "../../assets/styles/mixins/index.scss";
+
+.root {
+  width: 100%;
+  margin: 1.5rem 0;
+  outline: none;
+
+  &:focus-visible {
+    outline: 3px solid $primaryColor;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 8px 10px 12px 3px rgba(0, 0, 0, 0.2);
+  background: $lightColor;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.slide {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.controls {
+  @include center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.navButton {
+  @include center;
+  cursor: pointer;
+  padding: 0.65rem 0.85rem;
+  border: 3px solid $darkColor;
+  background: $lightColor;
+  color: $darkColor;
+  box-shadow: 0.35rem 0.35rem $darkColor;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+
+  &:hover:not(:disabled) {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid $darkColor;
+  padding: 0;
+  cursor: pointer;
+  background: $lightColor;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.dotActive {
+  background: $primaryColor;
+  border-color: $primaryColor;
+}

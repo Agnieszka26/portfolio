@@ -2,7 +2,7 @@
 const createNextIntlPlugin = require('next-intl/plugin');
 // const { i18n } = require('./next-i18next.config.js');
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.tsx");
 const nextConfig = {
   trailingSlash: true,
   images: {

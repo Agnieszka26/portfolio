@@ -7,11 +7,11 @@
     "title": "React i Next.js to mój plac zabaw",
     "description_1": "Jestem Agnieszką - frontend developerką i konsultantką, która nie tylko tworzy aplikacje z React i Next.js, ale także pomaga je optymalizować, skalować i naprawiać.",
     "description_2": "Zmagasz się z problemami wydajnościowymi? Kodem legacy? Potrzebujesz migracji do Next.js? Wskoczę, przeprowadzę audyt kodu i dostarczę jasne, skuteczne rozwiązania.",
-    "description_3": "Zatrudnij mnie jako swojego frontend developera - przenieśmy Twój projekt na wyższy poziom.", 
+    "description_3": "Zatrudnij mnie jako swojego frontend developera - przenieśmy Twój projekt na wyższy poziom.",
     "ctaButton": "Zatrudnij mnie"
   },
-    "Section": {
-    "go_to_code": "przejdź do kodu",
+  "Section": {
+    "learn_more": "dowiedz się więcej",
     "latest work": "najnowszy projekt",
     "see_project": "zobacz na żywo →"
   },
@@ -22,7 +22,7 @@
     "send_email": "Napisz Do Mnie"
   },
   "Navbar": {
-    "my_work": "moje projekty",
+    "projects": "projekty",
     "hobby_projects": "projekty hobbystyczne",
     "get_in_touch": "skontaktuj się ze mną"
   },
@@ -37,9 +37,15 @@
     "all_rights_reserved": "Wszystkie prawa zastrzeżone"
   },
   "TechnicalDescriptionPage": {
-    "title":"Przepraszam, kod nie jest dostępny!",
-    "subtitle":"Kod nie jest dostępny ze względu na NDA. Poniżej znajduje się opis projektu. Jeśli jesteś zainteresowany moimi umiejętnościami programistycznymi, zapraszam do kontaktu:"
-       
+    "not_found_title": "Nie znaleziono tego projektu.",
+    "not_found_body": "Link mógł być nieprawidłowy albo treść została zmieniona.",
+    "not_found_link": "Wróć do projektów",
+    "section_overview": "Opis",
+    "section_gallery": "Zrzuty ekranu",
+    "section_features": "Kluczowe funkcje",
+    "section_tech": "Frontend i stack",
+    "section_backend": "Backend i infrastruktura",
+    "section_challenges": "Wyzwania",
+    "see_live_preview": "Zobacz wersję na żywo"
   }
-
 }

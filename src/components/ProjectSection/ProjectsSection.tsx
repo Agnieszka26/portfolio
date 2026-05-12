@@ -33,7 +33,7 @@ const ProjectsSection: FC<ProjectsSectionProps> = ({ projectsDetails, toElScroll
               image={image}
               tags={tags}
               linkToGithub={
-                linkToGithub ?? ""
+                RoutesPath.PROJECTS + "/" + header
               }
               linkToLive={linkToLive}
               index={index}

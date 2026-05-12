@@ -114,6 +114,15 @@
     }
     margin: 0;
   }
+  ul {
+    font-family: "mulish", "Roboto";
+    color: $darkColor;
+    white-space: pre-line;
+    font-size: $fontSizeXS;
+    @media (min-width: 765px) {
+      font-size: $fontSizeMd;
+    }
+  }
 
   p {
     font-family: "mulish", "Roboto";
@@ -134,8 +143,13 @@
   grid-template-columns: 1fr;
   @media (min-width: 765px) {
     margin-top: 4rem;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
   }
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .list {

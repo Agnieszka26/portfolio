@@ -3,7 +3,6 @@ import About from "@/components/About/About";
 import HeroArea from "@/components/HeroArea/HeroArea";
 import ProjectsSection from "@/components/ProjectSection/ProjectsSection";
 import { Project } from "@/types";
-import { useTranslations } from "next-intl";
 import { createRef, useEffect } from "react";
 
 const HomePage = ({

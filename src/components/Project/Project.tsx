@@ -49,21 +49,12 @@ const ProjectComponent: FC<ProjectProps> = ({
             {tags?.map((tag) => <Tag key={tag} text={tag} />)}
           </div>
           <Paragraph color="dark" text={paragraph} />
-
-          {linkToGithub === "" ? (
-           <Link
-              href={`${RoutesPath.SOURCE_CODE_NOT_AVAILABLE}/${header}`}
+          <Link
+              href={linkToGithub}
               locale={locale}
             >
-              <Button text={t("go_to_code")} color={"light"} />
-            </Link>
-          ) : (
-             <Link href={linkToGithub} target="_blank" rel="noreferrer">
-              <Button text={t("go_to_code")} color={"light"} />
-            </Link>
-            
-          )}
-      
+          <Button text={t("learn_more")} color={"light"} />
+          </Link>
         </Animation>
       </div>
       <div className={styles.containerRight}>
