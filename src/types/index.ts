@@ -42,6 +42,5 @@ export type Detail = {
   backend: string;
   keyFeatures: string;
   challenges?: string;
-  stack?: string
   slides?: ImageDb[]
 };

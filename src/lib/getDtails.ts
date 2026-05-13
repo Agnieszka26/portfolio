@@ -14,7 +14,6 @@ export default function getDetails(locale: string): Promise<Detail[]> {
           "backend",
           "keyFeatures",
           "challenges",
-          "stack",
           "slides",
         ],
       })
@@ -28,7 +27,6 @@ export default function getDetails(locale: string): Promise<Detail[]> {
             const backend = record.get("backend");
             const keyFeatures = record.get("keyFeatures");
             const challenges = record.get("challenges");
-            const stack = record.get("stack");
             const slidesRaw = record.get("slides");
             const slides = Array.isArray(slidesRaw)
               ? slidesRaw
@@ -44,7 +42,6 @@ export default function getDetails(locale: string): Promise<Detail[]> {
               backend,
               keyFeatures,
               challenges,
-              stack,
               slides,
             });
           });
