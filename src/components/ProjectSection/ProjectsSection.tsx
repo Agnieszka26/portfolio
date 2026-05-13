@@ -27,7 +27,7 @@ const ProjectsSection: FC<ProjectsSectionProps> = ({ projectsDetails, toElScroll
           return (
             <ProjectComponent
               key={header}
-              heading={"latest work"}
+              heading={index === 0 ? "latest work" : "highlighted" }
               header={header}
               paragraph={locale == "en" ? paragraph : paragraph_pl}
               image={image}

@@ -13,6 +13,18 @@ const nextConfig = {
         port: "",
         pathname: "/storage/v1/object/public/portfolio/**",
       },
+      {
+        protocol: "https",
+        hostname: "**.airtableusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "dl.airtable.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

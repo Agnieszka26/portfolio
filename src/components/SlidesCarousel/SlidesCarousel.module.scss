@@ -1,6 +1,9 @@
 @import "../../assets/styles/colors";
 @import "../../assets/styles/mixins/index.scss";
 
+// Cap gallery height on /projects/[id] (~ half viewport)
+$carouselMaxHeight: 90vh;
+
 .root {
   width: 100%;
   margin: 1.5rem 0;
@@ -16,6 +19,7 @@
 .viewport {
   position: relative;
   width: 100%;
+  max-height: $carouselMaxHeight;
   overflow: hidden;
   border-radius: 20px;
   box-shadow: 8px 10px 12px 3px rgba(0, 0, 0, 0.2);
@@ -24,20 +28,26 @@
 
 .track {
   display: flex;
+  align-items: center;
+  max-height: $carouselMaxHeight;
   transition: transform 0.4s ease;
 }
 
 .slide {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  max-height: $carouselMaxHeight;
+  box-sizing: border-box;
 }
 
 .image {
   display: block;
-  width: 100%;
+  width: auto;
   max-width: 100%;
+  max-height: $carouselMaxHeight;
   height: auto;
+  object-fit: contain;
 }
 
 .controls {

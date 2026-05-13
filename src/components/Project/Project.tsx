@@ -11,17 +11,28 @@ import Paragraph from "@/typography/Paragraph/Paragraph";
 import Tag from "@/typography/Tag/Tag";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { FC, use } from "react";
+import { FC } from "react";
 import styles from "./Project.module.scss";
 import { useLocale, useTranslations } from "next-intl";
-import { RoutesPath } from "@/constants";
+import type { RemoteCoverImage } from "@/types";
+
+function isRemoteCoverImage(
+  image: StaticImageData | RemoteCoverImage,
+): image is RemoteCoverImage {
+  return (
+    typeof image === "object" &&
+    image !== null &&
+    "url" in image &&
+    typeof (image as RemoteCoverImage).url === "string"
+  );
+}
 
 interface ProjectProps {
   heading: string;
   header: string;
   tags?: string[];
   paragraph: string;
-  image: StaticImageData;
+  image: StaticImageData | RemoteCoverImage;
   linkToGithub: string;
   linkToLive: string;
   index: number;
@@ -39,6 +50,7 @@ const ProjectComponent: FC<ProjectProps> = ({
 }) => {
   const t = useTranslations("Section");
   const locale = useLocale();
+  const remoteCover = isRemoteCoverImage(image);
   return (
     <div className={styles.project}>
       <div className={styles.containerLeft}>
@@ -67,11 +79,11 @@ const ProjectComponent: FC<ProjectProps> = ({
           >
             <Image
               className={styles.img}
-              src={image}
+              src={remoteCover ? image.url : image}
               alt={`preview project ${header}`}
               quality={100}
-              width={500}
-              height={500}
+              width={remoteCover ? image.width : 500}
+              height={remoteCover ? image.height : 500}
             />
             <Caption text={t("see_project")} />
           </Link>

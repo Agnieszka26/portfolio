@@ -1,7 +1,9 @@
-import { Project } from "@/types";
+import type { StaticImageData } from "next/image";
+import { Project, RemoteCoverImage } from "@/types";
 import { base } from "./base";
-import digitalAgency from "@/assets/images/portfolio_images/digitalAgency.png"
-import expenceCalculator from "@/assets/images/portfolio_images/expenceCalculator.png"
+import { remoteCoverFromField } from "./airtableAttachment";
+import digitalAgency from "@/assets/images/portfolio_images/digitalAgency.png";
+import expenceCalculator from "@/assets/images/portfolio_images/expenceCalculator.png";
 import kettlo from "@/assets/images/portfolio_images/kettlo.png";
 import smartwear from "@/assets/images/portfolio_images/smartwear.png";
 import trudly from "@/assets/images/portfolio_images/trudly.png";
@@ -11,18 +13,37 @@ import pokedex from "@/assets/images/portfolio_images/pokedex.png";
 import sailorMerry from "@/assets/images/portfolio_images/sailormerry.png";
 import userApp from "@/assets/images/portfolio_images/userApp.png";
 
-const imageMap: Record<string, any> = {
-  "digitalAgency": digitalAgency,
-  "expenceCalculator": expenceCalculator,
-  "kettlo": kettlo,
-  "smartwear": smartwear,
-  "trudly": trudly,
-  "trudlyMini": trudlyMini,
+const FALLBACK_COVER = digitalAgency;
+
+/** Legacy: map `publicUrl` text to bundled assets when the `images` attachment is empty. */
+const imageMap: Record<string, typeof digitalAgency> = {
+  digitalAgency,
+  expenceCalculator,
+  kettlo,
+  smartwear,
+  trudly,
+  trudlyMini,
+  mailingSystem,
   "mailingSystem.": mailingSystem,
-  "pokedex": pokedex,
-  "sailormerry": sailorMerry,
-  "userApp": userApp,
+  pokedex,
+  sailormerry: sailorMerry,
+  userApp,
 };
+
+function resolveProjectImage(
+  imagesRaw: unknown,
+  publicUrl: string | undefined,
+): StaticImageData | RemoteCoverImage {
+  const fromAirtable = remoteCoverFromField(imagesRaw);
+  if (fromAirtable) return fromAirtable;
+
+  const legacyKey = typeof publicUrl === "string" ? publicUrl : undefined;
+  if (legacyKey && imageMap[legacyKey]) {
+    return imageMap[legacyKey];
+  }
+
+  return FALLBACK_COVER;
+}
 
 export default function getProjects(): Promise<Project[]> {
   const projects: Project[] = [];
@@ -38,6 +59,7 @@ export default function getProjects(): Promise<Project[]> {
           "type",
           "publicUrl",
           "paragraph_pl",
+          "images",
         ],
       })
       .eachPage(
@@ -52,7 +74,8 @@ export default function getProjects(): Promise<Project[]> {
             const type = record.get("type");
             const paragraph_pl = record.get("paragraph_pl");
             const publicUrl = record.get("publicUrl");
-            const image = imageMap[publicUrl]
+            const imagesRaw = record.get("images");
+            const image = resolveProjectImage(imagesRaw, publicUrl);
 
             projects.push({
               id,
@@ -63,7 +86,7 @@ export default function getProjects(): Promise<Project[]> {
               image,
               linkToGithub,
               type,
-              paragraph_pl
+              paragraph_pl,
             });
           });
 

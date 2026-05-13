@@ -22,12 +22,19 @@ export type ImageDb = {
   thumbnails: Thumbnails;
 };
 
+/** Cover from an Airtable attachment field (use with `next/image` + remotePatterns). */
+export type RemoteCoverImage = {
+  url: string;
+  width: number;
+  height: number;
+};
+
 export type Project = {
   id: string;
   header: string;
   tags: string;
   paragraph: string;
-  image: StaticImageData;
+  image: StaticImageData | RemoteCoverImage;
   linkToGithub: string;
   linkToLive: string;
   type: string;
