@@ -7,12 +7,14 @@ export default function LocaleSwitcher() {
   const locale = useLocale();
 
   return (
-    <LocaleSwitchSelect defaultValue={locale} label={t("label")}>
-      {routing.locales.map((cur) => (
-        <option key={cur} value={cur} style={{ color: "black" }}>
-          {t("locale", { locale: cur })}
-        </option>
-      ))}
-    </LocaleSwitchSelect>
+    <li>
+      <LocaleSwitchSelect defaultValue={locale} label={t("label")}>
+        {routing.locales.map((cur) => (
+          <option key={cur} value={cur} style={{ color: "black" }}>
+            {t("locale", { locale: cur })}
+          </option>
+        ))}
+      </LocaleSwitchSelect>
+    </li>
   );
 }
