@@ -11,13 +11,13 @@ const About: FC = () => {
   return (
     <div className={cn(styles.container, styles.flex, styles.fixedBox)}>
     <div className={styles.containerLeft}>
-      <Animation y={20}>
+      <Animation type="fade-up">
         <Header text="What do I do?" color="dark" />
       </Animation>
     </div>
   
     <div className={styles.containerRight}>
-  <Animation y={20}>
+  <Animation type="fade-up">
         <Title text="Development" />
         <div className={styles.iconAsBackground}>
          <GradientIcon
@@ -33,7 +33,7 @@ const About: FC = () => {
         />
         </div>
         </Animation> 
-    <Animation y={20}>
+    <Animation type="fade-up">
       <Title text="Coding" />
       <div className={styles.iconAsBackground}>
  <GradientIcon

@@ -1,8 +1,4 @@
-import {
-  animateDirectionLeft,
-  animateDirectionRight,
-} from "@/assets/helpers/index";
-import LazyAnimation from "@/components/client/LazyAnimation";
+import Animation from "@/atoms/Animation/Animation";
 import Button from "@/atoms/Button/Button";
 import Caption from "@/typography/Caption/Caption";
 import Header from "@/typography/Header/Header";
@@ -45,7 +41,10 @@ const ProjectComponent: FC<ProjectProps> = ({
   return (
     <div className={styles.project}>
       <div className={styles.containerLeft}>
-        <LazyAnimation x={animateDirectionLeft(index)}>
+        <Animation
+          type={index % 2 === 0 ? "slide-right" : "slide-left"}
+          distance={10}
+        >
           <Heading text={heading} />
           <Header text={header} color="dark" />
           <div className={styles.tagContainer}>
@@ -57,10 +56,13 @@ const ProjectComponent: FC<ProjectProps> = ({
           <Link href={linkToGithub} locale={locale}>
             <Button text={learnMoreLabel} color={"light"} />
           </Link>
-        </LazyAnimation>
+        </Animation>
       </div>
       <div className={styles.containerRight}>
-        <LazyAnimation x={animateDirectionRight(index)}>
+        <Animation
+          type={index % 2 === 0 ? "slide-left" : "slide-right"}
+          distance={10}
+        >
           <Link
             href={linkToLive}
             target="_blank"
@@ -77,7 +79,7 @@ const ProjectComponent: FC<ProjectProps> = ({
             />
             <Caption text={seeProjectLabel} />
           </Link>
-        </LazyAnimation>
+        </Animation>
       </div>
     </div>
   );

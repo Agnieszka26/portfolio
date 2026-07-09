@@ -1,0 +1,45 @@
+.root {
+  --animation-duration: 0.8s;
+  --animation-distance: 20px;
+  --animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  opacity: 0;
+  transition:
+    opacity var(--animation-duration) var(--animation-easing),
+    transform var(--animation-duration) var(--animation-easing);
+  will-change: opacity, transform;
+}
+
+.fade {
+  transform: translate3d(0, 0, 0);
+}
+
+.fadeUp {
+  transform: translate3d(0, var(--animation-distance), 0);
+}
+
+.fadeDown {
+  transform: translate3d(0, calc(-1 * var(--animation-distance)), 0);
+}
+
+.slideLeft {
+  transform: translate3d(var(--animation-distance), 0, 0);
+}
+
+.slideRight {
+  transform: translate3d(calc(-1 * var(--animation-distance)), 0, 0);
+}
+
+.isVisible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
