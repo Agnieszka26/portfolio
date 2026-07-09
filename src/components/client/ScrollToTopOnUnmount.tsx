@@ -5,11 +5,7 @@ import { ReactNode, useEffect } from "react";
 const ScrollToTopOnUnmount = ({ children }: { children: ReactNode }) => {
   useEffect(
     () => () => {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
+      window.scroll(0, 0);
     },
     [],
   );

@@ -1,6 +1,16 @@
 @import "../../assets/styles/mixins/index.scss";
 @import "../../assets/styles/colors";
 
+.html {
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .html {
+    scroll-behavior: smooth;
+  }
+}
+
 .body {
   margin: 0;
   padding: 0;

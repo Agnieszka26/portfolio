@@ -63,7 +63,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html style={{ scrollBehavior: "smooth" }} lang={locale}>
+    <html className={styles.html} lang={locale}>
       <body
         className={`${styles.body} ${mulish.variable} ${abrilFatface.variable}`}
       >
