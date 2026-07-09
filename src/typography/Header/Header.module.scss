@@ -1,12 +1,7 @@
 @import "../../assets/styles/colors";
-@font-face {
-  font-family: "AbrilFatface";
-  src: url("../../fonts/Abril_Fatface/AbrilFatface-Regular.ttf")
-    format("truetype");
-}
 
 .header {
-  font-family: "AbrilFatface", "Roboto";
+  font-family: $font-abril-fatface;
   color: $lightColor;
   letter-spacing: 3px;
 

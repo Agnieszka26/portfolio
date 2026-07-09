@@ -75,7 +75,7 @@
 }
 
 .subtitle {
-  font-family: "mulish", "Roboto";
+  font-family: $font-mulish;
   font-size: 24px;
   white-space: pre-line;
 }
@@ -88,7 +88,7 @@
   padding: 1rem;
   margin: 0.5rem;
   h1 {
-    font-family: "AbrilFatface", "Roboto";
+    font-family: $font-abril-fatface;
     color: $darkColor;
     letter-spacing: 3px;
     font-size: $fontSizeL;
@@ -97,7 +97,7 @@
     }
   }
   h2 {
-    font-family: "mulish", "Roboto";
+    font-family: $font-mulish;
     color: $darkColor;
     font-size: $fontSizeXl;
     @media (min-width: 765px) {
@@ -105,7 +105,7 @@
     }
   }
   h3 {
-    font-family: "mulish", "Roboto";
+    font-family: $font-mulish;
     color: $darkColor;
 
     font-size: $fontSizeLg;
@@ -115,7 +115,7 @@
     margin: 0;
   }
   ul {
-    font-family: "mulish", "Roboto";
+    font-family: $font-mulish;
     color: $darkColor;
     white-space: pre-line;
     font-size: $fontSizeXS;
@@ -125,7 +125,7 @@
   }
 
   p {
-    font-family: "mulish", "Roboto";
+    font-family: $font-mulish;
     color: $darkColor;
     white-space: pre-line;
 

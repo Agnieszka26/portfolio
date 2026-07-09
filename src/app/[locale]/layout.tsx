@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import styles from "@/assets/styles/index.module.scss";
+import { abrilFatface, mulish } from "@/lib/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
@@ -51,7 +52,9 @@ export default async function RootLayout({
 
   return (
     <html style={{ scrollBehavior: "smooth" }} lang={locale}>
-      <body className={styles.body}>
+      <body
+        className={`${styles.body} ${mulish.variable} ${abrilFatface.variable}`}
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Navbar />
           <main>{children}</main>

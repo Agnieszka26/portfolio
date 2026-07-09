@@ -1,11 +1,7 @@
 @import "../../assets/styles/colors";
-@font-face {
-  font-family: "mulish";
-  src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
-}
 
 .paragraph {
-  font-family: "mulish", "Roboto";
+  font-family: $font-mulish;
   color: $lightColor;
   font-size: $fontSizeSm;
   padding: 0.5rem 0;
