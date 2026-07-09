@@ -1,39 +1,42 @@
-import type { StaticImageData } from "next/image";
 import { Project, RemoteCoverImage } from "@/types";
 import { base } from "./base";
 import { remoteCoverFromField } from "./airtableAttachment";
-import digitalAgency from "@/assets/images/portfolio_images/digitalAgency.png";
-import expenceCalculator from "@/assets/images/portfolio_images/expenceCalculator.png";
-import kettlo from "@/assets/images/portfolio_images/kettlo.png";
-import smartwear from "@/assets/images/portfolio_images/smartwear.png";
-import trudly from "@/assets/images/portfolio_images/trudly.png";
-import trudlyMini from "@/assets/images/portfolio_images/trudly_mini.png";
-import mailingSystem from "@/assets/images/portfolio_images/mailingSystem.png";
-import pokedex from "@/assets/images/portfolio_images/pokedex.png";
-import sailorMerry from "@/assets/images/portfolio_images/sailormerry.png";
-import userApp from "@/assets/images/portfolio_images/userApp.png";
 
-const FALLBACK_COVER = digitalAgency;
+const PORTFOLIO_IMAGES_BASE = "/portfolio_images";
 
-/** Legacy: map `publicUrl` text to bundled assets when the `images` attachment is empty. */
-const imageMap: Record<string, typeof digitalAgency> = {
-  digitalAgency,
-  expenceCalculator,
-  kettlo,
-  smartwear,
-  trudly,
-  trudlyMini,
-  mailingSystem,
-  "mailingSystem.": mailingSystem,
-  pokedex,
-  sailormerry: sailorMerry,
-  userApp,
+function localCover(
+  filename: string,
+  width: number,
+  height: number,
+): RemoteCoverImage {
+  return {
+    url: `${PORTFOLIO_IMAGES_BASE}/${filename}.webp`,
+    width,
+    height,
+  };
+}
+
+const FALLBACK_COVER = localCover("digitalAgency", 3000, 1511);
+
+/** Legacy: map `publicUrl` text to public assets when the `images` attachment is empty. */
+const imageMap: Record<string, RemoteCoverImage> = {
+  digitalAgency: localCover("digitalAgency", 3000, 1511),
+  expenceCalculator: localCover("expenceCalculator", 3000, 1511),
+  kettlo: localCover("kettlo", 3000, 1629),
+  smartwear: localCover("smartwear", 3000, 1629),
+  trudly: localCover("trudly", 3000, 1629),
+  trudlyMini: localCover("trudly_mini", 3000, 1629),
+  mailingSystem: localCover("mailingSystem", 3000, 1511),
+  "mailingSystem.": localCover("mailingSystem", 3000, 1511),
+  pokedex: localCover("pokedex", 3000, 1511),
+  sailormerry: localCover("sailormerry", 3000, 1511),
+  userApp: localCover("userApp", 3000, 1511),
 };
 
 function resolveProjectImage(
   imagesRaw: unknown,
   publicUrl: string | undefined,
-): StaticImageData | RemoteCoverImage {
+): RemoteCoverImage {
   const fromAirtable = remoteCoverFromField(imagesRaw);
   if (fromAirtable) return fromAirtable;
 

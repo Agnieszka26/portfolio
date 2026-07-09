@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export type Thumbnail = {
   url: string;
   width: number;
@@ -34,7 +32,7 @@ export type Project = {
   header: string;
   tags: string;
   paragraph: string;
-  image: StaticImageData | RemoteCoverImage;
+  image: RemoteCoverImage;
   linkToGithub: string;
   linkToLive: string;
   type: string;
