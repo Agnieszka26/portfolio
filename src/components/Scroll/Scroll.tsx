@@ -15,10 +15,20 @@ const Scroll: FC<ScrollProps> = ({ targetId }) => {
   };
 
   return (
-    <div className={styles.revealWrapper} onClick={handleClick}>
+    <div
+      className={styles.revealWrapper}
+      role="button"
+      tabIndex={0}
+      onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+    >
       <p className={styles.revealText}>SCROLL</p>
-    </div>
-  );
+    </div>  );
 };
 
 export default Scroll;

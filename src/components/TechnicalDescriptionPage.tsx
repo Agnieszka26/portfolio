@@ -9,10 +9,10 @@ import LazySlidesCarousel from "@/components/client/LazySlidesCarousel";
 import LazyMarkdown from "@/components/client/LazyMarkdown";
 import Header from "@/typography/Header/Header";
 import { getLocale, getTranslations } from "next-intl/server";
-import Link from "next/link";
 import { RoutesPath } from "@/constants";
 import Button from "@/atoms/Button/Button";
 import ScrollToTopOnUnmount from "@/components/client/ScrollToTopOnUnmount";
+import { Link } from "@/i18n/navigation";
 
 function stackToTags(stack: string) {
   return stack
@@ -89,6 +89,7 @@ export default async function TechnicalDescriptionPage({
             <Link
               href={linkToLive}
               target="_blank"
+              rel="noopener noreferrer"
               locale={locale}
               className={pageStyles.emptyLink}
             >

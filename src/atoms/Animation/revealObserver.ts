@@ -1,7 +1,11 @@
 type RevealCallback = () => void;
 
 const observerCache = new Map<number, IntersectionObserver>();
-const elementCallbacks = new WeakMap<Element, RevealCallback>();
+const elementEntries = new WeakMap<
+  Element,
+  { observer: IntersectionObserver; callback: RevealCallback }
+>();
+
 
 function getObserver(threshold: number): IntersectionObserver {
   let observer = observerCache.get(threshold);
@@ -14,10 +18,10 @@ function getObserver(threshold: number): IntersectionObserver {
             continue;
           }
 
-          const callback = elementCallbacks.get(entry.target);
-          callback?.();
+          const elementEntry = elementEntries.get(entry.target);
+          elementEntry?.callback();
           observer?.unobserve(entry.target);
-          elementCallbacks.delete(entry.target);
+          elementEntries.delete(entry.target);
         }
       },
       { threshold },
@@ -33,11 +37,13 @@ export function observeReveal(
   callback: RevealCallback,
   threshold = 0.3,
 ) {
-  elementCallbacks.set(element, callback);
-  getObserver(threshold).observe(element);
+  const observer = getObserver(threshold);
+  elementEntries.set(element, { observer, callback });
+  observer.observe(element);
 }
 
-export function unobserveReveal(element: Element, threshold = 0.3) {
-  elementCallbacks.delete(element);
-  observerCache.get(threshold)?.unobserve(element);
+export function unobserveReveal(element: Element) {
+  const entry = elementEntries.get(element);
+  entry?.observer.unobserve(element);
+  elementEntries.delete(element);
 }

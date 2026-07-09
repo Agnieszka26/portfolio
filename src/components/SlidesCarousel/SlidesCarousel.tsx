@@ -54,15 +54,13 @@ function isSlideNearActive(
 }
 
 function usePrefersLargeThumbnail(): boolean {
-  const [prefersLarge, setPrefersLarge] = useState(() => {
-    if (typeof window === "undefined") return true;
-    return window.matchMedia(`(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`).matches;
-  });
+  const [prefersLarge, setPrefersLarge] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
       `(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`,
     );
+    setPrefersLarge(mediaQuery.matches);
     const onChange = (event: MediaQueryListEvent) => {
       setPrefersLarge(event.matches);
     };
@@ -73,7 +71,6 @@ function usePrefersLargeThumbnail(): boolean {
 
   return prefersLarge;
 }
-
 const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
   const [index, setIndex] = useState(0);
   const prefersLargeThumbnail = usePrefersLargeThumbnail();

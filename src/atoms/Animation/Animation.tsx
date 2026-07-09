@@ -59,6 +59,9 @@ const Animation = ({
   useEffect(() => {
     const element = ref.current;
     if (!element) {
+      // `as` didn't forward the ref (e.g. a non-forwardRef component) —
+      // fail open rather than leaving content permanently hidden.
+      setIsVisible(true);
       return;
     }
 
@@ -70,7 +73,7 @@ const Animation = ({
     const reveal = () => setIsVisible(true);
     observeReveal(element, reveal, threshold);
 
-    return () => unobserveReveal(element, threshold);
+    return () => unobserveReveal(element);
   }, [threshold]);
 
   const inlineStyle = {
@@ -90,8 +93,7 @@ const Animation = ({
       style={inlineStyle}
     >
       {children}
-    </Component>
-  );
+    </Component>  );
 };
 
 export default Animation;
