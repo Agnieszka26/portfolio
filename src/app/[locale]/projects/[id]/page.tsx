@@ -1,7 +1,22 @@
 import TechnicalDescriptionPage from "@/components/TechnicalDescriptionPage";
+import { routing } from "@/i18n/routing";
 import getDetails from "@/lib/getDtails";
 import getProjects from "@/lib/getProjects";
 import type { Project } from "@/types";
+import { setRequestLocale } from "next-intl/server";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+
+  return projects.flatMap((project) =>
+    routing.locales.map((locale) => ({
+      locale,
+      id: project.header,
+    })),
+  );
+}
 
 const page = async ({
   params,
@@ -9,6 +24,7 @@ const page = async ({
   params: Promise<{ locale: string; id: string }>;
 }) => {
   const { locale, id } = await params;
+  setRequestLocale(locale);
   const [details, projects] = await Promise.all([
     getDetails(locale),
     getProjects(),

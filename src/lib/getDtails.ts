@@ -1,7 +1,10 @@
 import { Detail } from "@/types";
+import { unstable_cache } from "next/cache";
 import { base } from "./base";
 
-export default function getDetails(locale: string): Promise<Detail[]> {
+const REVALIDATE_SECONDS = 3600;
+
+async function fetchDetails(locale: string): Promise<Detail[]> {
   const details: Detail[] = [];
   const baseTableName = locale === "en" ? "projects details" : "project details pl";
   return new Promise((resolve, reject) => {
@@ -55,4 +58,13 @@ export default function getDetails(locale: string): Promise<Detail[]> {
         },
       );
   });
+}
+
+const getDetailsCached = unstable_cache(fetchDetails, ["details"], {
+  revalidate: REVALIDATE_SECONDS,
+  tags: ["details"],
+});
+
+export default function getDetails(locale: string): Promise<Detail[]> {
+  return getDetailsCached(locale);
 }

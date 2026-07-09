@@ -1,6 +1,9 @@
 import { Project, RemoteCoverImage } from "@/types";
+import { unstable_cache } from "next/cache";
 import { base } from "./base";
 import { remoteCoverFromField } from "./airtableAttachment";
+
+const REVALIDATE_SECONDS = 3600;
 
 const PORTFOLIO_IMAGES_BASE = "/portfolio_images";
 
@@ -48,7 +51,7 @@ function resolveProjectImage(
   return FALLBACK_COVER;
 }
 
-export default function getProjects(): Promise<Project[]> {
+async function fetchProjects(): Promise<Project[]> {
   const projects: Project[] = [];
   return new Promise((resolve, reject) => {
     base("portfolio projects")
@@ -102,4 +105,13 @@ export default function getProjects(): Promise<Project[]> {
         },
       );
   });
+}
+
+const getProjectsCached = unstable_cache(fetchProjects, ["projects"], {
+  revalidate: REVALIDATE_SECONDS,
+  tags: ["projects"],
+});
+
+export default function getProjects(): Promise<Project[]> {
+  return getProjectsCached();
 }
