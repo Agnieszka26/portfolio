@@ -26,7 +26,7 @@ export const metadata = {
     siteName: "AGNA Portfolio",
     images: [
       {
-        url: "/og_image.png",
+        url: "/og_image.webp",
         width: 1200,
         height: 630,
         alt: "AGNA - Front-end Developer Portfolio",
@@ -38,7 +38,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Agnieszka Mędrek- Front-end Developer",
     description: "Portfolio: projekty React, Next.js, UI/UX",
-    images: ["/twitter_image.png"],
+    images: ["/twitter_image.webp"],
   },
   robots: "index, follow",
   icons: {
