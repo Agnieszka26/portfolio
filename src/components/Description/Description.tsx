@@ -1,14 +1,14 @@
-import ReactMarkdown from "react-markdown";
 import styles from "@/assets/styles/index.module.scss";
-import Animation from "@/atoms/Animation/Animation";
+import LazyAnimation from "@/components/client/LazyAnimation";
+import LazyMarkdown from "@/components/client/LazyMarkdown";
 
 const Description = ({ text }: { text: string }) => {
   return (
-    <Animation y={20}>
+    <LazyAnimation y={20}>
       <div className={styles.box}>
-        <ReactMarkdown>{text}</ReactMarkdown>
+        <LazyMarkdown>{text}</LazyMarkdown>
       </div>
-    </Animation>
+    </LazyAnimation>
   );
 };
 

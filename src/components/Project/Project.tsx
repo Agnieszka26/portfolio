@@ -2,7 +2,7 @@ import {
   animateDirectionLeft,
   animateDirectionRight,
 } from "@/assets/helpers/index";
-import Animation from "@/atoms/Animation/Animation";
+import LazyAnimation from "@/components/client/LazyAnimation";
 import Button from "@/atoms/Button/Button";
 import Caption from "@/typography/Caption/Caption";
 import Header from "@/typography/Header/Header";
@@ -13,7 +13,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import styles from "./Project.module.scss";
-import { useLocale, useTranslations } from "next-intl";
 import type { RemoteCoverImage } from "@/types";
 
 interface ProjectProps {
@@ -25,6 +24,9 @@ interface ProjectProps {
   linkToGithub: string;
   linkToLive: string;
   index: number;
+  locale: string;
+  learnMoreLabel: string;
+  seeProjectLabel: string;
 }
 
 const ProjectComponent: FC<ProjectProps> = ({
@@ -36,29 +38,29 @@ const ProjectComponent: FC<ProjectProps> = ({
   linkToGithub,
   linkToLive,
   index,
+  locale,
+  learnMoreLabel,
+  seeProjectLabel,
 }) => {
-  const t = useTranslations("Section");
-  const locale = useLocale();
   return (
     <div className={styles.project}>
       <div className={styles.containerLeft}>
-        <Animation x={animateDirectionLeft(index)}>
-          <Heading text={t(heading)} />
+        <LazyAnimation x={animateDirectionLeft(index)}>
+          <Heading text={heading} />
           <Header text={header} color="dark" />
           <div className={styles.tagContainer}>
-            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+            {tags?.map((tag) => (
+              <Tag key={tag} text={tag} />
+            ))}
           </div>
           <Paragraph color="dark" text={paragraph} />
-          <Link
-              href={linkToGithub}
-              locale={locale}
-            >
-          <Button text={t("learn_more")} color={"light"} />
+          <Link href={linkToGithub} locale={locale}>
+            <Button text={learnMoreLabel} color={"light"} />
           </Link>
-        </Animation>
+        </LazyAnimation>
       </div>
       <div className={styles.containerRight}>
-        <Animation x={animateDirectionRight(index)}>
+        <LazyAnimation x={animateDirectionRight(index)}>
           <Link
             href={linkToLive}
             target="_blank"
@@ -73,9 +75,9 @@ const ProjectComponent: FC<ProjectProps> = ({
               width={image.width}
               height={image.height}
             />
-            <Caption text={t("see_project")} />
+            <Caption text={seeProjectLabel} />
           </Link>
-        </Animation>
+        </LazyAnimation>
       </div>
     </div>
   );
