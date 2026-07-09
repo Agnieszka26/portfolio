@@ -1,7 +1,3 @@
-import {
-  animateDirectionLeft,
-  animateDirectionRight,
-} from "@/assets/helpers/index";
 import Animation from "@/atoms/Animation/Animation";
 import Button from "@/atoms/Button/Button";
 import Caption from "@/typography/Caption/Caption";
@@ -9,33 +5,24 @@ import Header from "@/typography/Header/Header";
 import Heading from "@/typography/Heading/Heading";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import Tag from "@/typography/Tag/Tag";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import styles from "./Project.module.scss";
-import { useLocale, useTranslations } from "next-intl";
 import type { RemoteCoverImage } from "@/types";
-
-function isRemoteCoverImage(
-  image: StaticImageData | RemoteCoverImage,
-): image is RemoteCoverImage {
-  return (
-    typeof image === "object" &&
-    image !== null &&
-    "url" in image &&
-    typeof (image as RemoteCoverImage).url === "string"
-  );
-}
 
 interface ProjectProps {
   heading: string;
   header: string;
   tags?: string[];
   paragraph: string;
-  image: StaticImageData | RemoteCoverImage;
+  image: RemoteCoverImage;
   linkToGithub: string;
   linkToLive: string;
   index: number;
+  locale: string;
+  learnMoreLabel: string;
+  seeProjectLabel: string;
 }
 
 const ProjectComponent: FC<ProjectProps> = ({
@@ -47,30 +34,35 @@ const ProjectComponent: FC<ProjectProps> = ({
   linkToGithub,
   linkToLive,
   index,
+  locale,
+  learnMoreLabel,
+  seeProjectLabel,
 }) => {
-  const t = useTranslations("Section");
-  const locale = useLocale();
-  const remoteCover = isRemoteCoverImage(image);
   return (
     <div className={styles.project}>
       <div className={styles.containerLeft}>
-        <Animation x={animateDirectionLeft(index)}>
-          <Heading text={t(heading)} />
+        <Animation
+          type={index % 2 === 0 ? "slide-right" : "slide-left"}
+          distance={10}
+        >
+          <Heading text={heading} />
           <Header text={header} color="dark" />
           <div className={styles.tagContainer}>
-            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+            {tags?.map((tag) => (
+              <Tag key={tag} text={tag} />
+            ))}
           </div>
           <Paragraph color="dark" text={paragraph} />
-          <Link
-              href={linkToGithub}
-              locale={locale}
-            >
-          <Button text={t("learn_more")} color={"light"} />
+          <Link href={linkToGithub} locale={locale}>
+            <Button text={learnMoreLabel} color={"light"} />
           </Link>
         </Animation>
       </div>
       <div className={styles.containerRight}>
-        <Animation x={animateDirectionRight(index)}>
+        <Animation
+          type={index % 2 === 0 ? "slide-left" : "slide-right"}
+          distance={10}
+        >
           <Link
             href={linkToLive}
             target="_blank"
@@ -79,13 +71,13 @@ const ProjectComponent: FC<ProjectProps> = ({
           >
             <Image
               className={styles.img}
-              src={remoteCover ? image.url : image}
+              src={image.url}
               alt={`preview project ${header}`}
-              quality={100}
-              width={remoteCover ? image.width : 500}
-              height={remoteCover ? image.height : 500}
+              quality={80}
+              width={image.width}
+              height={image.height}
             />
-            <Caption text={t("see_project")} />
+            <Caption text={seeProjectLabel} />
           </Link>
         </Animation>
       </div>

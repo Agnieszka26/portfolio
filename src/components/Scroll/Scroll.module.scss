@@ -1,10 +1,5 @@
 @import "../../assets/styles/colors";
 @import "../../assets/styles/mixins/index.scss";
-@font-face {
-  font-family: "mulish";
-  src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
-}
-
 
 .revealWrapper {
   overflow: hidden;
@@ -16,7 +11,7 @@
 .revealText {
   font-size: 80px;
   font-weight: bold;
-  font-family: "mulish", "Roboto";
+  font-family: $font-mulish;
   color: $lightColor;
   transform: translateY(100%);
   animation: slideIn 5s ease-out forwards;

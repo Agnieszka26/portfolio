@@ -12,7 +12,7 @@ const Contact = () => {
   const t = useTranslations("ContactPage");
   return (
     <div className={styles.page}>
-      <Animation x={0} y={-20}>
+      <Animation type="fade-down">
         <div className={[styles.container, styles.contactPage].join(" ")}>
           <div className={styles.containerLeft}>
             <Header text={t("title")} color={"dark"} />
@@ -31,7 +31,8 @@ const Contact = () => {
             src={image}
             alt="contact"
             className={styles.image}
-
+            width={500}
+            height={500}
           />
         </div>
       </Animation>

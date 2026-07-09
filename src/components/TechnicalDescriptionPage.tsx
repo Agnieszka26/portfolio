@@ -1,19 +1,18 @@
-"use client";
-
 import styles from "@/assets/styles/index.module.scss";
 import pageStyles from "./TechnicalDescriptionPage.module.scss";
 import { Detail } from "@/types";
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Description from "./Description/Description";
 import cn from "classnames";
 import Tag from "@/typography/Tag/Tag";
-import SlidesCarousel from "./SlidesCarousel/SlidesCarousel";
+import LazySlidesCarousel from "@/components/client/LazySlidesCarousel";
+import LazyMarkdown from "@/components/client/LazyMarkdown";
 import Header from "@/typography/Header/Header";
-import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
 import { RoutesPath } from "@/constants";
 import Button from "@/atoms/Button/Button";
-import ReactMarkdown from "react-markdown";
+import ScrollToTopOnUnmount from "@/components/client/ScrollToTopOnUnmount";
+import { Link } from "@/i18n/navigation";
 
 function stackToTags(stack: string) {
   return stack
@@ -46,7 +45,7 @@ function LabeledSection({
   );
 }
 
-export default function TechnicalDescriptionPage({
+export default async function TechnicalDescriptionPage({
   detail,
   tags,
   linkToLive,
@@ -55,98 +54,88 @@ export default function TechnicalDescriptionPage({
   tags: string;
   linkToLive: string;
 }) {
-  const t = useTranslations("TechnicalDescriptionPage");
-  const locale = useLocale();
+  const t = await getTranslations("TechnicalDescriptionPage");
+  const locale = await getLocale();
   const stackTags = tags ? stackToTags(tags) : [];
 
-  useEffect(
-    () => () => {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    },
-    [],
-  );
-
   return (
-    <div className={cn(styles.page, styles.container)}>
-      {!detail ? (
-        <div className={pageStyles.empty}>
-          <p className={pageStyles.emptyTitle}>{t("not_found_title")}</p>
-          <p className={pageStyles.emptyBody}>{t("not_found_body")}</p>
-          <Link
-            href={RoutesPath.PROJECTS}
-            locale={locale}
-            className={pageStyles.emptyLink}
-          >
-            <Button text={t("not_found_link")} color="dark" />
-          </Link>
-        </div>
-      ) : (
-        <article className={pageStyles.article}>
-          <div className={pageStyles.headerBlock}>
-            <Header text={detail.header} color="dark" />
-
-            {tags?.length > 0 && (
-              <div className={pageStyles.tagRow}>
-                {stackTags.map((tag) => (
-                  <Tag key={tag} text={tag} />
-                ))}
-              </div>
-            )}
-          </div>
-          <Link
-            href={linkToLive}
-            target="_blank"
-            locale={locale}
-            className={pageStyles.emptyLink}
-          >
-            <Button text={t("see_live_preview")} color="light" />
-          </Link>
-          <aside className={pageStyles.notice} role="note">
-            <ReactMarkdown>
-              {detail.overview}
-            </ReactMarkdown>
-          </aside>
-          <div className={pageStyles.detailsGrid}>
-
-          <LabeledSection id="section-tech" label={t("section_tech")}>
-            <Description text={detail.technologies} />
-          </LabeledSection>
-          <LabeledSection id="section-tech" label={t("section_features")}>
-              <Description text={detail.keyFeatures} />
-            </LabeledSection>
-          </div>
-
-          {detail.slides && detail.slides.length > 0 ? (
-            <LabeledSection
-              id="section-gallery"
-              label={t("section_gallery")}
-              className={pageStyles.mediaSection}
+    <ScrollToTopOnUnmount>
+      <div className={cn(styles.page, styles.container)}>
+        {!detail ? (
+          <div className={pageStyles.empty}>
+            <p className={pageStyles.emptyTitle}>{t("not_found_title")}</p>
+            <p className={pageStyles.emptyBody}>{t("not_found_body")}</p>
+            <Link
+              href={RoutesPath.PROJECTS}
+              locale={locale}
+              className={pageStyles.emptyLink}
             >
-              <SlidesCarousel key={detail.id} slides={detail.slides} />
-            </LabeledSection>
-          ) : null}
+              <Button text={t("not_found_link")} color="dark" />
+            </Link>
+          </div>
+        ) : (
+          <article className={pageStyles.article}>
+            <div className={pageStyles.headerBlock}>
+              <Header text={detail.header} color="dark" />
 
-          <div className={pageStyles.detailsGrid}>
-     
-            <LabeledSection id="section-backend" label={t("section_backend")}>
-              <Description text={detail.backend} />
-            </LabeledSection>
-            {detail.challenges ? (
+              {tags?.length > 0 && (
+                <div className={pageStyles.tagRow}>
+                  {stackTags.map((tag) => (
+                    <Tag key={tag} text={tag} />
+                  ))}
+                </div>
+              )}
+            </div>
+            <Link
+              href={linkToLive}
+              target="_blank"
+              rel="noopener noreferrer"
+              locale={locale}
+              className={pageStyles.emptyLink}
+            >
+              <Button text={t("see_live_preview")} color="light" />
+            </Link>
+            <aside className={pageStyles.notice} role="note">
+              <LazyMarkdown>{detail.overview}</LazyMarkdown>
+            </aside>
+            <div className={pageStyles.detailsGrid}>
+              <LabeledSection id="section-tech" label={t("section_tech")}>
+                <Description text={detail.technologies} />
+              </LabeledSection>
               <LabeledSection
-                id="section-challenges"
-                label={t("section_challenges")}
-
+                id="section-features"
+                label={t("section_features")}
               >
-                <Description text={detail.challenges} />
+                <Description text={detail.keyFeatures} />
+              </LabeledSection>
+            </div>
+
+            {detail.slides && detail.slides.length > 0 ? (
+              <LabeledSection
+                id="section-gallery"
+                label={t("section_gallery")}
+                className={pageStyles.mediaSection}
+              >
+                <LazySlidesCarousel key={detail.id} slides={detail.slides} />
               </LabeledSection>
             ) : null}
-          </div>
-        </article>
-      )}
-    </div>
+
+            <div className={pageStyles.detailsGrid}>
+              <LabeledSection id="section-backend" label={t("section_backend")}>
+                <Description text={detail.backend} />
+              </LabeledSection>
+              {detail.challenges ? (
+                <LabeledSection
+                  id="section-challenges"
+                  label={t("section_challenges")}
+                >
+                  <Description text={detail.challenges} />
+                </LabeledSection>
+              ) : null}
+            </div>
+          </article>
+        )}
+      </div>
+    </ScrollToTopOnUnmount>
   );
 }

@@ -1,42 +1,48 @@
 import styles from "@/assets/styles/index.module.scss";
 import { RoutesPath } from "@/constants";
 import { Project } from "@/types";
-import { FC, RefObject } from "react";
+import { getLocale, getTranslations } from "next-intl/server";
 import ProjectComponent from "../Project/Project";
-import {useLocale, useTranslations } from "next-intl";
 
 interface ProjectsSectionProps {
   projectsDetails: Project[];
-  toElScrollRef?: RefObject<HTMLDivElement>
+  sectionId?: string;
 }
 
-const ProjectsSection: FC<ProjectsSectionProps> = ({ projectsDetails, toElScrollRef }) => {
- const locale = useLocale();
- 
+const ProjectsSection = async ({
+  projectsDetails,
+  sectionId,
+}: ProjectsSectionProps) => {
+  const locale = await getLocale();
+  const t = await getTranslations("Section");
+
   return (
-    <section className={styles.container} ref={toElScrollRef}>
+    <section className={styles.container} id={sectionId}>
       {projectsDetails.map(
         (
-          { header, paragraph, image, tags: t, linkToGithub, linkToLive, paragraph_pl },
+          { header, paragraph, image, tags: tagString, linkToGithub, linkToLive, paragraph_pl },
           index,
         ) => {
-          const tags = t
+          const tags = tagString
             .split(",")
             .map((item) => item.trim().replace(/^"|"$/g, ""));
+
+          const headingKey = index === 0 ? "latest work" : "highlighted";
 
           return (
             <ProjectComponent
               key={header}
-              heading={index === 0 ? "latest work" : "highlighted" }
+              heading={t(headingKey)}
               header={header}
-              paragraph={locale == "en" ? paragraph : paragraph_pl}
+              paragraph={locale === "en" ? paragraph : paragraph_pl}
               image={image}
               tags={tags}
-              linkToGithub={
-                RoutesPath.PROJECTS + "/" + header
-              }
+              linkToGithub={RoutesPath.PROJECTS + "/" + header}
               linkToLive={linkToLive}
               index={index}
+              locale={locale}
+              learnMoreLabel={t("learn_more")}
+              seeProjectLabel={t("see_project")}
             />
           );
         },

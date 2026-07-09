@@ -1,9 +1,5 @@
 @import "../../assets/styles/colors";
 @import "../../assets/styles/mixins/index.scss";
-@font-face {
-  font-family: "mulish";
-  src: url("../../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
-}
 
 .tag {
   background: $primaryColor;
@@ -15,7 +11,7 @@
   }
   p {
     text-align: center;
-    font-family: "mulish";
+    font-family: $font-mulish;
     font-style: normal;
     font-weight: 700;
     @media (min-width: 768px) {

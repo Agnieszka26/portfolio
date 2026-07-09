@@ -1,9 +1,17 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import styles from "@/assets/styles/index.module.scss";
+import { abrilFatface, mulish } from "@/lib/fonts";
+import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
 import { Analytics } from "@vercel/analytics/next";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 
 export const metadata = {
@@ -18,7 +26,7 @@ export const metadata = {
     siteName: "AGNA Portfolio",
     images: [
       {
-        url: "/og_image.png",
+        url: "/og_image.webp",
         width: 1200,
         height: 630,
         alt: "AGNA - Front-end Developer Portfolio",
@@ -30,7 +38,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Agnieszka Mędrek- Front-end Developer",
     description: "Portfolio: projekty React, Next.js, UI/UX",
-    images: ["/twitter_image.png"],
+    images: ["/twitter_image.webp"],
   },
   robots: "index, follow",
   icons: {
@@ -47,11 +55,18 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
-    <html style={{ scrollBehavior: "smooth" }} lang={locale}>
-      <body className={styles.body}>
+    <html className={styles.html} lang={locale}>
+      <body
+        className={`${styles.body} ${mulish.variable} ${abrilFatface.variable}`}
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Navbar />
           <main>{children}</main>

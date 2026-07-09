@@ -33,7 +33,7 @@
   gap: 0.5rem;
   p {
     margin: 0;
-    font-family: "mulish", "Roboto";
+    font-family: $font-mulish;
     font-size: $fontSizeXS;
     line-height: 1.55;
     @media (min-width: 765px) {
@@ -41,7 +41,7 @@
     }
   }
   h2 {
-    font-family: "mulish", "Roboto";
+    font-family: $font-mulish;
   }
 }
 
@@ -57,7 +57,7 @@
 }
 
 .sectionLabel {
-  font-family: "mulish", "Roboto";
+  font-family: $font-mulish;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -98,7 +98,7 @@
 }
 
 .emptyTitle {
-  font-family: "mulish", "Roboto";
+  font-family: $font-mulish;
   font-size: $fontSizeL;
   color: $darkColor;
   margin: 0;
@@ -109,7 +109,7 @@
 }
 
 .emptyBody {
-  font-family: "mulish", "Roboto";
+  font-family: $font-mulish;
   font-size: $fontSizeSm;
   color: $grayColor;
   margin: 0;

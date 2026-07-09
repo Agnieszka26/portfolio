@@ -4,16 +4,16 @@ import Header from "@/typography/Header/Header";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import cn from "classnames";
 import Link from "next/link";
-import React, { FC } from "react";
+import { getTranslations } from "next-intl/server";
 import Scroll from "../Scroll/Scroll";
-import { useTranslations } from "next-intl";
 
 interface HeroAreaProps {
-  executeScroll?: () => void;
+  scrollTargetId?: string;
 }
 
-const HeroArea = ({ executeScroll }: HeroAreaProps) => {
-  const t = useTranslations("HeroArea");
+const HeroArea = async ({ scrollTargetId }: HeroAreaProps) => {
+  const t = await getTranslations("HeroArea");
+
   return (
     <div className={cn(styles.heroArea)}>
       <div className={cn(styles.fixedBox, styles.container)}>
@@ -35,7 +35,7 @@ const HeroArea = ({ executeScroll }: HeroAreaProps) => {
         </div>
 
         <div className={styles.containerRight}>
-          <Scroll onClick={executeScroll} />
+          <Scroll targetId={scrollTargetId} />
         </div>
       </div>
     </div>
