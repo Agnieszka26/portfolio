@@ -43,11 +43,19 @@ $carouselMaxHeight: 90vh;
 
 .image {
   display: block;
-  width: auto;
+  width: auto !important;
   max-width: 100%;
   max-height: $carouselMaxHeight;
-  height: auto;
+  height: auto !important;
   object-fit: contain;
+}
+
+.slidePlaceholder {
+  width: 100%;
+  max-width: 100%;
+  max-height: $carouselMaxHeight;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .controls {

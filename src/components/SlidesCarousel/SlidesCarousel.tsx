@@ -1,22 +1,82 @@
 "use client";
 
 import { ImageDb } from "@/types";
-import { FC, useCallback, useState, type KeyboardEvent } from "react";
+import Image from "next/image";
+import {
+  FC,
+  useCallback,
+  useEffect,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import cn from "classnames";
 import styles from "./SlidesCarousel.module.scss";
 
-function slideImageUrl(slide: ImageDb): string {
-  return (
-    slide.thumbnails?.large?.url ??
-    slide.thumbnails?.full?.url ??
-    slide.thumbnails?.small?.url ??
-    slide.url
-  );
+const DESKTOP_MIN_WIDTH_PX = 768;
+const CAROUSEL_SIZES = "(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px";
+
+type SlideImageSource = {
+  src: string;
+  width: number;
+  height: number;
+};
+
+function slideImageSource(slide: ImageDb, preferLarge: boolean): SlideImageSource {
+  if (preferLarge) {
+    const large = slide.thumbnails?.large;
+    return {
+      src: large?.url ?? slide.thumbnails?.full?.url ?? slide.url,
+      width: large?.width ?? slide.width,
+      height: large?.height ?? slide.height,
+    };
+  }
+
+  const small = slide.thumbnails?.small;
+  const large = slide.thumbnails?.large;
+  return {
+    src: small?.url ?? large?.url ?? slide.thumbnails?.full?.url ?? slide.url,
+    width: small?.width ?? large?.width ?? slide.width,
+    height: small?.height ?? large?.height ?? slide.height,
+  };
+}
+
+function isSlideNearActive(
+  slideIndex: number,
+  activeIndex: number,
+  count: number,
+): boolean {
+  if (count <= 1) return true;
+
+  const directDistance = Math.abs(slideIndex - activeIndex);
+  const wrapDistance = count - directDistance;
+  return Math.min(directDistance, wrapDistance) <= 1;
+}
+
+function usePrefersLargeThumbnail(): boolean {
+  const [prefersLarge, setPrefersLarge] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.matchMedia(`(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`).matches;
+  });
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      `(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`,
+    );
+    const onChange = (event: MediaQueryListEvent) => {
+      setPrefersLarge(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
+
+  return prefersLarge;
 }
 
 const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
   const [index, setIndex] = useState(0);
+  const prefersLargeThumbnail = usePrefersLargeThumbnail();
   const count = slides.length;
 
   const goPrev = useCallback(() => {
@@ -63,24 +123,44 @@ const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
             transform: `translateX(-${translatePercent}%)`,
           }}
         >
-          {slides.map((slide, i) => (
-            <div
-              key={slide.id || `${slide.filename}-${i}`}
-              className={styles.slide}
-              style={{ width: `${slideWidthPercent}%` }}
-              aria-hidden={i !== index}
-            >
-              {/* Native img: slide URLs (e.g. Airtable) are not all in next.config remotePatterns */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className={styles.image}
-                src={slideImageUrl(slide)}
-                alt={slide.filename || `Slide ${i + 1}`}
-                loading={i === 0 ? "eager" : "lazy"}
-                draggable={false}
-              />
-            </div>
-          ))}
+          {slides.map((slide, i) => {
+            const isActive = i === index;
+            const shouldRenderImage = isSlideNearActive(i, index, count);
+            const { src, width, height } = slideImageSource(
+              slide,
+              prefersLargeThumbnail,
+            );
+
+            return (
+              <div
+                key={slide.id || `${slide.filename}-${i}`}
+                className={styles.slide}
+                style={{ width: `${slideWidthPercent}%` }}
+                aria-hidden={!isActive}
+              >
+                {shouldRenderImage ? (
+                  <Image
+                    className={styles.image}
+                    src={src}
+                    alt={slide.filename || `Slide ${i + 1}`}
+                    width={width}
+                    height={height}
+                    sizes={CAROUSEL_SIZES}
+                    quality={85}
+                    priority={isActive}
+                    loading={isActive ? undefined : "lazy"}
+                    draggable={false}
+                  />
+                ) : (
+                  <div
+                    className={styles.slidePlaceholder}
+                    style={{ aspectRatio: `${width} / ${height}` }}
+                    aria-hidden
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
