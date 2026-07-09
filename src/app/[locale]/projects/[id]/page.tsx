@@ -1,8 +1,7 @@
 import TechnicalDescriptionPage from "@/components/TechnicalDescriptionPage";
 import { routing } from "@/i18n/routing";
-import getDetails from "@/lib/getDtails";
-import getProjects from "@/lib/getProjects";
-import type { Project } from "@/types";
+import { getDetailById } from "@/lib/getDtails";
+import getProjects, { getProjectById } from "@/lib/getProjects";
 import { setRequestLocale } from "next-intl/server";
 
 export const revalidate = 3600;
@@ -25,19 +24,17 @@ const page = async ({
 }) => {
   const { locale, id } = await params;
   setRequestLocale(locale);
-  const [details, projects] = await Promise.all([
-    getDetails(locale),
-    getProjects(),
+  const [detail, project] = await Promise.all([
+    getDetailById(locale, id),
+    getProjectById(id),
   ]);
-  const detail = details.find((item) => item.header === id);
-  const project = projects.find((item: Project) => item.header === id);
 
   const tags = project?.tags ?? "";
   const linkToLive = project?.linkToLive ?? "";
 
   return (
     <TechnicalDescriptionPage
-      detail={detail}
+      detail={detail ?? undefined}
       tags={tags}
       linkToLive={linkToLive}
     />
