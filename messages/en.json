@@ -1,4 +1,14 @@
 {
+  "Metadata": {
+    "homeTitle": "AGNA - Front-end Developer | Portfolio",
+    "homeDescription": "Portfolio of Agnieszka Mędrek — front-end developer specializing in Next.js, React, and UI/UX. Explore projects, skills, and contact details.",
+    "contactTitle": "Contact | AGNA - Front-end Developer",
+    "contactDescription": "Get in touch with AGNA for front-end development projects, collaborations, and freelance opportunities.",
+    "projectsTitle": "Projects | AGNA - Front-end Developer",
+    "projectsDescription": "Explore front-end projects built with React, Next.js, and modern web technologies — case studies and live previews.",
+    "projectTitle": "{name} | AGNA - Front-end Developer",
+    "projectFallbackDescription": "Case study and technical overview of {name} — a front-end project by AGNA."
+  },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, pl {PL Polski} en {EN English} other {Unknown}}"
