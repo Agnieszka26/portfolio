@@ -31,6 +31,9 @@ export function createPageMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: path,
+    },
     openGraph: {
       title,
       description,
