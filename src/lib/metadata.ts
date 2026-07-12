@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { routing } from "@/i18n/routing";
 
 export const SITE_URL = "https://portfolio-agnieszka26.vercel.app";
 export const SITE_NAME = "AGNA Portfolio";
@@ -28,11 +29,22 @@ export function createPageMetadata({
   image = "/og_image.webp",
   twitterImage = "/twitter_image.webp",
 }: PageMetadataOptions): Metadata {
+  const localizedPath = path.replace(
+    new RegExp(`^/(${routing.locales.join("|")})`),
+    ""
+  );
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   return {
     title,
     description,
     alternates: {
       canonical: path,
+      languages: Object.fromEntries(
+        routing.locales.map((locale) => [
+          locale,
+          `${baseUrl}/${locale}${localizedPath}`,
+        ])
+      ),
     },
     openGraph: {
       title,
