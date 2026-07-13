@@ -1,6 +1,6 @@
 import { Project, RemoteCoverImage } from "@/types";
 import { unstable_cache } from "next/cache";
-import { base, escapeAirtableFormulaString } from "./base";
+import { listAllRecords } from "./airtableClient";
 import { remoteCoverFromField } from "./airtableAttachment";
 
 const REVALIDATE_SECONDS = 3600;
@@ -64,23 +64,22 @@ const PROJECT_FIELDS = [
 ] as const;
 
 function mapRecordToProject(record: {
-  getId: () => string;
-  get: (field: string) => unknown;
+  id: string;
+  fields: Record<string, unknown>;
 }): Project {
-  const id = record.getId();
-  const header = record.get("header") as string;
-  const paragraph = record.get("paragraph_en") as string;
-  const tags = record.get("tags") as string;
-  const linkToLive = record.get("linkToLive") as string;
-  const linkToGithub = record.get("linkToGithub") as string;
-  const type = record.get("type") as string;
-  const paragraph_pl = record.get("paragraph_pl") as string;
-  const publicUrl = record.get("publicUrl") as string | undefined;
-  const imagesRaw = record.get("images");
+  const header = record.fields.header as string;
+  const paragraph = record.fields.paragraph_en as string;
+  const tags = record.fields.tags as string;
+  const linkToLive = record.fields.linkToLive as string;
+  const linkToGithub = record.fields.linkToGithub as string;
+  const type = record.fields.type as string;
+  const paragraph_pl = record.fields.paragraph_pl as string;
+  const publicUrl = record.fields.publicUrl as string | undefined;
+  const imagesRaw = record.fields.images;
   const image = resolveProjectImage(imagesRaw, publicUrl);
 
   return {
-    id,
+    id: record.id,
     header,
     paragraph,
     tags,
@@ -92,43 +91,19 @@ function mapRecordToProject(record: {
   };
 }
 
-async function fetchProjectById(header: string): Promise<Project | null> {
-  const records = await base("portfolio projects")
-    .select({
-      filterByFormula: `{header} = "${escapeAirtableFormulaString(header)}"`,
-      maxRecords: 1,
-      fields: [...PROJECT_FIELDS],
-    })
-    .firstPage();
-
-  const record = records[0];
-  if (!record) return null;
-
-  return mapRecordToProject(record);
-}
-
 async function fetchProjects(): Promise<Project[]> {
-  const projects: Project[] = [];
-  return new Promise((resolve, reject) => {
-    base("portfolio projects")
-      .select({
-        fields: [...PROJECT_FIELDS],
-      })
-      .eachPage(
-        function page(records: any[], fetchNextPage: () => void) {
-          records.forEach((record) => {
-            projects.push(mapRecordToProject(record));
-          });
-
-          fetchNextPage();
-        },
-        function done(err: any) {
-          if (err) return reject(err);
-
-          return resolve(projects);
-        },
-      );
-  });
+  try {
+    const records = await listAllRecords("portfolio projects", {
+      fields: PROJECT_FIELDS,
+    });
+    return records.map(mapRecordToProject);
+  } catch (error) {
+    console.warn(
+      "[getProjects] Failed to fetch projects:",
+      error instanceof Error ? error.message : error,
+    );
+    return [];
+  }
 }
 
 const getProjectsCached = unstable_cache(fetchProjects, ["projects"], {
@@ -140,13 +115,7 @@ export default function getProjects(): Promise<Project[]> {
   return getProjectsCached();
 }
 
-export function getProjectById(id: string): Promise<Project | null> {
-  return unstable_cache(
-    () => fetchProjectById(id),
-    ["project", id],
-    {
-      revalidate: REVALIDATE_SECONDS,
-      tags: [`project-${id}`, "projects"],
-    },
-  )();
+export async function getProjectById(id: string): Promise<Project | null> {
+  const projects = await getProjects();
+  return projects.find((project) => project.header === id) ?? null;
 }
