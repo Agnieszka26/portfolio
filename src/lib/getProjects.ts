@@ -3,7 +3,7 @@ import { unstable_cache } from "next/cache";
 import { base, escapeAirtableFormulaString } from "./base";
 import { remoteCoverFromField } from "./airtableAttachment";
 
-const REVALIDATE_SECONDS = 3600;
+const REVALIDATE_SECONDS = 86400;
 
 const PORTFOLIO_IMAGES_BASE = "/portfolio_images";
 
