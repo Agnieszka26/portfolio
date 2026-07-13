@@ -1,6 +1,6 @@
 import { Detail } from "@/types";
 import { unstable_cache } from "next/cache";
-import { base, escapeAirtableFormulaString } from "./base";
+import { listAllRecords } from "./airtableClient";
 
 const REVALIDATE_SECONDS = 3600;
 
@@ -19,17 +19,16 @@ function detailsTableName(locale: string): string {
 }
 
 function mapRecordToDetail(record: {
-  getId: () => string;
-  get: (field: string) => unknown;
+  id: string;
+  fields: Record<string, unknown>;
 }): Detail {
-  const id = record.getId();
-  const header = record.get("header") as string;
-  const overview = record.get("overview") as string;
-  const technologies = record.get("technologies") as string;
-  const backend = record.get("backend") as string;
-  const keyFeatures = record.get("keyFeatures") as string;
-  const challenges = record.get("challenges") as string | undefined;
-  const slidesRaw = record.get("slides");
+  const header = record.fields.header as string;
+  const overview = record.fields.overview as string;
+  const technologies = record.fields.technologies as string;
+  const backend = record.fields.backend as string;
+  const keyFeatures = record.fields.keyFeatures as string;
+  const challenges = record.fields.challenges as string | undefined;
+  const slidesRaw = record.fields.slides;
   const slides = Array.isArray(slidesRaw)
     ? slidesRaw
     : slidesRaw != null
@@ -37,7 +36,7 @@ function mapRecordToDetail(record: {
       : undefined;
 
   return {
-    id,
+    id: record.id,
     header,
     overview,
     technologies,
@@ -48,47 +47,19 @@ function mapRecordToDetail(record: {
   };
 }
 
-async function fetchDetailById(
-  locale: string,
-  header: string,
-): Promise<Detail | null> {
-  const records = await base(detailsTableName(locale))
-    .select({
-      filterByFormula: `{header} = "${escapeAirtableFormulaString(header)}"`,
-      maxRecords: 1,
-      fields: [...DETAIL_FIELDS],
-    })
-    .firstPage();
-
-  const record = records[0];
-  if (!record) return null;
-
-  return mapRecordToDetail(record);
-}
-
 async function fetchDetails(locale: string): Promise<Detail[]> {
-  const details: Detail[] = [];
-  const baseTableName = detailsTableName(locale);
-  return new Promise((resolve, reject) => {
-    base(baseTableName)
-      .select({
-        fields: [...DETAIL_FIELDS],
-      })
-      .eachPage(
-        function page(records: any[], fetchNextPage: () => void) {
-          records.forEach((record) => {
-            details.push(mapRecordToDetail(record));
-          });
-
-          fetchNextPage();
-        },
-        function done(err: any) {
-          if (err) return reject(err);
-
-          return resolve(details);
-        },
-      );
-  });
+  try {
+    const records = await listAllRecords(detailsTableName(locale), {
+      fields: DETAIL_FIELDS,
+    });
+    return records.map(mapRecordToDetail);
+  } catch (error) {
+    console.warn(
+      `[getDetails] Failed to fetch details for locale "${locale}":`,
+      error instanceof Error ? error.message : error,
+    );
+    return [];
+  }
 }
 
 const getDetailsCached = unstable_cache(fetchDetails, ["details"], {
@@ -100,16 +71,10 @@ export default function getDetails(locale: string): Promise<Detail[]> {
   return getDetailsCached(locale);
 }
 
-export function getDetailById(
+export async function getDetailById(
   locale: string,
   id: string,
 ): Promise<Detail | null> {
-  return unstable_cache(
-    () => fetchDetailById(locale, id),
-    ["detail", locale, id],
-    {
-      revalidate: REVALIDATE_SECONDS,
-      tags: [`detail-${id}`, `details-${locale}`, "details"],
-    },
-  )();
+  const details = await getDetails(locale);
+  return details.find((detail) => detail.header === id) ?? null;
 }
