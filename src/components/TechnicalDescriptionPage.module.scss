@@ -43,6 +43,45 @@
   h2 {
     font-family: $font-mulish;
   }
+  a {
+    color: $primaryColor;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  ul,
+  ol {
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+    font-family: $font-mulish;
+    font-size: $fontSizeXS;
+    @media (min-width: 765px) {
+      font-size: $fontSizeSm;
+    }
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9em;
+    background: rgba($darkColor, 0.08);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+  pre {
+    overflow-x: auto;
+    padding: 0.75rem 1rem;
+    background: rgba($darkColor, 0.08);
+    border-radius: 6px;
+
+    code {
+      background: transparent;
+      padding: 0;
+    }
+  }
+  blockquote {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid $primaryColor;
+    font-style: italic;
+  }
 }
 
 .noticeTitle {

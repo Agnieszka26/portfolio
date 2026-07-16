@@ -62,15 +62,21 @@ export type Project = {
 };
 
 /**
+ * Markdown source string as stored by `sanity-plugin-markdown`
+ * / the reusable `markdownContent` schema type.
+ */
+export type MarkdownString = string;
+
+/**
  * Full project document including case-study fields and gallery.
  * Replaces the former Airtable `Detail` type.
  */
 export type ProjectDetails = Project & {
-  overview?: string | null;
-  technologies?: string | null;
-  backend?: string | null;
-  keyFeatures?: string | null;
-  challenges?: string | null;
+  overview?: MarkdownString | null;
+  technologies?: MarkdownString | null;
+  backend?: MarkdownString | null;
+  keyFeatures?: MarkdownString | null;
+  challenges?: MarkdownString | null;
   slides?: SanityImage[] | null;
 };
 

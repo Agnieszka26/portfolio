@@ -6,7 +6,7 @@ import Description from "./Description/Description";
 import cn from "classnames";
 import Tag from "@/typography/Tag/Tag";
 import LazySlidesCarousel from "@/components/client/LazySlidesCarousel";
-import LazyMarkdown from "@/components/client/LazyMarkdown";
+import Markdown from "@/components/Markdown";
 import Header from "@/typography/Header/Header";
 import { getLocale, getTranslations } from "next-intl/server";
 import { RoutesPath } from "@/constants";
@@ -97,7 +97,7 @@ export default async function TechnicalDescriptionPage({
               <Button text={t("see_live_preview")} color="light" />
             </Link>
             <aside className={pageStyles.notice} role="note">
-              <LazyMarkdown>{detail.overview ?? ""}</LazyMarkdown>
+              <Markdown>{detail.overview ?? ""}</Markdown>
             </aside>
             <div className={pageStyles.detailsGrid}>
               <LabeledSection id="section-tech" label={t("section_tech")}>

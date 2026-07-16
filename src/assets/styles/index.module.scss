@@ -134,6 +134,49 @@
     }
   }
 
+  ol {
+    font-family: $font-mulish;
+    color: $darkColor;
+    font-size: $fontSizeXS;
+    @media (min-width: 765px) {
+      font-size: $fontSizeMd;
+    }
+  }
+
+  a {
+    color: $primaryColor;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  blockquote {
+    margin: 0.75rem 0;
+    padding: 0.5rem 0 0.5rem 1rem;
+    border-left: 3px solid $darkColor;
+    font-family: $font-mulish;
+    font-style: italic;
+  }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9em;
+    background: rgba($darkColor, 0.08);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: 0.75rem 1rem;
+    background: rgba($darkColor, 0.08);
+    border-radius: 6px;
+
+    code {
+      background: transparent;
+      padding: 0;
+    }
+  }
+
   p {
     font-family: $font-mulish;
     color: $darkColor;

@@ -12,6 +12,7 @@ import {
 } from '@sanity/document-internationalization'
 import {defineConfig, type Template} from 'sanity'
 import {structureTool} from 'sanity/structure'
+import {markdownSchema} from 'sanity-plugin-markdown'
 
 import {apiVersion, dataset, projectId} from './src/sanity/env'
 import {
@@ -44,6 +45,7 @@ export default defineConfig({
   plugins: [
     structureTool({structure}),
     visionTool({defaultApiVersion: apiVersion}),
+    markdownSchema(),
     documentInternationalization({
       supportedLanguages: [...SUPPORTED_LANGUAGES],
       schemaTypes: [...TRANSLATABLE_SCHEMA_TYPES],

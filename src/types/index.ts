@@ -1,5 +1,6 @@
 export type {
   Detail,
+  MarkdownString,
   Project,
   ProjectDetails,
   RemoteCoverImage,
