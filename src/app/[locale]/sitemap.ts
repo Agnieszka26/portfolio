@@ -1,14 +1,15 @@
-import { MetadataRoute } from 'next';
-import getProjects from '../../lib/getProjects';
+import { MetadataRoute } from "next";
+import getProjects from "../../lib/getProjects";
+import { projectSlug } from "@/types";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://portfolio-agnieszka26.vercel.app/';
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  "https://portfolio-agnieszka26.vercel.app/";
 
-const locales = ['en', 'pl'];
+const locales = ["en", "pl"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const projects = await getProjects();
-
-  const staticPages = ['', '/contact', '/projects'];
+  const staticPages = ["", "/contact", "/projects"];
 
   const staticUrls = locales.flatMap((locale) =>
     staticPages.map((page) => ({
@@ -17,12 +18,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  const projectUrls = locales.flatMap((locale) =>
-    projects.map((project) => ({
-      url: `${BASE_URL}/${locale}/projects/${project.header}`,
-      lastModified: new Date(),
-    })),
-  );
+  const projectUrls = (
+    await Promise.all(
+      locales.map(async (locale) => {
+        const projects = await getProjects(locale);
+        return projects.map((project) => ({
+          url: `${BASE_URL}/${locale}/projects/${projectSlug(project)}`,
+          lastModified: new Date(),
+        }));
+      }),
+    )
+  ).flat();
 
   return [...staticUrls, ...projectUrls];
 }

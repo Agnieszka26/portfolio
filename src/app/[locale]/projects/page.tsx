@@ -27,7 +27,8 @@ const Page = async ({
   params: Promise<{ locale: string }>;
 }) => {
   const { locale } = await params;
-  setRequestLocale(locale);  const projects = await getProjects();
+  setRequestLocale(locale);
+  const projects = await getProjects(locale);
   const professionalProjectsDetails = projects.filter(
     ({ type }) => type === "professional",
   );
