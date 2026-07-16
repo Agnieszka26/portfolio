@@ -14,7 +14,9 @@ export const projectId = assertValue(
 /** Strip accidental quotes/whitespace from .env values. */
 function cleanEnv(value: string | undefined): string | undefined {
   if (value === undefined) return undefined
-  return value.trim().replace(/^['"]|['"]$/g, '')
+  const cleaned = value.trim().replace(/^['"]|['"]$/g, '').trim()
+  return cleaned || undefined
+}
 }
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {

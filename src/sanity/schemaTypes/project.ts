@@ -36,9 +36,9 @@ export default defineType({
       title: 'ID',
       type: 'string',
       fieldset: 'basic',
-      description: 'Optional stable identifier for routing or migration from legacy systems.',
-    }),
-    defineField({
+      description: 'Stable identifier for routing or migration from legacy systems.',
+      validation: (rule) => rule.required(),
+    }),    defineField({
       name: 'header',
       title: 'Header',
       type: 'string',

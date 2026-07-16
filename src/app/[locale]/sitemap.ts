@@ -1,13 +1,15 @@
 import { MetadataRoute } from "next";
 import getProjects from "../../lib/getProjects";
 import { projectSlug } from "@/types";
+import { routing } from "@/i18n/routing";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL ||
-  "https://portfolio-agnieszka26.vercel.app/";
+(process.env.NEXT_PUBLIC_BASE_URL ||
+     "https://portfolio-agnieszka26.vercel.app").replace(/\/+$/, "");
 
-const locales = ["en", "pl"];
 
+
+const locales = routing.locales;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = ["", "/contact", "/projects"];
 

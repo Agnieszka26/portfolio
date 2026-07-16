@@ -65,7 +65,7 @@ export const projectDetailsQuery = defineQuery(/* groq */ `
     _type == "project" &&
     language == $locale &&
     (id == $slug || header == $slug)
-  ][0] {
+  ] | order(select(id == $slug => 0, 1))[0] {
     ${projectDetailsProjection}
   }
 `);
@@ -79,7 +79,10 @@ export const projectDetailsWithFallbackQuery = defineQuery(/* groq */ `
     _type == "project" &&
     (id == $slug || header == $slug) &&
     language in [$locale, $defaultLocale]
-  ] | order(select(language == $locale => 0, 1))[0] {
+  ] | order(
+    select(id == $slug => 0, 1),
+    select(language == $locale => 0, 1)
+  )[0] {
     ${projectDetailsProjection}
   }
 `);
