@@ -17,7 +17,6 @@ function cleanEnv(value: string | undefined): string | undefined {
   const cleaned = value.trim().replace(/^['"]|['"]$/g, '').trim()
   return cleaned || undefined
 }
-}
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
