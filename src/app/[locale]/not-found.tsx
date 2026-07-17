@@ -7,13 +7,13 @@ export default function NotFound() {
   const locale = useLocale();
 
   return (
-    <div className={styles.page} 
-    style={{ 
-      display: "flex", 
-      justifyContent: "center", 
-      alignItems: "center", 
-      height: "50vh", 
-    }}>
+    <div className={styles.page}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "50vh",
+      }}>
       <div className={styles.box}>
 
         <h1 style={{ margin: "0 0 0.75rem", fontSize: "1.75rem" }}>
@@ -22,7 +22,7 @@ export default function NotFound() {
         <p style={{ margin: 0, opacity: 0.75 }}>
           {t("not_found_body")}
         </p>
-        <Link href={RoutesPath.PROJECTS} locale={locale}  className={styles.link}>{t("not_found_link")}</Link>
+        <Link href={RoutesPath.PROJECTS} locale={locale} className={styles.link}>{t("not_found_link")}</Link>
       </div>
     </div>
   );
