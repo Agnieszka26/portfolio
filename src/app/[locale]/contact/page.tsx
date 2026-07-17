@@ -1,43 +1,29 @@
-"use client";
-import styles from "@/assets/styles/index.module.scss";
-import Animation from "@/atoms/Animation/Animation";
-import Button from "@/atoms/Button/Button";
-import Header from "@/typography/Header/Header";
-import Paragraph from "@/typography/Paragraph/Paragraph";
-import Link from "next/link";
-import Image from "next/image";
-import image from "@/assets/images/undraw_proud-coder_9prj.svg";
-import { useTranslations } from "next-intl";
-const Contact = () => {
-  const t = useTranslations("ContactPage");
-  return (
-    <div className={styles.page}>
-      <Animation type="fade-down">
-        <div className={[styles.container, styles.contactPage].join(" ")}>
-          <div className={styles.containerLeft}>
-            <Header text={t("title")} color={"dark"} />
-            <Paragraph text={t("subtitle")} color="dark" />
+import ContactPage from "@/components/ContactPage";
+import { createPageMetadata } from "@/lib/metadata";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { Metadata } from "next";
 
-            <Link href="https://www.linkedin.com/in/agnieszka-m%C4%99drek/">
-              <Button text={t("go_linkedin")} color={"light"} />
-            </Link>
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
 
-            <Link href="mailto:agna.medrek@gmail.com">
-              <Button text={t("send_email")} color={"light"} />
-            </Link>
-          </div>
+  return createPageMetadata({
+    title: t("contactTitle"),
+    description: t("contactDescription"),
+    path: `/${locale}/contact`,
+  });
+}
 
-          <Image
-            src={image}
-            alt="contact"
-            className={styles.image}
-            width={500}
-            height={500}
-          />
-        </div>
-      </Animation>
-    </div>
-  );
-};
-
-export default Contact;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return <ContactPage />;
+}

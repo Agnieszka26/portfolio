@@ -2,7 +2,10 @@ import TechnicalDescriptionPage from "@/components/TechnicalDescriptionPage";
 import { routing } from "@/i18n/routing";
 import { getProjectDetails } from "@/lib/getDetails";
 import getProjects from "@/lib/getProjects";
-import { createPageMetadata, truncateDescription } from "@/lib/metadata";
+import {
+  buildProjectDescription,
+  createPageMetadata,
+} from "@/lib/metadata";
 import { projectSlug, toRemoteCoverImage } from "@/types";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
@@ -19,18 +22,23 @@ export async function generateMetadata({
   const project = await getProjectDetails(id, locale);
 
   const projectName = project?.header ?? id;
-  const cover = project ? toRemoteCoverImage(project.image) : null;
-  const rawDescription =
-    project?.overview ??
-    project?.paragraph ??
-    t("projectFallbackDescription", { name: projectName });
+  const coverUrl = project?.image?.asset?.url
+    ? toRemoteCoverImage(project.image).url
+    : undefined;
+  const description = project
+    ? buildProjectDescription(
+        project,
+        t("projectFallbackDescription", { name: projectName }),
+        locale,
+      )
+    : t("projectFallbackDescription", { name: projectName });
 
   return createPageMetadata({
     title: t("projectTitle", { name: projectName }),
-    description: truncateDescription(rawDescription),
+    description,
     path: `/${locale}/projects/${id}`,
-    image: cover?.url,
-    twitterImage: cover?.url,
+    image: coverUrl,
+    twitterImage: coverUrl,
   });
 }
 
