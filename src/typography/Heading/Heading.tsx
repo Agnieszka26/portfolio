@@ -8,7 +8,7 @@ interface HeadingProps {
 const Heading: FC<HeadingProps> = ({ text }) => {
   return (
     <div className={styles.heading}>
-      <p>{text}</p>
+      <h4>{text}</h4>
     </div>
   );
 };
