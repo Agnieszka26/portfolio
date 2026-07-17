@@ -1,6 +1,12 @@
 import HomePage from "@/components/Homepage";
+import JsonLd from "@/components/JsonLd";
 import getProjects from "@/lib/getProjects";
 import { createPageMetadata } from "@/lib/metadata";
+import {
+  buildPersonSchema,
+  buildProfilePageSchema,
+  buildWebsiteSchema,
+} from "@/lib/seo/schema";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -32,6 +38,14 @@ const Page = async ({
   const professionalProjectsDetails = projects.filter(
     ({ type }) => type === "professional",
   );
-  return <HomePage professionalProjectsDetails={professionalProjectsDetails} />;
+
+  return (
+    <>
+      <JsonLd data={buildPersonSchema(locale)} />
+      <JsonLd data={buildWebsiteSchema(locale)} />
+      <JsonLd data={buildProfilePageSchema(locale)} />
+      <HomePage professionalProjectsDetails={professionalProjectsDetails} />
+    </>
+  );
 };
 export default Page;

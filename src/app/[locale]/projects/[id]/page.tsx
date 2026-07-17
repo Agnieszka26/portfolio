@@ -1,3 +1,4 @@
+import JsonLd from "@/components/JsonLd";
 import TechnicalDescriptionPage from "@/components/TechnicalDescriptionPage";
 import { routing } from "@/i18n/routing";
 import { getProjectDetails } from "@/lib/getDetails";
@@ -6,6 +7,10 @@ import {
   buildProjectDescription,
   createPageMetadata,
 } from "@/lib/metadata";
+import {
+  buildCreativeWorkSchema,
+  buildProjectBreadcrumbSchema,
+} from "@/lib/seo/schema";
 import { projectSlug, toRemoteCoverImage } from "@/types";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -73,12 +78,31 @@ const page = async ({
     notFound();
   }
 
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const creativeWork = buildCreativeWorkSchema({
+    project,
+    locale,
+    slug: id,
+    fallbackDescription: t("projectFallbackDescription", {
+      name: project.header,
+    }),
+  });
+  const breadcrumb = buildProjectBreadcrumbSchema({
+    locale,
+    projectName: project.header,
+    projectSlug: id,
+  });
+
   return (
-    <TechnicalDescriptionPage
-      detail={project}
-      tags={project.tags ?? ""}
-      linkToLive={project.linkToLive ?? ""}
-    />
+    <>
+      <JsonLd data={creativeWork} />
+      <JsonLd data={breadcrumb} />
+      <TechnicalDescriptionPage
+        detail={project}
+        tags={project.tags ?? ""}
+        linkToLive={project.linkToLive ?? ""}
+      />
+    </>
   );
 };
 
