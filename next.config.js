@@ -5,25 +5,20 @@ const createNextIntlPlugin = require('next-intl/plugin');
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.tsx");
 const nextConfig = {
   trailingSlash: true,
+  transpilePackages: ['next-sanity', 'sanity', '@sanity/vision'],
   images: {
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: "/images/**",
+      },
       {
         protocol: "https",
         hostname: "khkeguistlgztrrbfozt.supabase.co",
         port: "",
         pathname: "/storage/v1/object/public/portfolio/**",
-      },
-      {
-        protocol: "https",
-        hostname: "**.airtableusercontent.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "dl.airtable.com",
-        port: "",
-        pathname: "/**",
       },
     ],
   },

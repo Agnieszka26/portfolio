@@ -1,8 +1,9 @@
 import TechnicalDescriptionPage from "@/components/TechnicalDescriptionPage";
 import { routing } from "@/i18n/routing";
-import { getDetailById } from "@/lib/getDtails";
-import getProjects, { getProjectById } from "@/lib/getProjects";
+import { getProjectDetails } from "@/lib/getDetails";
+import getProjects from "@/lib/getProjects";
 import { createPageMetadata, truncateDescription } from "@/lib/metadata";
+import { projectSlug, toRemoteCoverImage } from "@/types";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -15,35 +16,38 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, id } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
-  const [detail, project] = await Promise.all([
-    getDetailById(locale, id),
-    getProjectById(id),
-  ]);
+  const project = await getProjectDetails(id, locale);
 
-  const projectName = detail?.header ?? project?.header ?? id;
+  const projectName = project?.header ?? id;
+  const cover = project ? toRemoteCoverImage(project.image) : null;
   const rawDescription =
-    detail?.overview ??
-    (locale === "pl" ? project?.paragraph_pl : project?.paragraph) ??
+    project?.overview ??
+    project?.paragraph ??
     t("projectFallbackDescription", { name: projectName });
 
   return createPageMetadata({
     title: t("projectTitle", { name: projectName }),
     description: truncateDescription(rawDescription),
     path: `/${locale}/projects/${id}`,
-    image: project?.image.url,
-    twitterImage: project?.image.url,
+    image: cover?.url,
+    twitterImage: cover?.url,
   });
 }
 
 export async function generateStaticParams() {
-  const projects = await getProjects();
+  const params: { locale: string; id: string }[] = [];
 
-  return projects.flatMap((project) =>
-    routing.locales.map((locale) => ({
-      locale,
-      id: project.header,
-    })),
-  );
+  for (const locale of routing.locales) {
+    const projects = await getProjects(locale);
+    for (const project of projects) {
+      params.push({
+        locale,
+        id: projectSlug(project),
+      });
+    }
+  }
+
+  return params;
 }
 
 const page = async ({
@@ -53,17 +57,14 @@ const page = async ({
 }) => {
   const { locale, id } = await params;
   setRequestLocale(locale);
-  const [detail, project] = await Promise.all([
-    getDetailById(locale, id),
-    getProjectById(id),
-  ]);
+  const project = await getProjectDetails(id, locale);
 
   const tags = project?.tags ?? "";
   const linkToLive = project?.linkToLive ?? "";
 
   return (
     <TechnicalDescriptionPage
-      detail={detail ?? undefined}
+      detail={project}
       tags={tags}
       linkToLive={linkToLive}
     />

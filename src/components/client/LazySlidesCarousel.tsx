@@ -1,6 +1,6 @@
 "use client";
 
-import { ImageDb } from "@/types";
+import type { SlideImage } from "@/types";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -10,7 +10,7 @@ const SlidesCarousel = dynamic(
 );
 
 type LazySlidesCarouselProps = {
-  slides: ImageDb[];
+  slides: SlideImage[];
 };
 
 const LazySlidesCarousel = ({ slides }: LazySlidesCarouselProps) => {

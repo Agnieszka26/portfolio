@@ -1,45 +1,14 @@
 "use client";
 
-import { ImageDb } from "@/types";
+import type { SlideImage } from "@/types";
 import Image from "next/image";
-import {
-  FC,
-  useCallback,
-  useEffect,
-  useState,
-  type KeyboardEvent,
-} from "react";
+import { FC, useCallback, useState, type KeyboardEvent } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import cn from "classnames";
 import styles from "./SlidesCarousel.module.scss";
 
-const DESKTOP_MIN_WIDTH_PX = 768;
-const CAROUSEL_SIZES = "(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px";
-
-type SlideImageSource = {
-  src: string;
-  width: number;
-  height: number;
-};
-
-function slideImageSource(slide: ImageDb, preferLarge: boolean): SlideImageSource {
-  if (preferLarge) {
-    const large = slide.thumbnails?.large;
-    return {
-      src: large?.url ?? slide.thumbnails?.full?.url ?? slide.url,
-      width: large?.width ?? slide.width,
-      height: large?.height ?? slide.height,
-    };
-  }
-
-  const small = slide.thumbnails?.small;
-  const large = slide.thumbnails?.large;
-  return {
-    src: small?.url ?? large?.url ?? slide.thumbnails?.full?.url ?? slide.url,
-    width: small?.width ?? large?.width ?? slide.width,
-    height: small?.height ?? large?.height ?? slide.height,
-  };
-}
+const CAROUSEL_SIZES =
+  "(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px";
 
 function isSlideNearActive(
   slideIndex: number,
@@ -53,27 +22,8 @@ function isSlideNearActive(
   return Math.min(directDistance, wrapDistance) <= 1;
 }
 
-function usePrefersLargeThumbnail(): boolean {
-  const [prefersLarge, setPrefersLarge] = useState(true);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(
-      `(min-width: ${DESKTOP_MIN_WIDTH_PX}px)`,
-    );
-    setPrefersLarge(mediaQuery.matches);
-    const onChange = (event: MediaQueryListEvent) => {
-      setPrefersLarge(event.matches);
-    };
-
-    mediaQuery.addEventListener("change", onChange);
-    return () => mediaQuery.removeEventListener("change", onChange);
-  }, []);
-
-  return prefersLarge;
-}
-const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
+const SlidesCarousel: FC<{ slides: SlideImage[] }> = ({ slides }) => {
   const [index, setIndex] = useState(0);
-  const prefersLargeThumbnail = usePrefersLargeThumbnail();
   const count = slides.length;
 
   const goPrev = useCallback(() => {
@@ -102,11 +52,7 @@ const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
   };
 
   return (
-    <div
-      className={styles.root}
-      tabIndex={0}
-      onKeyDown={onKeyDown}
-    >
+    <div className={styles.root} tabIndex={0} onKeyDown={onKeyDown}>
       <div
         className={styles.viewport}
         role="region"
@@ -123,14 +69,11 @@ const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
           {slides.map((slide, i) => {
             const isActive = i === index;
             const shouldRenderImage = isSlideNearActive(i, index, count);
-            const { src, width, height } = slideImageSource(
-              slide,
-              prefersLargeThumbnail,
-            );
+            const { url: src, width, height } = slide;
 
             return (
               <div
-                key={slide.id || `${slide.filename}-${i}`}
+                key={slide.id || `slide-${i}`}
                 className={styles.slide}
                 style={{ width: `${slideWidthPercent}%` }}
                 aria-hidden={!isActive}
@@ -139,7 +82,7 @@ const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
                   <Image
                     className={styles.image}
                     src={src}
-                    alt={slide.filename || `Slide ${i + 1}`}
+                    alt={`Slide ${i + 1}`}
                     width={width}
                     height={height}
                     sizes={CAROUSEL_SIZES}
@@ -171,7 +114,11 @@ const SlidesCarousel: FC<{ slides: ImageDb[] }> = ({ slides }) => {
           >
             <FiChevronLeft size={22} aria-hidden />
           </button>
-          <div className={styles.dots} role="tablist" aria-label="Slide indicators">
+          <div
+            className={styles.dots}
+            role="tablist"
+            aria-label="Slide indicators"
+          >
             {slides.map((slide, i) => (
               <button
                 key={slide.id || `dot-${i}`}

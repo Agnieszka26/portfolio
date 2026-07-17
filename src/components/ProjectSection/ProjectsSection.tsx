@@ -1,6 +1,10 @@
 import styles from "@/assets/styles/index.module.scss";
 import { RoutesPath } from "@/constants";
-import { Project } from "@/types";
+import {
+  type Project,
+  projectSlug,
+  toRemoteCoverImage,
+} from "@/types";
 import { getLocale, getTranslations } from "next-intl/server";
 import ProjectComponent from "../Project/Project";
 
@@ -20,25 +24,27 @@ const ProjectsSection = async ({
     <section className={styles.container} id={sectionId}>
       {projectsDetails.map(
         (
-          { header, paragraph, image, tags: tagString, linkToGithub, linkToLive, paragraph_pl },
+          { header, paragraph, image, tags: tagString, linkToLive, ...project },
           index,
         ) => {
-          const tags = tagString
+          const tags = (tagString ?? "")
             .split(",")
-            .map((item) => item.trim().replace(/^"|"$/g, ""));
+            .map((item) => item.trim().replace(/^"|"$/g, ""))
+            .filter(Boolean);
 
           const headingKey = index === 0 ? "latest work" : "highlighted";
+          const slug = projectSlug({ id: project.id, header });
 
           return (
             <ProjectComponent
-              key={header}
+              key={project._id}
               heading={t(headingKey)}
               header={header}
-              paragraph={locale === "en" ? paragraph : paragraph_pl}
-              image={image}
+              paragraph={paragraph ?? ""}
+              image={toRemoteCoverImage(image)}
               tags={tags}
-              linkToGithub={RoutesPath.PROJECTS + "/" + header}
-              linkToLive={linkToLive}
+              linkToGithub={RoutesPath.PROJECTS + "/" + slug}
+              linkToLive={linkToLive ?? ""}
               index={index}
               locale={locale}
               learnMoreLabel={t("learn_more")}
