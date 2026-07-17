@@ -26,12 +26,12 @@ const MobileList = ({
         />
       ))}
       <ListElement
-        link={"https://www.facebook.com/"}
+        link={"https://www.facebook.com/agame17"}
         text={"facebook"}
         handleCloseHamburger={handleCloseHamburger}
       />
       <ListElement
-        link={"https://www.instagram.com/"}
+        link={"https://www.instagram.com/amedrek/"}
         text={"instagram"}
         handleCloseHamburger={handleCloseHamburger}
       />

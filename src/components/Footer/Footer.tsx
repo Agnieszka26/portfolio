@@ -16,7 +16,7 @@ const Footer: FC = () => {
     <div className={styles.footerContainer}>
       <footer className={cn(styles.footer, s.container)}>
         <div className={styles.containerLeft}>
-          <Header text={t("title")} color={"light"} />
+          <Header text={t("title")} color={"light"} as="h2" />
           <Paragraph
             text={t("description")}
             color="light"
@@ -45,7 +45,7 @@ const Footer: FC = () => {
       </footer>
       <div className={styles.paragraphReserved}>
         <span>
-          <Image src={logo} alt="logo" />
+          <Image src={logo} alt="Agnieszka Mędrek - Portfolio logo" />
         </span>
         {t("all_rights_reserved")}
       </div>

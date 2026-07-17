@@ -126,35 +126,6 @@
   }
 }
 
-.empty {
-  @include center;
-  flex-direction: column;
-  text-align: center;
-  gap: 1.5rem;
-  padding: 3rem 1rem 4rem;
-  max-width: 28rem;
-  margin: 0 auto;
-}
-
-.emptyTitle {
-  font-family: $font-mulish;
-  font-size: $fontSizeL;
-  color: $darkColor;
-  margin: 0;
-  line-height: 1.25;
-  @media (min-width: 765px) {
-    font-size: $fontSizeXl;
-  }
-}
-
-.emptyBody {
-  font-family: $font-mulish;
-  font-size: $fontSizeSm;
-  color: $grayColor;
-  margin: 0;
-  line-height: 1.55;
-}
-
-.emptyLink {
+.liveLink {
   text-decoration: none;
 }

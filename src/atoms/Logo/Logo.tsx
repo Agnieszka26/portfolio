@@ -8,7 +8,7 @@ import styles from "./Logo.module.scss";
 const Logo: FC = () => {
   return (
     <Link href={RoutesPath.HOME} className={styles.logo}>
-      <Image src={logo} alt={"logo"} height="50" width="50" />
+      <Image src={logo} alt={"Agnieszka Mędrek - Portfolio logo"} height="50" width="50" />
     </Link>
   );
 };

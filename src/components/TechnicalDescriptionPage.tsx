@@ -9,7 +9,6 @@ import LazySlidesCarousel from "@/components/client/LazySlidesCarousel";
 import Markdown from "@/components/Markdown";
 import Header from "@/typography/Header/Header";
 import { getLocale, getTranslations } from "next-intl/server";
-import { RoutesPath } from "@/constants";
 import Button from "@/atoms/Button/Button";
 import ScrollToTopOnUnmount from "@/components/client/ScrollToTopOnUnmount";
 import { Link } from "@/i18n/navigation";
@@ -50,92 +49,78 @@ export default async function TechnicalDescriptionPage({
   tags,
   linkToLive,
 }: {
-  detail?: ProjectDetails | null;
+  detail: ProjectDetails;
   tags: string;
   linkToLive: string;
 }) {
   const t = await getTranslations("TechnicalDescriptionPage");
   const locale = await getLocale();
   const stackTags = tags ? stackToTags(tags) : [];
-  const slides = toSlideImages(detail?.slides);
+  const slides = toSlideImages(detail.slides);
 
   return (
     <ScrollToTopOnUnmount>
       <div className={cn(styles.page, styles.container)}>
-        {!detail ? (
-          <div className={pageStyles.empty}>
-            <p className={pageStyles.emptyTitle}>{t("not_found_title")}</p>
-            <p className={pageStyles.emptyBody}>{t("not_found_body")}</p>
-            <Link
-              href={RoutesPath.PROJECTS}
-              locale={locale}
-              className={pageStyles.emptyLink}
-            >
-              <Button text={t("not_found_link")} color="dark" />
-            </Link>
+        <article className={pageStyles.article}>
+          <div className={pageStyles.headerBlock}>
+            <Header text={detail.header} color="dark" as="h1" />
+
+            {tags?.length > 0 && (
+              <div className={pageStyles.tagRow}>
+                {stackTags.map((tag) => (
+                  <Tag key={tag} text={tag} />
+                ))}
+              </div>
+            )}
           </div>
-        ) : (
-          <article className={pageStyles.article}>
-            <div className={pageStyles.headerBlock}>
-              <Header text={detail.header} color="dark" />
-
-              {tags?.length > 0 && (
-                <div className={pageStyles.tagRow}>
-                  {stackTags.map((tag) => (
-                    <Tag key={tag} text={tag} />
-                  ))}
-                </div>
-              )}
-            </div>
-            <Link
-              href={linkToLive}
-              target="_blank"
-              rel="noopener noreferrer"
-              locale={locale}
-              className={pageStyles.emptyLink}
+          <Link
+            href={linkToLive}
+            target="_blank"
+            rel="noopener noreferrer"
+            locale={locale}
+            className={pageStyles.liveLink}
+          >
+            <Button text={t("see_live_preview")} color="light" />
+          </Link>
+          <aside className={pageStyles.notice} role="note">
+            <Markdown>{detail.overview ?? ""}</Markdown>
+          </aside>
+          <div className={pageStyles.detailsGrid}>
+            <LabeledSection id="section-tech" label={t("section_tech")}>
+              <Description text={detail.technologies ?? ""} />
+            </LabeledSection>
+            <LabeledSection
+              id="section-features"
+              label={t("section_features")}
             >
-              <Button text={t("see_live_preview")} color="light" />
-            </Link>
-            <aside className={pageStyles.notice} role="note">
-              <Markdown>{detail.overview ?? ""}</Markdown>
-            </aside>
-            <div className={pageStyles.detailsGrid}>
-              <LabeledSection id="section-tech" label={t("section_tech")}>
-                <Description text={detail.technologies ?? ""} />
-              </LabeledSection>
-              <LabeledSection
-                id="section-features"
-                label={t("section_features")}
-              >
-                <Description text={detail.keyFeatures ?? ""} />
-              </LabeledSection>
-            </div>
+              <Description text={detail.keyFeatures ?? ""} />
+            </LabeledSection>
+          </div>
 
-            {slides.length > 0 ? (
+          {slides.length > 0 ? (
+            <LabeledSection
+              id="section-gallery"
+              label={t("section_gallery")}
+              className={pageStyles.mediaSection}
+            >
+              <LazySlidesCarousel key={detail._id} slides={slides} />
+            </LabeledSection>
+          ) : null}
+
+          <div className={pageStyles.detailsGrid}>
+            <LabeledSection id="section-backend" label={t("section_backend")}>
+              <Description text={detail.backend ?? ""} />
+            </LabeledSection>
+            {detail.challenges ? (
               <LabeledSection
-                id="section-gallery"
-                label={t("section_gallery")}
-                className={pageStyles.mediaSection}
+                id="section-challenges"
+                label={t("section_challenges")}
               >
-                <LazySlidesCarousel key={detail._id} slides={slides} />
+                <Description text={detail.challenges} />
               </LabeledSection>
             ) : null}
-
-            <div className={pageStyles.detailsGrid}>
-              <LabeledSection id="section-backend" label={t("section_backend")}>
-                <Description text={detail.backend ?? ""} />
-              </LabeledSection>
-              {detail.challenges ? (
-                <LabeledSection
-                  id="section-challenges"
-                  label={t("section_challenges")}
-                >
-                  <Description text={detail.challenges} />
-                </LabeledSection>
-              ) : null}
-            </div>
-          </article>
-        )}
+          </div>
+        </article>
       </div>
     </ScrollToTopOnUnmount>
   );

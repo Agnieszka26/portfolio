@@ -158,7 +158,8 @@
   }
 
   code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      monospace;
     font-size: 0.9em;
     background: rgba($darkColor, 0.08);
     padding: 0.1em 0.35em;
@@ -241,3 +242,14 @@
   width: 300px;
   margin: auto;
 }
+
+.link {
+ margin-top: 1rem;
+ display: inline-block; 
+font-family: $font-mulish;
+color: $darkColor;
+&:hover {
+  color: $primaryColor;
+}
+}
+     

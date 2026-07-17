@@ -1,13 +1,13 @@
 {
   "Metadata": {
-    "homeTitle": "AGNA - Front-end Developer | Portfolio",
-    "homeDescription": "Portfolio Agnieszka Mędrek — front-end developer, Next.js, React, UI/UX. Zobacz moje projekty, umiejętności i kontakt.",
-    "contactTitle": "Kontakt | AGNA - Front-end Developer",
-    "contactDescription": "Skontaktuj się z AGNA w sprawie projektów front-endowych, współpracy i zleceń freelancerskich.",
-    "projectsTitle": "Projekty | AGNA - Front-end Developer",
-    "projectsDescription": "Przegląd projektów front-endowych z React, Next.js i nowoczesnymi technologiami webowymi — case study i wersje na żywo.",
-    "projectTitle": "{name} | AGNA - Front-end Developer",
-    "projectFallbackDescription": "Case study i opis techniczny projektu {name} — realizacja front-endowa AGNA."
+    "homeTitle": "AGNA - Frontend Developer | Portfolio React i Next.js",
+    "homeDescription": "Frontend Developer tworząca skalowalne aplikacje webowe z użyciem React, Next.js i TypeScript.",
+    "contactTitle": "Kontakt | Frontend Developer | AGNA",
+    "contactDescription": "Skontaktuj się z AGNA w sprawie projektów frontendowych React i Next.js, konsultacji, współpracy i zleceń freelancerskich.",
+    "projectsTitle": "Projekty Frontend | Case Studies React i Next.js | AGNA",
+    "projectsDescription": "Poznaj projekty frontendowe stworzone z użyciem React, Next.js, TypeScript i nowoczesnych technologii.",
+    "projectTitle": "{name} | Case Study Frontend React i Next.js | AGNA",
+    "projectFallbackDescription": "Case study projektu {name} — realizacja frontendowa React i Next.js od AGNA."
   },
   "LocaleSwitcher": {
     "label": "Zmień język",
@@ -48,7 +48,7 @@
     "all_rights_reserved": "Wszystkie prawa zastrzeżone"
   },
   "TechnicalDescriptionPage": {
-    "not_found_title": "Nie znaleziono tego projektu.",
+    "not_found_title": "Nie znaleziono tej strony.",
     "not_found_body": "Link mógł być nieprawidłowy albo treść została zmieniona.",
     "not_found_link": "Wróć do projektów",
     "section_overview": "Opis",

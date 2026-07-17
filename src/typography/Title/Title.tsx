@@ -8,7 +8,7 @@ interface TitleProps {
 const Title: FC<TitleProps> = ({ text }) => {
   return (
     <div className={styles.title}>
-      <p>{text}</p>
+      <h2>{text}</h2>
     </div>
   );
 };

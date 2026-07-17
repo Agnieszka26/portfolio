@@ -1,45 +1,55 @@
 .root {
-  --animation-duration: 0.8s;
+  --animation-duration: 0.25s;
   --animation-distance: 20px;
-  --animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --animation-easing: ease-out;
 
-  opacity: 0;
+  // Visible by default for SSR, crawlers, and above-the-fold content.
+  // `.pending` is applied only after mount for off-screen elements.
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
   transition:
     opacity var(--animation-duration) var(--animation-easing),
     transform var(--animation-duration) var(--animation-easing);
+}
+
+.pending {
+  opacity: 0;
   will-change: opacity, transform;
 }
 
-.fade {
+.fade.pending {
   transform: translate3d(0, 0, 0);
 }
 
-.fadeUp {
+.fadeUp.pending {
   transform: translate3d(0, var(--animation-distance), 0);
 }
 
-.fadeDown {
+.fadeDown.pending {
   transform: translate3d(0, calc(-1 * var(--animation-distance)), 0);
 }
 
-.slideLeft {
+.slideLeft.pending {
   transform: translate3d(var(--animation-distance), 0, 0);
 }
 
-.slideRight {
+.slideRight.pending {
   transform: translate3d(calc(-1 * var(--animation-distance)), 0, 0);
 }
 
 .isVisible {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .root {
-    opacity: 1;
-    transform: none;
-    transition: none;
-    will-change: auto;
+  .root,
+  .pending,
+  .isVisible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
   }
 }

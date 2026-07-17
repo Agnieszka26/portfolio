@@ -18,6 +18,7 @@ const Scroll: FC<ScrollProps> = ({ targetId }) => {
     <div
       className={styles.revealWrapper}
       role="button"
+      aria-label="Scroll to next section"
       tabIndex={0}
       onClick={handleClick}
       onKeyDown={(e) => {

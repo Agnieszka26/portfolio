@@ -35,6 +35,13 @@ interface AnimationProps {
   threshold?: number;
   duration?: number;
   distance?: number;
+  /**
+   * Skip entrance animation and render content immediately.
+   * Use for above-the-fold / LCP-critical content.
+   */
+  aboveTheFold?: boolean;
+  /** Alias for `aboveTheFold` — disables the initial hide/reveal. */
+  disableInitialAnimation?: boolean;
 }
 
 function prefersReducedMotion() {
@@ -44,37 +51,80 @@ function prefersReducedMotion() {
   );
 }
 
+function isElementInViewport(element: Element, threshold: number) {
+  const rect = element.getBoundingClientRect();
+  const viewportHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+  const viewportWidth =
+    window.innerWidth || document.documentElement.clientWidth;
+
+  const visibleHeight =
+    Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+  const visibleWidth =
+    Math.min(rect.right, viewportWidth) - Math.max(rect.left, 0);
+
+  if (visibleHeight <= 0 || visibleWidth <= 0) {
+    return false;
+  }
+
+  const visibleRatio =
+    (visibleHeight * visibleWidth) / (rect.width * rect.height || 1);
+
+  return visibleRatio >= threshold;
+}
+
+type RevealPhase = "resting" | "pending" | "revealed";
+
 const Animation = ({
   children,
   type = "fade-up",
   className,
   as: Component = "div",
   threshold = 0.3,
-  duration = 0.8,
+  duration = 0.25,
   distance = 20,
+  aboveTheFold = false,
+  disableInitialAnimation = false,
 }: AnimationProps) => {
+  const skipEntrance = aboveTheFold || disableInitialAnimation;
   const ref = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  // Progressive enhancement: visible by default (SSR + first paint).
+  // Below-fold content is only hidden after mount, while off-screen.
+  const [phase, setPhase] = useState<RevealPhase>(
+    skipEntrance ? "revealed" : "resting",
+  );
 
   useEffect(() => {
+    if (skipEntrance) {
+      setPhase("revealed");
+      return;
+    }
     const element = ref.current;
     if (!element) {
-      // `as` didn't forward the ref (e.g. a non-forwardRef component) —
-      // fail open rather than leaving content permanently hidden.
-      setIsVisible(true);
+      // `as` didn't forward the ref — fail open rather than hiding content.
+      setPhase("revealed");
       return;
     }
 
     if (prefersReducedMotion()) {
-      setIsVisible(true);
+      setPhase("revealed");
       return;
     }
 
-    const reveal = () => setIsVisible(true);
+    // Already on screen: keep visible, skip entrance animation (LCP-safe).
+    if (isElementInViewport(element, threshold)) {
+      setPhase("revealed");
+      return;
+    }
+
+    // Off-screen: hide, then reveal on scroll.
+    setPhase("pending");
+
+    const reveal = () => setPhase("revealed");
     observeReveal(element, reveal, threshold);
 
     return () => unobserveReveal(element);
-  }, [threshold]);
+  }, [threshold, skipEntrance]);
 
   const inlineStyle = {
     "--animation-duration": `${duration}s`,
@@ -87,13 +137,15 @@ const Animation = ({
       className={cn(
         styles.root,
         typeClassMap[type],
-        isVisible && styles.isVisible,
+        phase === "pending" && styles.pending,
+        phase === "revealed" && styles.isVisible,
         className,
       )}
       style={inlineStyle}
     >
       {children}
-    </Component>  );
+    </Component>
+  );
 };
 
 export default Animation;

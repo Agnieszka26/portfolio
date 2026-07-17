@@ -18,7 +18,7 @@ const HeroArea = async ({ scrollTargetId }: HeroAreaProps) => {
     <div className={cn(styles.heroArea)}>
       <div className={cn(styles.fixedBox, styles.container)}>
         <div className={cn(styles.containerLeft)}>
-          <Header text={t("title")} color="light" />
+          <Header text={t("title")} color="light" as="h1" />
 
           <Paragraph text={t("description_1")} color="light" />
           <Paragraph text={t("description_2")} color="light" />
