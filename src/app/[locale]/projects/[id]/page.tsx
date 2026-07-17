@@ -8,6 +8,7 @@ import {
 } from "@/lib/metadata";
 import { projectSlug, toRemoteCoverImage } from "@/types";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 export const revalidate = 3600;
@@ -21,21 +22,22 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Metadata" });
   const project = await getProjectDetails(id, locale);
 
-  const projectName = project?.header ?? id;
-  const coverUrl = project?.image?.asset?.url
+  if (!project) {
+    notFound();
+  }
+
+  const projectName = project.header;
+  const coverUrl = project.image?.asset?.url
     ? toRemoteCoverImage(project.image).url
     : undefined;
-  const description = project
-    ? buildProjectDescription(
-        project,
-        t("projectFallbackDescription", { name: projectName }),
-        locale,
-      )
-    : t("projectFallbackDescription", { name: projectName });
 
   return createPageMetadata({
     title: t("projectTitle", { name: projectName }),
-    description,
+    description: buildProjectDescription(
+      project,
+      t("projectFallbackDescription", { name: projectName }),
+      locale,
+    ),
     path: `/${locale}/projects/${id}`,
     image: coverUrl,
     twitterImage: coverUrl,
@@ -67,14 +69,15 @@ const page = async ({
   setRequestLocale(locale);
   const project = await getProjectDetails(id, locale);
 
-  const tags = project?.tags ?? "";
-  const linkToLive = project?.linkToLive ?? "";
+  if (!project) {
+    notFound();
+  }
 
   return (
     <TechnicalDescriptionPage
       detail={project}
-      tags={tags}
-      linkToLive={linkToLive}
+      tags={project.tags ?? ""}
+      linkToLive={project.linkToLive ?? ""}
     />
   );
 };

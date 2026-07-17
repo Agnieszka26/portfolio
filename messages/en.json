@@ -49,9 +49,7 @@
     "all_rights_reserved": "© All rights reserved"
   },
   "TechnicalDescriptionPage": {
-    "nda_title": "",
-    "nda_body": "",
-    "not_found_title": "This project could not be loaded.",
+    "not_found_title": "This website could not be loaded.",
     "not_found_body": "The page may be outdated or the link is incorrect.",
     "not_found_link": "Back to projects",
     "section_overview": "Overview",
