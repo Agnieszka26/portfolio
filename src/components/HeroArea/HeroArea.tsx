@@ -27,10 +27,10 @@ const HeroArea = async ({ scrollTargetId }: HeroAreaProps) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button text={t("ctaButton")} color={"dark"} aria-label={t("ctaButton")+" to hire me"} />
-            <Link href={"https://github.com/Agnieszka26"} aria-label={s("see_github")+" my projects"}>
-            <Button text={s("see_github")} color={"light"} />
+            <Button text={t("ctaButton")} color={"dark"} aria-label={t("ctaButton")} />
           </Link>
+            <Link href={"https://github.com/Agnieszka26"} aria-label={s("see_github")}>
+            <Button text={s("see_github")} color={"light"} />
           </Link>
         </div>
 
