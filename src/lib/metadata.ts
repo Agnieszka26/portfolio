@@ -2,11 +2,17 @@ import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 import type { ProjectDetails } from "@/types/project";
 
-export const SITE_URL = "https://www.agna.website/";
+/** Canonical production origin (no trailing slash). Prefers env over hardcoded fallback. */
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.SITE_URL ||
+  "https://www.agna.website"
+).replace(/\/+$/, "");
+
 export const SITE_NAME = "AGNA Portfolio";
 
 export const baseMetadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(`${SITE_URL}/`),
   robots: "index, follow",
   icons: {
     icon: "/favicon.ico",
@@ -42,8 +48,6 @@ export function createPageMetadata({
     new RegExp(`^/(${routing.locales.join("|")})`),
     "",
   );
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL;
-
   return {
     title,
     description,
@@ -52,7 +56,7 @@ export function createPageMetadata({
       languages: Object.fromEntries(
         routing.locales.map((locale) => [
           locale,
-          `${baseUrl}/${locale}${localizedPath}`,
+          `${SITE_URL}/${locale}${localizedPath}`,
         ]),
       ),
     },
