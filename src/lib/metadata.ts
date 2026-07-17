@@ -81,6 +81,7 @@ export function createPageMetadata({
       description,
       images: [twitterImage],
     },
+    manifest: "/site.webmanifest",
   };
 }
 

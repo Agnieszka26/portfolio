@@ -15,7 +15,7 @@ export default function ContactPage() {
 
   return (
     <div className={styles.page}>
-      <Animation type="fade-down">
+      <Animation type="fade-down" aboveTheFold>
         <div className={[styles.container, styles.contactPage].join(" ")}>
           <div className={styles.containerLeft}>
             <Header text={t("title")} color={"dark"} as="h1" />
