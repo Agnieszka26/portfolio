@@ -46,7 +46,7 @@ const ProjectComponent: FC<ProjectProps> = ({
           distance={10}
         >
           <Heading text={heading} />
-          <Header text={header} color="dark" />
+          <Header text={header} color="dark" as="h2" />
           <div className={styles.tagContainer}>
             {tags?.map((tag) => (
               <Tag key={tag} text={tag} />

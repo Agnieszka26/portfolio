@@ -18,7 +18,7 @@ export default function ContactPage() {
       <Animation type="fade-down">
         <div className={[styles.container, styles.contactPage].join(" ")}>
           <div className={styles.containerLeft}>
-            <Header text={t("title")} color={"dark"} />
+            <Header text={t("title")} color={"dark"} as="h1" />
             <Paragraph text={t("subtitle")} color="dark" />
 
             <Link href="https://www.linkedin.com/in/agnieszka-m%C4%99drek/">

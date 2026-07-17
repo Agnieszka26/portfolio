@@ -16,7 +16,7 @@ const Footer: FC = () => {
     <div className={styles.footerContainer}>
       <footer className={cn(styles.footer, s.container)}>
         <div className={styles.containerLeft}>
-          <Header text={t("title")} color={"light"} />
+          <Header text={t("title")} color={"light"} as="h2" />
           <Paragraph
             text={t("description")}
             color="light"

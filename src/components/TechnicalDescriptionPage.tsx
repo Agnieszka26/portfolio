@@ -64,7 +64,7 @@ export default async function TechnicalDescriptionPage({
       <div className={cn(styles.page, styles.container)}>
         {!detail ? (
           <div className={pageStyles.empty}>
-            <p className={pageStyles.emptyTitle}>{t("not_found_title")}</p>
+            <h1 className={pageStyles.emptyTitle}>{t("not_found_title")}</h1>
             <p className={pageStyles.emptyBody}>{t("not_found_body")}</p>
             <Link
               href={RoutesPath.PROJECTS}
@@ -77,7 +77,7 @@ export default async function TechnicalDescriptionPage({
         ) : (
           <article className={pageStyles.article}>
             <div className={pageStyles.headerBlock}>
-              <Header text={detail.header} color="dark" />
+              <Header text={detail.header} color="dark" as="h1" />
 
               {tags?.length > 0 && (
                 <div className={pageStyles.tagRow}>
