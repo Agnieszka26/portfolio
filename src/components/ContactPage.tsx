@@ -32,7 +32,7 @@ export default function ContactPage() {
 
           <Image
             src={image}
-            alt="contact"
+            alt="Agnieszka Mędrek - Portfolio contact page image"
             className={styles.image}
             width={500}
             height={500}

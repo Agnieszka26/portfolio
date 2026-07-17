@@ -45,7 +45,7 @@ const Footer: FC = () => {
       </footer>
       <div className={styles.paragraphReserved}>
         <span>
-          <Image src={logo} alt="logo" />
+          <Image src={logo} alt="Agnieszka Mędrek - Portfolio logo" />
         </span>
         {t("all_rights_reserved")}
       </div>

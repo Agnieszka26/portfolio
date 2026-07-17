@@ -72,7 +72,7 @@ const ProjectComponent: FC<ProjectProps> = ({
             <Image
               className={styles.img}
               src={image.url}
-              alt={`preview project ${header}`}
+              alt={`Agnieszka Mędrek - Portfolio log: preview project ${header}`}
               quality={80}
               width={image.width}
               height={image.height}
