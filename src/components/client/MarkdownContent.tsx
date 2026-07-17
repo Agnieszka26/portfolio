@@ -9,12 +9,23 @@ type MarkdownContentProps = {
 };
 
 const markdownComponents: Components = {
-  a: ({ href, children, ...props }) => (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
-      {children}
-    </a>
-  ),
-};
+  a: ({ href, children, ...props }) => {
+        const external = /^https?:\/\//i.test(href ?? "");
+    
+        return (
+          <a
+            {...props}
+            href={href}
+            {...(external
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+          >
+            {children}
+          </a>
+        );
+      },
+     };
+
 
 /**
  * Client-side Markdown renderer (GFM).

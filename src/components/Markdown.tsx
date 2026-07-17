@@ -12,9 +12,7 @@ type MarkdownProps = {
 export default function Markdown({ children, className }: MarkdownProps) {
   if (!children) return null;
 
-  return (
-    <div className={className}>
-      <LazyMarkdown>{children}</LazyMarkdown>
-    </div>
-  );
+  const content = <LazyMarkdown>{children}</LazyMarkdown>;
+
+  return className ? <div className={className}>{content}</div> : content;  
 }

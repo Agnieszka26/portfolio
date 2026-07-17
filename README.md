@@ -42,6 +42,11 @@ Responsywne portfolio frontend developerki, zbudowane w oparciu o **React**, **N
    ```
 
 3. Skonfiguruj zmienne środowiskowe w `.env.local` (Sanity project ID, dataset, API version).
+`
+NEXT_PUBLIC_SANITY_DATASET=
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+`
+
 
 4. Uruchom projekt:
    ```bash
