@@ -9,12 +9,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import styles from "./Project.module.scss";
-import type { RemoteCoverImage } from "@/types";
+import { projectSlug, type RemoteCoverImage } from "@/types";
+import { RoutesPath } from "@/constants";
 
 interface ProjectProps {
   heading: string;
   header: string;
-  tags?: string[];
+  tags: string[];
   paragraph: string;
   image: RemoteCoverImage;
   linkToGithub: string;
@@ -23,6 +24,8 @@ interface ProjectProps {
   locale: string;
   learnMoreLabel: string;
   seeProjectLabel: string;
+  id: string;
+  seeGithubLabel: string;
 }
 
 const ProjectComponent: FC<ProjectProps> = ({
@@ -37,6 +40,8 @@ const ProjectComponent: FC<ProjectProps> = ({
   locale,
   learnMoreLabel,
   seeProjectLabel,
+  seeGithubLabel,
+  id
 }) => {
   return (
     <div className={styles.project}>
@@ -53,8 +58,20 @@ const ProjectComponent: FC<ProjectProps> = ({
             ))}
           </div>
           <Paragraph color="dark" text={paragraph} />
-          <Link href={linkToGithub} locale={locale}>
-            <Button text={learnMoreLabel} color={"light"} />
+
+          <Link
+            href={RoutesPath.PROJECTS + `/${projectSlug({ id, header })}`}
+            aria-label={learnMoreLabel + " of the " + header + " project"}
+            locale={locale}>
+            <Button text={learnMoreLabel} color={"dark"} />
+          </Link>
+          <Link href={linkToGithub} locale={locale}
+            aria-label={seeGithubLabel + " of the " + header + " project"}>
+            <Button text={seeGithubLabel} color={"light"} />
+          </Link>
+          <Link href={linkToLive} locale={locale}
+            aria-label={seeProjectLabel + " of the " + header + " project"}>
+            <Button text={seeProjectLabel} color={"blue"} />
           </Link>
         </Animation>
       </div>
@@ -72,7 +89,8 @@ const ProjectComponent: FC<ProjectProps> = ({
             <Image
               className={styles.img}
               src={image.url}
-              alt={`Preview of the ${header} project`}              quality={80}
+              alt={`Preview of the ${header} project`}
+              quality={80}
               width={image.width}
               height={image.height}
             />

@@ -50,15 +50,14 @@ export type SlideImage = {
  */
 export type Project = {
   _id: string;
-  id?: string | null;
+  id: string;
   header: string;
-  paragraph?: string | null;
-  tags?: string | null;
+  paragraph: string;
+  tags: string;
   type: string;
-  language?: string | null;
   image: SanityImage;
-  linkToGithub?: string | null;
-  linkToLive?: string | null;
+  linkToGithub: string;
+  linkToLive: string;
 };
 
 /**

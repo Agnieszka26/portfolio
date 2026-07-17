@@ -28,6 +28,12 @@
       background-color: $darkColor;
       border: 3px solid $lightColor;
     }
+    &-blue {
+      box-shadow: 0.5rem 0.5rem $blueColor;
+      color: $lightColor;
+      background-color: $blueColor;
+      border: 3px solid $lightColor;
+    }
   }
   &:hover {
     box-shadow: none;
