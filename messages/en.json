@@ -14,17 +14,16 @@
     "locale": "{locale, select, pl {PL Polski} en {EN English} other {Unknown}}"
   },
   "HeroArea": {
-    "title": "React and Next.js are my playground",
-    "description_1": "I'm Agnieszka - a frontend developer and consultant who not only builds applications with React and Next.js, but also helps optimize, scale, and fix them. Hire me as your frontend consultant - let's take your project to the next level.",
-    "description_2": "Struggling with performance issues? Legacy code? Need to migrate to Next.js? I'll jump in, audit the code, and deliver clear, effective solutions.",
-    "description_3": "Hire me as your frontend consultant - let's take your project to the next level.",
+    "title": "Building fast, SEO-friendly and accessible web applications with React, Next.js and TypeScript.",
+    "description_1": "I'm Agnieszka — a frontend developer and consultant focused on React and Next.js. I help businesses improve existing applications, fix frontend bottlenecks, and build scalable solutions that move projects forward.",
     "ctaButton": "Hire me"
   },
   "Section": {
     "learn_more": "learn more",
     "latest work": "latest work",
     "highlighted": "highlighted",
-    "see_project": "see live version →"
+    "see_project": "see live version →",
+    "see_github": "see on GitHub"
   },
   "ContactPage": {
     "title": "Let's Build Something Awesome Together",

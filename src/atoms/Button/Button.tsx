@@ -4,7 +4,7 @@ import styles from "./Button.module.scss";
 
 interface ButtonProps {
   text: string;
-  color: "dark" | "light";
+  color: "dark" | "light" | "blue";
   onClick?: () => void;
 }
 
