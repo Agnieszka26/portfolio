@@ -96,9 +96,9 @@ const Animation = ({
 
   useEffect(() => {
     if (skipEntrance) {
+      setPhase("revealed");
       return;
     }
-
     const element = ref.current;
     if (!element) {
       // `as` didn't forward the ref — fail open rather than hiding content.

@@ -27,8 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.flatMap((page) =>
     routing.locales.map((locale) => ({
-      url: absoluteUrl(`/${locale}${page}`),
-      lastModified: new Date(),
+      url: absoluteUrl(`/${locale}${page}`),    
       changeFrequency: "monthly" as const,
       priority: page === "" ? 1 : 0.8,
       alternates: {
@@ -64,7 +63,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         return {
           url: absoluteUrl(`/${locale}${pathWithoutLocale}`),
-          lastModified: new Date(),
           changeFrequency: "monthly" as const,
           priority: 0.7,
           alternates: {

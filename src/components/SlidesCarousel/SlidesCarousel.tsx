@@ -82,7 +82,7 @@ const SlidesCarousel: FC<{ slides: SlideImage[] }> = ({ slides }) => {
                   <Image
                     className={styles.image}
                     src={src}
-                    alt={`Agnieszka Mędrek - Portfolio log: Slide ${i + 1} of ${count}| Project| Use case | Technology | JavaScript`}
+                    alt={`Agnieszka Mędrek - Portfolio: Slide ${i + 1} of ${count} | Use case example`}
                     width={width}
                     height={height}
                     sizes={CAROUSEL_SIZES}

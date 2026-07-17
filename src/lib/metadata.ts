@@ -93,7 +93,17 @@ export function stripMarkdown(text: string): string {
     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
     .replace(/^#{1,6}\s+/gm, "")
     .replace(/^[>*+-]\s+/gm, "")
-    .replace(/[*_~|]/g, "")
+
+    // bold / italic / strikethrough
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/_([^_]+)_/g, "$1")
+    .replace(/~~([^~]+)~~/g, "$1")
+
+    // tables
+    .replace(/\|/g, " ")
+
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -151,12 +161,12 @@ export function buildProjectDescription(
     : `${project.header} is a frontend case study built with`;
 
   if (summary && techs.length) {
-    const alreadyMentionsTech = techs.some((tech) =>
-      summary.toLowerCase().includes(tech.toLowerCase()),
+    const missingTechs = techs.filter(
+      (tech) => !summary.toLowerCase().includes(tech.toLowerCase()),
     );
-    if (alreadyMentionsTech) return truncateDescription(summary);
+    if (!missingTechs.length) return truncateDescription(summary);
 
-    const withTech = `${summary.replace(/\.$/, "")}. ${builtWith} ${formatTechList(techs, locale)}.`;
+    const withTech = `${summary.replace(/\.$/, "")}. ${builtWith} ${formatTechList(missingTechs, locale)}.`;
     return truncateDescription(withTech);
   }
 

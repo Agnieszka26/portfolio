@@ -39,5 +39,10 @@ export function compactJsonLd<T>(value: T): T | undefined {
 
 export function toJsonLdScript(data: object): string {
   const compacted = compactJsonLd(data);
-  return JSON.stringify(compacted ?? {});
+  return JSON.stringify(compacted ?? {})
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
 }
