@@ -67,6 +67,9 @@ export default function LocaleSwitcher() {
         whileTap={{ scale: .98 }}
         className={styles.trigger}
         onClick={() => setOpen(!open)}
+        type="button"
+        aria-expanded={open}
+        aria-controls="locale-switcher-menu"
       >
         <span>
           <FlagComponent flag={current.flag} />
