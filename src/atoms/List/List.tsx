@@ -1,10 +1,10 @@
-import { navbarElements, RoutesPath } from "@/constants";
+import { navbarElements} from "@/constants";
 import { FC } from "react";
 import ListElement from "../ListElement/ListElement";
 import styles from "@/assets/styles/index.module.scss";
-
 import LanguageSwitch from "../LanguageSwitch/LanguageSwitch";
 import { useTranslations } from "next-intl";
+
 const List: FC = () => {
   const t = useTranslations("Navbar");
   return (

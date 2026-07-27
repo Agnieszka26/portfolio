@@ -40,6 +40,11 @@
       font-size: $fontSizeLg;
       padding: 0 2rem;
     }
+    &:hover {
+      .decorationLine {
+        height: 24px;
+      }
+    }
   }
   .decorationLine {
     visibility: hidden;
@@ -56,10 +61,6 @@
       margin-top: -3px;
       transition: height 0.2s;
     }
-    &:hover {
-      .decorationLine {
-        height: 24px;
-      }
-    }
+
   }
 }
