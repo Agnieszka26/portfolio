@@ -13,7 +13,7 @@ export const PERSON = {
   imagePath: "/og_image.webp",
   sameAs: [
     "https://github.com/Agnieszka26",
-    "https://www.linkedin.com/in/agnieszka-m%C4%99drek/",
+    "https://www.linkedin.com/in/agnieszka-medrek/",
   ],
 } as const;
 

@@ -13,7 +13,7 @@ export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES[0]
 export type Locale = (typeof SUPPORTED_LANGUAGES)[number]['id']
 
 /** Document types that use @sanity/document-internationalization. */
-export const TRANSLATABLE_SCHEMA_TYPES = ['project'] as const
+export const TRANSLATABLE_SCHEMA_TYPES = ['project', 'post'] as const
 
 export type TranslatableSchemaType = (typeof TRANSLATABLE_SCHEMA_TYPES)[number]
 
