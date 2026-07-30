@@ -73,16 +73,17 @@ export default async function TechnicalDescriptionPage({
               </div>
             )}
           </div>
-          <Link
-            href={linkToLive}
-            target="_blank"
-            rel="noopener noreferrer"
-            locale={locale}
-            className={pageStyles.liveLink}
-          >
-            <Button text={t("see_live_preview")} color="light" />
-          </Link>
-          <aside className={pageStyles.notice} role="note">
+          {linkToLive ? (
+            <Link
+              href={linkToLive}
+              target="_blank"
+              rel="noopener noreferrer"
+              locale={locale}
+              className={pageStyles.liveLink}
+            >
+              <Button text={t("see_live_preview")} color="light" />
+            </Link>
+          ) : null}          <aside className={pageStyles.notice} role="note">
             <Markdown>{detail.overview ?? ""}</Markdown>
           </aside>
           <div className={pageStyles.detailsGrid}>

@@ -56,7 +56,8 @@ async function fetchPostDetails(
  * translation is missing. Omit `locale` to fetch all published posts.
  *
  * Cross-request cache via `unstable_cache` (tags: `posts`, `posts:{locale}`).
- * Fetch errors are handled at this boundary so failed responses are not cached.
+ * Returns `[]` only when the query succeeds with no published posts; fetch
+ * failures are logged and re-thrown so they are not treated as empty results.
  */
 export async function getPosts(locale?: string): Promise<Post[]> {
   try {
@@ -80,7 +81,7 @@ export async function getPosts(locale?: string): Promise<Post[]> {
       `[getPosts] Failed to fetch posts${locale ? ` for locale "${locale}"` : ""}:`,
       error instanceof Error ? error.message : error,
     );
-    return [];
+    throw error;
   }
 }
 
@@ -90,7 +91,8 @@ export async function getPosts(locale?: string): Promise<Post[]> {
  *
  * Request-deduped with React `cache` (metadata + page) and cross-request
  * `unstable_cache` (tags: `posts`, `post:{slug}`).
- * Fetch errors are handled at this boundary so failed responses are not cached.
+ * Returns `null` only when the query succeeds with no match; fetch failures
+ * are logged and re-thrown so they are not treated as missing posts.
  */
 export const getPostDetails = cache(
   async (
@@ -114,7 +116,7 @@ export const getPostDetails = cache(
         `[getPostDetails] Failed to fetch post "${slug}" for locale "${locale}":`,
         error instanceof Error ? error.message : error,
       );
-      return null;
+      throw error;
     }
   },
 );

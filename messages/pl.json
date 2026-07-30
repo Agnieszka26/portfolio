@@ -9,7 +9,9 @@
     "projectTitle": "{name} | Case Study Frontend React i Next.js | AGNA",
     "projectFallbackDescription": "Case study projektu {name} — realizacja frontendowa React i Next.js od AGNA.",
     "blogTitle": "Blog | Notatki o front-endzie | AGNA",
-    "blogDescription": "Artykuły i notatki o React, Next.js, TypeScript oraz budowaniu szybkich, dostępnych aplikacji webowych."
+    "blogDescription": "Artykuły i notatki o React, Next.js, TypeScript oraz budowaniu szybkich, dostępnych aplikacji webowych.",
+    "postTitle": "{name} | Blog | AGNA",
+    "postFallbackDescription": "Przeczytaj „{name}” na blogu AGNA — notatki o front-endzie z React i Next.js."
   },
   "BlogPage": {
     "title": "Blog",

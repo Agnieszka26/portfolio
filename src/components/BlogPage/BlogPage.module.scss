@@ -35,8 +35,8 @@
   &:focus-visible {
     transform: translate(-2px, -2px);
     box-shadow: 0.65rem 0.65rem $darkColor;
-    outline: none;
-
+    outline: 3px solid $primaryColor;
+    outline-offset: 3px;
     .readMore {
       color: $primaryColor;
     }
