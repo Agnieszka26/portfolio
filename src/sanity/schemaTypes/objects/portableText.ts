@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 /**
  * Blog body Portable Text: paragraphs, H2/H3, lists, quotes, marks, and links.
@@ -13,20 +13,20 @@ export const portableText = defineType({
     defineArrayMember({
       type: 'block',
       styles: [
-        {title: 'Normal', value: 'normal'},
-        {title: 'Heading 2', value: 'h2'},
-        {title: 'Heading 3', value: 'h3'},
-        {title: 'Quote', value: 'blockquote'},
+        { title: 'Normal', value: 'normal' },
+        { title: 'Heading 2', value: 'h2' },
+        { title: 'Heading 3', value: 'h3' },
+        { title: 'Quote', value: 'blockquote' },
       ],
       lists: [
-        {title: 'Bullet', value: 'bullet'},
-        {title: 'Numbered', value: 'number'},
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' },
       ],
       marks: {
         decorators: [
-          {title: 'Bold', value: 'strong'},
-          {title: 'Italic', value: 'em'},
-          {title: 'Code', value: 'code'},
+          { title: 'Bold', value: 'strong' },
+          { title: 'Italic', value: 'em' },
+          { title: 'Code', value: 'code' },
         ],
         annotations: [
           defineArrayMember({
@@ -42,9 +42,8 @@ export const portableText = defineType({
                   rule.uri({
                     allowRelative: true,
                     scheme: ['http', 'https', 'mailto', 'tel'],
-                  }),
-              }),
-              defineField({
+                  }).required(),
+              }), defineField({
                 name: 'openInNewTab',
                 title: 'Open in new tab',
                 type: 'boolean',

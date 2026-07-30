@@ -13,16 +13,13 @@ import type { Metadata } from "next";
 
 export const revalidate = 3600;
 
-type Props = {}
-
 const PostsPage = async ({
     params,
   }: {
-    params: Promise<{ locale: string; id: string }>;
+    params: Promise<{ locale: string }>;
   }) => {
-    const { locale, id } = await params;
-    setRequestLocale(locale);
-    
+    const { locale } = await params;
+    setRequestLocale(locale);    
 
     const t = await getTranslations({ locale, namespace: "Metadata" });
 

@@ -28,11 +28,10 @@ async function isUniquePerLanguage(
   return client.fetch<boolean>(query, {
     draft: `drafts.${id}`,
     published: id,
-    language,
+    language: language ?? null,
     slug,
   })
 }
-
 function formatPublishedSubtitle(publishedAt: string | undefined, language: string | undefined) {
   const languageLabel = language ? getLanguageTitle(language) : undefined
   const dateLabel = publishedAt
@@ -114,6 +113,16 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alternative text',
+          type: 'string',
+          description:
+            'Describe the image for screen readers and SEO. Localized with the post document.',
+          validation: (rule) => rule.required().max(200),
+        }),
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({

@@ -1,8 +1,13 @@
-import React from 'react'
+import { setRequestLocale } from 'next-intl/server'
 
-type Props = {}
+const BlogPostPage = async ({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
-const BlogPostPage = (props: Props) => {
   return (
     <div>BlogPostPage</div>
   )
