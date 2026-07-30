@@ -15,6 +15,19 @@ export {
   toSlideImages,
 } from "./project";
 
+export type {
+  PortableTextBlock,
+  PortableTextLinkMark,
+  PortableTextSpan,
+  PortableTextValue,
+  Post,
+  PostCoverImage,
+  PostDetails,
+  PostSeo,
+} from "./post";
+
+export { postSlug } from "./post";
+
 /** Legacy Airtable thumbnail shapes — unused after Sanity migration. */
 export type Thumbnail = {
   url: string;
