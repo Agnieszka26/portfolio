@@ -23,30 +23,14 @@ function postDetailTags(slug: string): string[] {
 }
 
 async function fetchPostsList(locale: string): Promise<Post[]> {
-  try {
-    return await client.fetch<Post[]>(postsWithFallbackQuery, {
-      locale,
-      defaultLocale: DEFAULT_LOCALE,
-    });
-  } catch (error) {
-    console.warn(
-      `[getPosts] Failed to fetch posts for locale "${locale}":`,
-      error instanceof Error ? error.message : error,
-    );
-    return [];
-  }
+  return client.fetch<Post[]>(postsWithFallbackQuery, {
+    locale,
+    defaultLocale: DEFAULT_LOCALE,
+  });
 }
 
 async function fetchAllPosts(): Promise<Post[]> {
-  try {
-    return await client.fetch<Post[]>(allPostsQuery);
-  } catch (error) {
-    console.warn(
-      "[getPosts] Failed to fetch all posts:",
-      error instanceof Error ? error.message : error,
-    );
-    return [];
-  }
+  return client.fetch<Post[]>(allPostsQuery);
 }
 
 async function fetchPostDetails(
@@ -54,25 +38,17 @@ async function fetchPostDetails(
   locale: string,
   useFallback: boolean,
 ): Promise<PostDetails | null> {
-  try {
-    const query = useFallback
-      ? postDetailsWithFallbackQuery
-      : postDetailsQuery;
+  const query = useFallback
+    ? postDetailsWithFallbackQuery
+    : postDetailsQuery;
 
-    const post = await client.fetch<PostDetails | null>(query, {
-      slug,
-      locale,
-      defaultLocale: DEFAULT_LOCALE,
-    });
+  const post = await client.fetch<PostDetails | null>(query, {
+    slug,
+    locale,
+    defaultLocale: DEFAULT_LOCALE,
+  });
 
-    return post ?? null;
-  } catch (error) {
-    console.warn(
-      `[getPostDetails] Failed to fetch post "${slug}" for locale "${locale}":`,
-      error instanceof Error ? error.message : error,
-    );
-    return null;
-  }
+  return post ?? null;
 }
 
 /**
@@ -80,23 +56,32 @@ async function fetchPostDetails(
  * translation is missing. Omit `locale` to fetch all published posts.
  *
  * Cross-request cache via `unstable_cache` (tags: `posts`, `posts:{locale}`).
+ * Fetch errors are handled at this boundary so failed responses are not cached.
  */
 export async function getPosts(locale?: string): Promise<Post[]> {
-  if (!locale) {
-    return unstable_cache(fetchAllPosts, ["posts", "all"], {
-      tags: ["posts"],
-      revalidate: REVALIDATE_SECONDS,
-    })();
-  }
+  try {
+    if (!locale) {
+      return await unstable_cache(fetchAllPosts, ["posts", "all"], {
+        tags: ["posts"],
+        revalidate: REVALIDATE_SECONDS,
+      })();
+    }
 
-  return unstable_cache(
-    () => fetchPostsList(locale),
-    ["posts", locale],
-    {
-      tags: postsListTags(locale),
-      revalidate: REVALIDATE_SECONDS,
-    },
-  )();
+    return await unstable_cache(
+      () => fetchPostsList(locale),
+      ["posts", locale],
+      {
+        tags: postsListTags(locale),
+        revalidate: REVALIDATE_SECONDS,
+      },
+    )();
+  } catch (error) {
+    console.warn(
+      `[getPosts] Failed to fetch posts${locale ? ` for locale "${locale}"` : ""}:`,
+      error instanceof Error ? error.message : error,
+    );
+    return [];
+  }
 }
 
 /**
@@ -105,6 +90,7 @@ export async function getPosts(locale?: string): Promise<Post[]> {
  *
  * Request-deduped with React `cache` (metadata + page) and cross-request
  * `unstable_cache` (tags: `posts`, `post:{slug}`).
+ * Fetch errors are handled at this boundary so failed responses are not cached.
  */
 export const getPostDetails = cache(
   async (
@@ -114,13 +100,21 @@ export const getPostDetails = cache(
   ): Promise<PostDetails | null> => {
     const useFallback = options?.fallback !== false;
 
-    return unstable_cache(
-      () => fetchPostDetails(slug, locale, useFallback),
-      ["post", slug, locale, String(useFallback)],
-      {
-        tags: postDetailTags(slug),
-        revalidate: REVALIDATE_SECONDS,
-      },
-    )();
+    try {
+      return await unstable_cache(
+        () => fetchPostDetails(slug, locale, useFallback),
+        ["post", slug, locale, String(useFallback)],
+        {
+          tags: postDetailTags(slug),
+          revalidate: REVALIDATE_SECONDS,
+        },
+      )();
+    } catch (error) {
+      console.warn(
+        `[getPostDetails] Failed to fetch post "${slug}" for locale "${locale}":`,
+        error instanceof Error ? error.message : error,
+      );
+      return null;
+    }
   },
 );
