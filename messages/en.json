@@ -42,6 +42,7 @@
   },
   "Navbar": {
     "projects": "projects",
+    "blog": "blog",
     "hobby_projects": "hobby projects",
     "get_in_touch": "get in touch",
     "see_project": "see this project live →"
