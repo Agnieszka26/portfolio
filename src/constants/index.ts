@@ -1,6 +1,7 @@
 export enum RoutesPath {
   HOME = "/",
   PROJECTS = "/projects",
+  BLOG = "/blog",
   GET_IN_TOUCH = "/contact",
 }
 

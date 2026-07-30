@@ -35,4 +35,8 @@ export function localizedProjectsUrl(locale: SchemaLocale): string {
   return absoluteUrl(`/${locale}/projects`);
 }
 
+export function localizedBlogUrl(locale: SchemaLocale): string {
+  return absoluteUrl(`/${locale}/blog`);
+}
+
 export { SITE_NAME, SITE_URL };

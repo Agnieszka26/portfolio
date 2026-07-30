@@ -7,7 +7,14 @@
     "projectsTitle": "Projekty Frontend | Case Studies React i Next.js | AGNA",
     "projectsDescription": "Poznaj projekty frontendowe stworzone z użyciem React, Next.js, TypeScript i nowoczesnych technologii.",
     "projectTitle": "{name} | Case Study Frontend React i Next.js | AGNA",
-    "projectFallbackDescription": "Case study projektu {name} — realizacja frontendowa React i Next.js od AGNA."
+    "projectFallbackDescription": "Case study projektu {name} — realizacja frontendowa React i Next.js od AGNA.",
+    "blogTitle": "Blog | Notatki o front-endzie | AGNA",
+    "blogDescription": "Artykuły i notatki o React, Next.js, TypeScript oraz budowaniu szybkich, dostępnych aplikacji webowych."
+  },
+  "BlogPage": {
+    "title": "Blog",
+    "empty": "Brak opublikowanych wpisów. Wróć wkrótce.",
+    "readMore": "Czytaj dalej"
   },
   "LocaleSwitcher": {
     "label": "Zmień język",

@@ -23,7 +23,7 @@ function localeAlternates(pathWithoutLocale: string): Record<string, string> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPaths = ["", "/contact", "/projects"] as const;
+  const staticPaths = ["", "/contact", "/projects", "/blog"] as const;
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.flatMap((page) =>
     routing.locales.map((locale) => ({

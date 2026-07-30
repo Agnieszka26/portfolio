@@ -2,7 +2,7 @@ import styles from "@/assets/styles/index.module.scss";
 import pageStyles from "./TechnicalDescriptionPage.module.scss";
 import { type ProjectDetails, toSlideImages } from "@/types";
 import type { ReactNode } from "react";
-import Description from "./Description/Description";
+import Description from "../Description/Description";
 import cn from "classnames";
 import Tag from "@/typography/Tag/Tag";
 import LazySlidesCarousel from "@/components/client/LazySlidesCarousel";

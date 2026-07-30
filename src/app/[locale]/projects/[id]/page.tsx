@@ -1,5 +1,5 @@
 import JsonLd from "@/components/JsonLd";
-import TechnicalDescriptionPage from "@/components/TechnicalDescriptionPage";
+import TechnicalDescriptionPage from "@/components/TechnicalDescriptionPage/TechnicalDescriptionPage";
 import { routing } from "@/i18n/routing";
 import { getProjectDetails } from "@/lib/getDetails";
 import getProjects from "@/lib/getProjects";
