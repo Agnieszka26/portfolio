@@ -14,9 +14,14 @@
     "postFallbackDescription": "Przeczytaj „{name}” na blogu AGNA — notatki o front-endzie z React i Next.js."
   },
   "BlogPage": {
-    "title": "Blog",
+    "label": "Blog",
+    "title": "Wiedza, doświadczenie i przemyślenia o front-endzie",
+    "description": "Czytasz blog o front-endzie, gdzie dzielę się wiedzą, doświadczeniem i przemyśleniami o tworzeniu szybkich, przyjaznych dla SEO i dostępnych aplikacji internetowych przy użyciu React, Next.js i TypeScript.",
     "empty": "Brak opublikowanych wpisów. Wróć wkrótce.",
-    "readMore": "Czytaj dalej"
+    "readMore": "Czytaj dalej",
+    "allCategories": "Wszystkie",
+    "categoriesLabel": "Kategorie wpisów",
+    "readingTime": "{minutes} min czytania"
   },
   "LocaleSwitcher": {
     "label": "Zmień język",

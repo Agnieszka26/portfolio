@@ -14,9 +14,14 @@
     "postFallbackDescription": "Read “{name}” on the AGNA blog — notes on frontend development with React and Next.js."
   },
   "BlogPage": {
-    "title": "Blog",
+    "label": "Blog",
+    "title": "Knowledge, experience and reflections on frontend development",
+    "description": "You're reading the frontend blog where I share knowledge, experience, and reflections on building fast, SEO-friendly and accessible web applications using React, Next.js and TypeScript.",
     "empty": "No posts published yet. Check back soon.",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "allCategories": "All",
+    "categoriesLabel": "Post categories",
+    "readingTime": "{minutes} min read"
   },
   "LocaleSwitcher": {
     "label": "Change language",

@@ -86,8 +86,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   /**
-   * Locales that can render each post slug — mirrors getPosts locale + fallback
-   * (a default-locale post appears for every locale that has no translation).
+   * Locales that publish each post slug — only locales with an actual
+   * translation (getPosts is locale-strict, no fallback).
    */
   const localesByPostSlug = new Map<string, string[]>();
   for (const { locale, posts } of postsByLocale) {

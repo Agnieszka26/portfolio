@@ -6,7 +6,7 @@ import {
   allPostsQuery,
   postDetailsQuery,
   postDetailsWithFallbackQuery,
-  postsWithFallbackQuery,
+  postsQuery,
 } from "@/lib/sanity/queries";
 import { DEFAULT_LANGUAGE } from "@/sanity/languages";
 import type { Post, PostDetails } from "@/types/post";
@@ -23,10 +23,7 @@ function postDetailTags(slug: string): string[] {
 }
 
 async function fetchPostsList(locale: string): Promise<Post[]> {
-  return client.fetch<Post[]>(postsWithFallbackQuery, {
-    locale,
-    defaultLocale: DEFAULT_LOCALE,
-  });
+  return client.fetch<Post[]>(postsQuery, { locale });
 }
 
 async function fetchAllPosts(): Promise<Post[]> {
@@ -52,8 +49,8 @@ async function fetchPostDetails(
 }
 
 /**
- * Published blog posts for a locale, with default-locale fallback when a
- * translation is missing. Omit `locale` to fetch all published posts.
+ * Published blog posts for a locale only (no cross-locale fallback).
+ * Omit `locale` to fetch all published posts across languages.
  *
  * Cross-request cache via `unstable_cache` (tags: `posts`, `posts:{locale}`).
  * Returns `[]` only when the query succeeds with no published posts; fetch
@@ -70,7 +67,7 @@ export async function getPosts(locale?: string): Promise<Post[]> {
 
     return await unstable_cache(
       () => fetchPostsList(locale),
-      ["posts", locale],
+      ["posts", "locale-strict", locale],
       {
         tags: postsListTags(locale),
         revalidate: REVALIDATE_SECONDS,
