@@ -139,9 +139,7 @@ export default defineType({
       type: 'datetime',
       fieldset: 'metadata',
       description:
-        'Required for the post to appear on the site. Leave empty while drafting; set to now (or a future time to schedule). Studio “Publish” alone is not enough.',
-      initialValue: () => new Date().toISOString(),
-    }),
+        'Required for the post to appear on the site. Leave empty while drafting; set to now (or a future time to schedule). Studio “Publish” alone is not enough.',    }),
     defineField({
       name: 'updatedAt',
       title: 'Updated at',
