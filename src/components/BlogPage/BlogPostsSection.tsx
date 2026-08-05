@@ -16,6 +16,7 @@ function formatPublishedDate(isoDate: string, locale: string): string {
   if (Number.isNaN(date.getTime())) return isoDate;
 
   return new Intl.DateTimeFormat(locale.startsWith("pl") ? "pl-PL" : "en-US", {
+    timeZone: "UTC",
     year: "numeric",
     month: "short",
     day: "numeric",
