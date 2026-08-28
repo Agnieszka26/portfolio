@@ -1,15 +1,17 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 /**
- * Blog body Portable Text: paragraphs, H2/H3, lists, quotes, marks, and links.
- * Inline `code` decorator is included; fenced code blocks are not used elsewhere
- * in this project (projects use Markdown), so no custom code-block type here.
+ * Blog body Portable Text: paragraphs, H2/H3, lists, quotes, marks, links,
+ * inline code, and fenced `codeBlock` examples.
  */
 export const portableText = defineType({
   name: 'portableText',
   title: 'Portable Text',
   type: 'array',
   of: [
+    defineArrayMember({
+      type: 'codeBlock',
+    }),
     defineArrayMember({
       type: 'block',
       styles: [

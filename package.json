@@ -32,6 +32,7 @@
     "sanity": "^4.22.0",
     "sanity-plugin-markdown": "^7.0.4",
     "sass": "^1.57.1",
+    "shiki": "^4.4.3",
     "styled-components": "^6.4.3"
   },
   "devDependencies": {

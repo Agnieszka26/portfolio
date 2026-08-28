@@ -43,7 +43,15 @@ export type PortableTextBlock = {
   markDefs?: PortableTextLinkMark[];
 };
 
-export type PortableTextValue = PortableTextBlock[];
+/** Custom fenced example stored in Portable Text (`codeBlock` schema type). */
+export type PortableTextCodeBlock = {
+  _type: "codeBlock";
+  _key: string;
+  code: string;
+  language?: string | null;
+};
+
+export type PortableTextValue = Array<PortableTextBlock | PortableTextCodeBlock>;
 
 /**
  * Blog post card / list fields — mirrors `sanity/schemaTypes/post.ts`

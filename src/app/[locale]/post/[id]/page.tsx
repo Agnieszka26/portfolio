@@ -1,4 +1,6 @@
 import styles from "@/assets/styles/index.module.scss";
+import bodyStyles from "@/components/PostBody/PostBody.module.scss";
+import PostBody from "@/components/PostBody/PostBody";
 import {
   createPageMetadata,
   truncateDescription,
@@ -10,7 +12,6 @@ import Paragraph from "@/typography/Paragraph/Paragraph";
 import Tag from "@/typography/Tag/Tag";
 import cn from "classnames";
 import type { Metadata } from "next";
-import { PortableText } from "next-sanity";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
@@ -57,24 +58,27 @@ const BlogPostPage = async ({ params }: PageParams) => {
   setRequestLocale(locale);
 
   const post = await getPostDetails(id, locale);
-
   if (!post) {
     notFound();
   }
 
   return (
     <div className={cn(styles.page, styles.container)}>
-      <article>
-        <Header text={post.title} color="dark" as="h1" />
-        {post.excerpt ? <Paragraph color="dark" text={post.excerpt} /> : null}
-        {post.tags && post.tags.length > 0 ? (
-          <div className={styles.tagContainer}>
-            {post.tags.map((tag) => (
-              <Tag key={tag} text={tag} />
-            ))}
-          </div>
-        ) : null}
-        <PortableText value={post.body} />
+      <article className={bodyStyles.article}>
+        <header className={bodyStyles.header}>
+          <Header text={post.title} color="dark" as="h1" />
+          {post.excerpt ? (
+            <Paragraph color="dark" text={post.excerpt} />
+          ) : null}
+          {post.tags && post.tags.length > 0 ? (
+            <div className={cn(styles.tagContainer, bodyStyles.tags)}>
+              {post.tags.map((tag) => (
+                <Tag key={tag} text={tag} />
+              ))}
+            </div>
+          ) : null}
+        </header>
+        <PostBody value={post.body} />
       </article>
     </div>
   );

@@ -17,6 +17,7 @@ export {
 
 export type {
   PortableTextBlock,
+  PortableTextCodeBlock,
   PortableTextLinkMark,
   PortableTextSpan,
   PortableTextValue,
