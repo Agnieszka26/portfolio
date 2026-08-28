@@ -7,7 +7,21 @@
     "projectsTitle": "Frontend Projects | React, Next.js Case Studies | AGNA",
     "projectsDescription": "Explore frontend projects built with React, Next.js, TypeScript and modern web technologies.",
     "projectTitle": "{name} | React, Next.js Frontend Case Study | AGNA",
-    "projectFallbackDescription": "Case study of {name} — a React and Next.js frontend project by AGNA."
+    "projectFallbackDescription": "Case study of {name} — a React and Next.js frontend project by AGNA.",
+    "blogTitle": "Blog | Frontend Development Notes | AGNA",
+    "blogDescription": "Articles and notes on React, Next.js, TypeScript, and building fast, accessible web apps.",
+    "postTitle": "{name} | Blog | AGNA",
+    "postFallbackDescription": "Read “{name}” on the AGNA blog — notes on frontend development with React and Next.js."
+  },
+  "BlogPage": {
+    "label": "Blog",
+    "title": "Knowledge, experience and reflections on frontend development",
+    "description": "You're reading the frontend blog where I share knowledge, experience, and reflections on building fast, SEO-friendly and accessible web applications using React, Next.js and TypeScript.",
+    "empty": "No posts published yet. Check back soon.",
+    "readMore": "Read more",
+    "allCategories": "All",
+    "categoriesLabel": "Post categories",
+    "readingTime": "{minutes} min read"
   },
   "LocaleSwitcher": {
     "label": "Change language",
@@ -33,6 +47,7 @@
   },
   "Navbar": {
     "projects": "projects",
+    "blog": "blog",
     "hobby_projects": "hobby projects",
     "get_in_touch": "get in touch",
     "see_project": "see this project live →"

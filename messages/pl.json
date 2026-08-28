@@ -7,7 +7,21 @@
     "projectsTitle": "Projekty Frontend | Case Studies React i Next.js | AGNA",
     "projectsDescription": "Poznaj projekty frontendowe stworzone z użyciem React, Next.js, TypeScript i nowoczesnych technologii.",
     "projectTitle": "{name} | Case Study Frontend React i Next.js | AGNA",
-    "projectFallbackDescription": "Case study projektu {name} — realizacja frontendowa React i Next.js od AGNA."
+    "projectFallbackDescription": "Case study projektu {name} — realizacja frontendowa React i Next.js od AGNA.",
+    "blogTitle": "Blog | Notatki o front-endzie | AGNA",
+    "blogDescription": "Artykuły i notatki o React, Next.js, TypeScript oraz budowaniu szybkich, dostępnych aplikacji webowych.",
+    "postTitle": "{name} | Blog | AGNA",
+    "postFallbackDescription": "Przeczytaj „{name}” na blogu AGNA — notatki o front-endzie z React i Next.js."
+  },
+  "BlogPage": {
+    "label": "Blog",
+    "title": "Wiedza, doświadczenie i przemyślenia o front-endzie",
+    "description": "Czytasz blog o front-endzie, gdzie dzielę się wiedzą, doświadczeniem i przemyśleniami o tworzeniu szybkich, przyjaznych dla SEO i dostępnych aplikacji internetowych przy użyciu React, Next.js i TypeScript.",
+    "empty": "Brak opublikowanych wpisów. Wróć wkrótce.",
+    "readMore": "Czytaj dalej",
+    "allCategories": "Wszystkie",
+    "categoriesLabel": "Kategorie wpisów",
+    "readingTime": "{minutes} min czytania"
   },
   "LocaleSwitcher": {
     "label": "Zmień język",
@@ -34,6 +48,7 @@
   },
   "Navbar": {
     "projects": "projekty",
+    "blog": "blog",
     "hobby_projects": "projekty hobbystyczne",
     "get_in_touch": "skontaktuj się ze mną"
   },

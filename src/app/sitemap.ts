@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import getProjects from "@/lib/getProjects";
+import { getPosts } from "@/lib/sanity/posts";
 import { SITE_URL } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
-import { projectSlug } from "@/types";
+import { postSlug, projectSlug } from "@/types";
 
 /** Absolute URL matching `trailingSlash: true` in next.config.js */
 function absoluteUrl(path: string): string {
@@ -23,11 +24,11 @@ function localeAlternates(pathWithoutLocale: string): Record<string, string> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPaths = ["", "/contact", "/projects"] as const;
+  const staticPaths = ["", "/contact", "/projects", "/blog"] as const;
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.flatMap((page) =>
     routing.locales.map((locale) => ({
-      url: absoluteUrl(`/${locale}${page}`),    
+      url: absoluteUrl(`/${locale}${page}`),
       changeFrequency: "monthly" as const,
       priority: page === "" ? 1 : 0.8,
       alternates: {
@@ -44,13 +45,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   /** Locales that publish each project slug — used for accurate hreflang. */
-  const localesBySlug = new Map<string, string[]>();
+  const localesByProjectSlug = new Map<string, string[]>();
   for (const { locale, projects } of projectsByLocale) {
     for (const project of projects) {
       const slug = projectSlug(project);
-      const locales = localesBySlug.get(slug) ?? [];
+      const locales = localesByProjectSlug.get(slug) ?? [];
       locales.push(locale);
-      localesBySlug.set(slug, locales);
+      localesByProjectSlug.set(slug, locales);
     }
   }
 
@@ -59,7 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       projects.map((project) => {
         const slug = projectSlug(project);
         const pathWithoutLocale = `/projects/${slug}`;
-        const availableLocales = localesBySlug.get(slug) ?? [locale];
+        const availableLocales = localesByProjectSlug.get(slug) ?? [locale];
 
         return {
           url: absoluteUrl(`/${locale}${pathWithoutLocale}`),
@@ -77,5 +78,49 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }),
   );
 
-  return [...staticEntries, ...projectEntries];
+  const postsByLocale = await Promise.all(
+    routing.locales.map(async (locale) => ({
+      locale,
+      posts: await getPosts(locale),
+    })),
+  );
+
+  /**
+   * Locales that publish each post slug — only locales with an actual
+   * translation (getPosts is locale-strict, no fallback).
+   */
+  const localesByPostSlug = new Map<string, string[]>();
+  for (const { locale, posts } of postsByLocale) {
+    for (const post of posts) {
+      const slug = postSlug(post);
+      const locales = localesByPostSlug.get(slug) ?? [];
+      locales.push(locale);
+      localesByPostSlug.set(slug, locales);
+    }
+  }
+
+  const postEntries: MetadataRoute.Sitemap = postsByLocale.flatMap(
+    ({ locale, posts }) =>
+      posts.map((post) => {
+        const slug = postSlug(post);
+        const pathWithoutLocale = `/post/${slug}`;
+        const availableLocales = localesByPostSlug.get(slug) ?? [locale];
+
+        return {
+          url: absoluteUrl(`/${locale}${pathWithoutLocale}`),
+          changeFrequency: "monthly" as const,
+          priority: 0.7,
+          alternates: {
+            languages: Object.fromEntries(
+              availableLocales.map((availableLocale) => [
+                availableLocale,
+                absoluteUrl(`/${availableLocale}${pathWithoutLocale}`),
+              ]),
+            ),
+          },
+        };
+      }),
+  );
+
+  return [...staticEntries, ...projectEntries, ...postEntries];
 }

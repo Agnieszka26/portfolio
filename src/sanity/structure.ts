@@ -25,6 +25,24 @@ export const structure: StructureResolver = (S) =>
               ),
             ),
         ),
+      S.listItem()
+        .title('Blog Posts')
+        .child(
+          S.list()
+            .title('Blog posts by language')
+            .items(
+              SUPPORTED_LANGUAGES.map((language) =>
+                S.listItem()
+                  .title(language.title)
+                  .child(
+                    S.documentList()
+                      .title(`Blog Posts (${language.title})`)
+                      .filter(`_type == "post" && language == "${language.id}"`)
+                      .defaultOrdering([{field: 'publishedAt', direction: 'desc'}]),
+                  ),
+              ),
+            ),
+        ),
       ...S.documentTypeListItems().filter(
         (item) =>
           !TRANSLATABLE_SCHEMA_TYPES.includes(

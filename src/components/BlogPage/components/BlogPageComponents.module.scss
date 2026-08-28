@@ -1,0 +1,138 @@
+@import "../../../assets/styles/colors";
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding: 0;
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+//   gap: 0.75rem;
+//   max-width: 36rem;
+}
+
+
+
+.description {
+  margin: 0.25rem 0 0;
+  font-family: $font-mulish;
+  font-size: clamp($fontSizeSm, 2vw, $fontSizeMd);
+  line-height: 1.6;
+  color: $darkColor;
+  max-width: 34rem;
+}
+
+.visual {
+  display: none;
+  position: relative;
+  aspect-ratio: 5 / 4;
+  width: 100%;
+  max-width: 28rem;
+  margin-inline: auto;
+  justify-self: end;
+
+  @media (min-width: 900px) {
+    display: block;
+  }
+}
+
+.browser {
+  position: absolute;
+  inset: 12% 10% 18% 18%;
+  border-radius: 12px;
+  background: $lightColor;
+  border: 2px solid rgba($darkColor, 0.08);
+  box-shadow: 0 18px 40px rgba($darkColor, 0.08);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.browserChrome {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 1.75rem;
+  padding: 0 0.75rem;
+  background: rgba($darkColor, 0.04);
+  border-bottom: 1px solid rgba($darkColor, 0.06);
+}
+
+.dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: rgba($darkColor, 0.2);
+
+  &:nth-child(1) {
+    background: $primaryColor;
+  }
+
+  &:nth-child(2) {
+    background: $secondaryColor;
+  }
+
+  &:nth-child(3) {
+    background: $blueColor;
+  }
+}
+
+.browserBody {
+  position: absolute;
+  inset: 1.75rem 0 0;
+  background:
+    linear-gradient(180deg, rgba($blueColor, 0.35) 0%, rgba($blueColor, 0.75) 55%, rgba($primaryColor, 0.55) 100%);
+}
+
+.mountain {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(135deg, $blueColor 0%, #4a547d 100%);
+  clip-path: polygon(0 70%, 28% 28%, 48% 52%, 72% 18%, 100% 62%, 100% 100%, 0 100%);
+}
+
+.circle {
+  position: absolute;
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba($primaryColor, 0.18);
+  top: 4%;
+  right: 0;
+  z-index: 1;
+}
+
+.bar {
+  position: absolute;
+  width: 12%;
+  height: 58%;
+  border-radius: 10px;
+  background: $primaryColor;
+  left: 4%;
+  bottom: 10%;
+  z-index: 3;
+}
+
+.panel {
+  position: absolute;
+  width: 34%;
+  height: 28%;
+  border-radius: 10px;
+  background: $blueColor;
+  right: 2%;
+  bottom: 6%;
+  z-index: 1;
+}

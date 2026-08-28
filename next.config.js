@@ -6,6 +6,9 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.tsx");
 const nextConfig = {
   trailingSlash: true,
   transpilePackages: ['next-sanity', 'sanity', '@sanity/vision'],
+  experimental: {
+    serverComponentsExternalPackages: ['shiki'],
+  },
   images: {
     remotePatterns: [
       {

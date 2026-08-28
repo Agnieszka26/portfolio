@@ -1,0 +1,184 @@
+@import "../../assets/styles/colors";
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 46rem;
+  width: 100%;
+
+  @media (min-width: 765px) {
+    gap: 1.5rem;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: $darkColor;
+  font-family: $font-mulish;
+
+  h2 {
+    font-family: $font-mulish;
+    font-size: $fontSizeXl;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2rem 0 0.75rem;
+    color: $darkColor;
+
+    @media (min-width: 765px) {
+      font-size: $fontSizeL;
+      margin-top: 2.5rem;
+    }
+  }
+
+  h3 {
+    font-family: $font-mulish;
+    font-size: $fontSizeMd;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    margin: 1.5rem 0 0.5rem;
+    color: $darkColor;
+
+    @media (min-width: 765px) {
+      font-size: $fontSizeXl;
+    }
+  }
+
+  p {
+    margin: 0 0 1rem;
+    font-size: $fontSizeXS;
+    line-height: 1.7;
+    white-space: pre-line;
+
+    @media (min-width: 765px) {
+      font-size: $fontSizeSm;
+    }
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1.15rem;
+    padding-left: 1.35rem;
+    font-size: $fontSizeXS;
+    line-height: 1.65;
+
+    @media (min-width: 765px) {
+      font-size: $fontSizeSm;
+    }
+  }
+
+  li {
+    margin: 0.25rem 0;
+  }
+
+  a {
+    color: $primaryColor;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover,
+    &:focus-visible {
+      color: $blueColor;
+    }
+  }
+
+  blockquote {
+    margin: 0.75rem 0 1.15rem;
+    padding: 0.35rem 0 0.35rem 1rem;
+    border-left: 3px solid $primaryColor;
+    font-style: italic;
+    color: $grayColor;
+  }
+
+  p,
+  li,
+  h2,
+  h3,
+  blockquote {
+    > code,
+    :global(code) {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
+      font-size: 0.88em;
+      background: rgba($primaryColor, 0.08);
+      color: $primaryColor;
+      padding: 0.12em 0.4em;
+      border-radius: 4px;
+    }
+  }
+}
+
+.pre {
+  margin: 0 0 1.35rem;
+  overflow: hidden;
+  border-radius: 10px;
+  border-left: 3px solid $primaryColor;
+  box-shadow: 0.35rem 0.35rem rgba($darkColor, 0.18);
+
+  :global(pre) {
+    margin: 0;
+    padding: 1rem 1.15rem;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    tab-size: 2;
+  }
+
+  :global(code) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Courier New", monospace;
+    font-size: inherit;
+    line-height: inherit;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    display: block;
+    white-space: pre;
+  }
+
+  :global(.line) {
+    display: inline-block;
+    min-height: 1.65em;
+    width: 100%;
+  }
+}
+
+.preFallback {
+  margin: 0 0 1.35rem;
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 10px;
+  border-left: 3px solid $primaryColor;
+  box-shadow: 0.35rem 0.35rem rgba($darkColor, 0.18);
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      monospace;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    white-space: pre;
+    display: block;
+  }
+}

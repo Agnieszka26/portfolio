@@ -13,7 +13,7 @@ export const PERSON = {
   imagePath: "/og_image.webp",
   sameAs: [
     "https://github.com/Agnieszka26",
-    "https://www.linkedin.com/in/agnieszka-m%C4%99drek/",
+    "https://www.linkedin.com/in/agnieszka-medrek/",
   ],
 } as const;
 
@@ -33,6 +33,10 @@ export function localizedHomeUrl(locale: SchemaLocale): string {
 
 export function localizedProjectsUrl(locale: SchemaLocale): string {
   return absoluteUrl(`/${locale}/projects`);
+}
+
+export function localizedBlogUrl(locale: SchemaLocale): string {
+  return absoluteUrl(`/${locale}/blog`);
 }
 
 export { SITE_NAME, SITE_URL };
