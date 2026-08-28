@@ -22,7 +22,7 @@ const HeroBlogPage = ({
                 <p className={pageStyles.description}>{description}</p>
             </div>
 
-            <Image src={blogHeaderImage} alt={title} width={650} height={300} />
+            <Image src={blogHeaderImage} alt={"blog decorattive image"} height={300} />
 
         </header>
     );

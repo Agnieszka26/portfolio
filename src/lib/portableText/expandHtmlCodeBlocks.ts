@@ -16,8 +16,8 @@ const TRAILING_PROSE_RE =
 
 type FenceToken =
   | {type: "text"; value: string}
-  | {type: "open"}
-  | {type: "close"};
+  | {type: "open"; value: string}
+  | {type: "close"; value: string};
 
 function isOpenFence(token: string): boolean {
   return /^<pre\b/i.test(token);
@@ -34,7 +34,8 @@ function tokenize(text: string): FenceToken[] {
     if (index > lastIndex) {
       tokens.push({type: "text", value: text.slice(lastIndex, index)});
     }
-    tokens.push(isOpenFence(match[0]) ? {type: "open"} : {type: "close"});
+    const value = match[0];
+    tokens.push(isOpenFence(value) ? {type: "open", value} : {type: "close", value});
     lastIndex = index + match[0].length;
   }
 
@@ -43,6 +44,14 @@ function tokenize(text: string): FenceToken[] {
   }
 
   return tokens;
+}
+
+function isQuoteWrapped(tokens: FenceToken[], index: number): boolean {
+  const prev = tokens[index - 1];
+  const next = tokens[index + 1];
+  const left = prev?.type === "text" ? prev.value.slice(-1) : "";
+  const right = next?.type === "text" ? next.value.charAt(0) : "";
+  return left.length > 0 && left === right && "'\"`".includes(left);
 }
 
 function hasFence(text: string): boolean {
@@ -74,12 +83,14 @@ export function expandHtmlCodeBlocks(
   const keys = createKeyFactory();
   const output: PortableTextValue = [];
   let inCode = false;
+  let fenceDepth = 0;
   const codeParts: string[] = [];
 
   const flushCode = () => {
     const code = codeParts.join("\n").replace(/^\n+|\n+$/g, "");
     codeParts.length = 0;
     inCode = false;
+    fenceDepth = 0;
     if (!code) return;
     const codeBlock: PortableTextCodeBlock = {
       _type: "codeBlock",
@@ -147,21 +158,48 @@ export function expandHtmlCodeBlocks(
       continue;
     }
 
-    for (const token of tokenize(text)) {
+    const tokens = tokenize(text);
+    let blockCode = "";
+    const takeCode = (chunk: string) => {
+      blockCode += chunk;
+    };
+    const flushBlockCode = () => {
+      if (!blockCode) return;
+      appendCode(blockCode);
+      blockCode = "";
+    };
+
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i];
       if (token.type === "open") {
-        if (!inCode) inCode = true;
+        if (!inCode) {
+          inCode = true;
+          fenceDepth = 1;
+          continue;
+        }
+        if (!isQuoteWrapped(tokens, i)) fenceDepth += 1;
+        takeCode(token.value);
         continue;
       }
       if (token.type === "close") {
-        if (inCode) flushCode();
+        if (!inCode) continue;
+        const quoted = isQuoteWrapped(tokens, i);
+        if (quoted || fenceDepth > 1) {
+          if (!quoted && fenceDepth > 1) fenceDepth -= 1;
+          takeCode(token.value);
+          continue;
+        }
+        flushBlockCode();
+        flushCode();
         continue;
       }
       if (inCode) {
-        appendCode(token.value);
+        takeCode(token.value);
       } else {
         emitProse(token.value, block.style);
       }
     }
+    flushBlockCode();
   }
 
   if (inCode) flushCode();
