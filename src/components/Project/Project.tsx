@@ -53,6 +53,7 @@ const ProjectComponent: FC<ProjectProps> = ({
         <Animation
           type={index % 2 === 0 ? "slide-right" : "slide-left"}
           distance={10}
+          revealOnScroll={layout !== "page"}
         >
           <Heading text={heading} />
           <Header text={header} color="dark" as="h2" />
@@ -90,6 +91,7 @@ const ProjectComponent: FC<ProjectProps> = ({
         <Animation
           type={index % 2 === 0 ? "slide-left" : "slide-right"}
           distance={10}
+          revealOnScroll={layout !== "page"}
         >
           <NextLink
             href={linkToLive}

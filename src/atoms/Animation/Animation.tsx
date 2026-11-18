@@ -42,6 +42,11 @@ interface AnimationProps {
   aboveTheFold?: boolean;
   /** Alias for `aboveTheFold` — disables the initial hide/reveal. */
   disableInitialAnimation?: boolean;
+  /**
+   * Stay hidden until the element scrolls into view.
+   * Avoids painting the content, then hiding it after mount.
+   */
+  revealOnScroll?: boolean;
 }
 
 function prefersReducedMotion() {
@@ -85,13 +90,15 @@ const Animation = ({
   distance = 20,
   aboveTheFold = false,
   disableInitialAnimation = false,
+  revealOnScroll = false,
 }: AnimationProps) => {
   const skipEntrance = aboveTheFold || disableInitialAnimation;
   const ref = useRef<HTMLElement>(null);
   // Progressive enhancement: visible by default (SSR + first paint).
   // Below-fold content is only hidden after mount, while off-screen.
+  // `revealOnScroll` starts hidden so it never flashes before that hide.
   const [phase, setPhase] = useState<RevealPhase>(
-    skipEntrance ? "revealed" : "resting",
+    skipEntrance ? "revealed" : revealOnScroll ? "pending" : "resting",
   );
 
   useEffect(() => {
