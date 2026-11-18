@@ -1,28 +1,51 @@
 @import "../../assets/styles/colors";
 
+.shell {
+  box-sizing: border-box;
+  width: 100%;
+  margin-inline: auto;
+  padding: $space-nav-clearance $space-page-inline $space-page-end;
+
+  @media (min-width: 765px) {
+    padding: $space-nav-clearance-md $space-page-inline-md $space-page-end-md;
+  }
+
+  @media (min-width: 1200px) {
+    padding-inline: $space-page-inline-lg;
+  }
+}
+
 .article {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: $space-10;
   max-width: 46rem;
   width: 100%;
+  margin-inline: auto;
 
   @media (min-width: 765px) {
-    gap: 1.5rem;
+    gap: $space-12;
   }
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+
+  > * {
+    margin: 0;
+  }
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 0.25rem;
-  margin-bottom: 1.25rem;
+  gap: $space-4;
+  margin-top: $space-6;
+
+  > div {
+    margin: 0;
+  }
 }
 
 .body {
@@ -32,18 +55,37 @@
   color: $darkColor;
   font-family: $font-mulish;
 
+  > * {
+    margin: 0;
+  }
+
+  > * + * {
+    margin-top: $space-stack;
+  }
+
+  > * + h2 {
+    margin-top: $space-heading;
+  }
+
+  > * + h3 {
+    margin-top: $space-subheading;
+  }
+
+  > h2 + *,
+  > h3 + * {
+    margin-top: $space-stack-tight;
+  }
+
   h2 {
     font-family: $font-mulish;
     font-size: $fontSizeXl;
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.25;
-    margin: 2rem 0 0.75rem;
     color: $darkColor;
 
     @media (min-width: 765px) {
       font-size: $fontSizeL;
-      margin-top: 2.5rem;
     }
   }
 
@@ -53,7 +95,6 @@
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.35;
-    margin: 1.5rem 0 0.5rem;
     color: $darkColor;
 
     @media (min-width: 765px) {
@@ -62,7 +103,6 @@
   }
 
   p {
-    margin: 0 0 1rem;
     font-size: $fontSizeXS;
     line-height: 1.7;
     white-space: pre-line;
@@ -74,8 +114,7 @@
 
   ul,
   ol {
-    margin: 0 0 1.15rem;
-    padding-left: 1.35rem;
+    padding-left: $space-6;
     font-size: $fontSizeXS;
     line-height: 1.65;
 
@@ -84,8 +123,8 @@
     }
   }
 
-  li {
-    margin: 0.25rem 0;
+  li + li {
+    margin-top: $space-2;
   }
 
   a {
@@ -100,8 +139,7 @@
   }
 
   blockquote {
-    margin: 0.75rem 0 1.15rem;
-    padding: 0.35rem 0 0.35rem 1rem;
+    padding: $space-3 $space-4 $space-3 $space-5;
     border-left: 3px solid $primaryColor;
     font-style: italic;
     color: $grayColor;
@@ -126,7 +164,6 @@
 }
 
 .pre {
-  margin: 0 0 1.35rem;
   overflow: hidden;
   border-radius: 10px;
   border-left: 3px solid $primaryColor;
@@ -134,7 +171,7 @@
 
   :global(pre) {
     margin: 0;
-    padding: 1rem 1.15rem;
+    padding: $space-5 $space-6;
     overflow-x: auto;
     font-size: 0.8125rem;
     line-height: 1.65;
@@ -162,8 +199,7 @@
 }
 
 .preFallback {
-  margin: 0 0 1.35rem;
-  padding: 1rem 1.15rem;
+  padding: $space-5 $space-6;
   overflow-x: auto;
   background: #1e1e1e;
   color: #d4d4d4;

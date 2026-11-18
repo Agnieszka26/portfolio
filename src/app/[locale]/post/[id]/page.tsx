@@ -63,7 +63,7 @@ const BlogPostPage = async ({ params }: PageParams) => {
   }
 
   return (
-    <div className={cn(styles.page, styles.container)}>
+    <div className={bodyStyles.shell}>
       <article className={bodyStyles.article}>
         <header className={bodyStyles.header}>
           <Header text={post.title} color="dark" as="h1" />
