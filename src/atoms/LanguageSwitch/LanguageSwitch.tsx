@@ -26,6 +26,7 @@ import { useState, useTransition } from "react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { Locale, useLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
+import { usePostAlternatePaths } from "./postAlternatePaths";
 import polishFlag from "@/assets/flags/polish.webp";
 import englishFlag from "@/assets/flags/english.webp";
 import Image, { StaticImageData } from "next/image";
@@ -45,6 +46,7 @@ export default function LocaleSwitcher() {
 
   const pathname = usePathname();
   const router = useRouter();
+  const alternatePaths = usePostAlternatePaths();
 
   const [open, setOpen] = useState(false);
   const [_, startTransition] = useTransition();
@@ -54,6 +56,13 @@ export default function LocaleSwitcher() {
   const changeLocale = (next: Locale) => {
     setOpen(false);
     startTransition(() => {
+      if (alternatePaths) {
+        router.replace(alternatePaths[next] ?? "/blog", {
+          locale: next
+        });
+        return;
+      }
+
       router.replace(pathname, {
         locale: next
       });

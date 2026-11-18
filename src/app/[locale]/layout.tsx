@@ -1,3 +1,4 @@
+import { PostAlternatePathsProvider } from "@/atoms/LanguageSwitch/postAlternatePaths";
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import styles from "@/assets/styles/index.module.scss";
@@ -38,9 +39,11 @@ export default async function RootLayout({
         className={`${styles.body} ${mulish.variable} ${abrilFatface.variable}`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <PostAlternatePathsProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </PostAlternatePathsProvider>
         </NextIntlClientProvider>
         <Analytics />
       </body>

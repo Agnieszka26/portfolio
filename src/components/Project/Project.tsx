@@ -5,8 +5,9 @@ import Header from "@/typography/Header/Header";
 import Heading from "@/typography/Heading/Heading";
 import Paragraph from "@/typography/Paragraph/Paragraph";
 import Tag from "@/typography/Tag/Tag";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { FC } from "react";
 import styles from "./Project.module.scss";
 import { projectSlug, type RemoteCoverImage } from "@/types";
@@ -64,19 +65,24 @@ const ProjectComponent: FC<ProjectProps> = ({
 
           <div className={styles.actions}>
             <Link
-              href={RoutesPath.PROJECTS + `/${projectSlug({ id, header })}`}
+              href={`${RoutesPath.PROJECTS}/${projectSlug({ id, header })}`}
+              locale={locale}
               aria-label={learnMoreLabel + " of the " + header + " project"}
-              locale={locale}>
+            >
               <Button text={learnMoreLabel} color={"dark"} />
             </Link>
-            <Link href={linkToGithub} locale={locale}
-              aria-label={seeGithubLabel + " of the " + header + " project"}>
+            <NextLink
+              href={linkToGithub}
+              aria-label={seeGithubLabel + " of the " + header + " project"}
+            >
               <Button text={seeGithubLabel} color={"light"} />
-            </Link>
-            <Link href={linkToLive} locale={locale}
-              aria-label={seeProjectLabel + " of the " + header + " project"}>
+            </NextLink>
+            <NextLink
+              href={linkToLive}
+              aria-label={seeProjectLabel + " of the " + header + " project"}
+            >
               <Button text={seeProjectLabel} color={"blue"} />
-            </Link>
+            </NextLink>
           </div>
         </Animation>
       </div>
@@ -85,7 +91,7 @@ const ProjectComponent: FC<ProjectProps> = ({
           type={index % 2 === 0 ? "slide-left" : "slide-right"}
           distance={10}
         >
-          <Link
+          <NextLink
             href={linkToLive}
             target="_blank"
             rel="noreferrer"
@@ -100,7 +106,7 @@ const ProjectComponent: FC<ProjectProps> = ({
               height={image.height}
             />
             <Caption text={seeProjectLabel} />
-          </Link>
+          </NextLink>
         </Animation>
       </div>
     </div>

@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import getProjects from "@/lib/getProjects";
-import { getPosts } from "@/lib/sanity/posts";
+import { getPostSitemapRecords } from "@/lib/sanity/posts";
 import { SITE_URL } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
-import { postSlug, projectSlug } from "@/types";
+import { projectSlug } from "@/types";
 
 /** Absolute URL matching `trailingSlash: true` in next.config.js */
 function absoluteUrl(path: string): string {
@@ -78,49 +78,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }),
   );
 
-  const postsByLocale = await Promise.all(
-    routing.locales.map(async (locale) => ({
-      locale,
-      posts: await getPosts(locale),
-    })),
-  );
+  const postRecords = await getPostSitemapRecords();
+  const postsByGroup = new Map<string, Map<string, string>>();
 
-  /**
-   * Locales that publish each post slug — only locales with an actual
-   * translation (getPosts is locale-strict, no fallback).
-   */
-  const localesByPostSlug = new Map<string, string[]>();
-  for (const { locale, posts } of postsByLocale) {
-    for (const post of posts) {
-      const slug = postSlug(post);
-      const locales = localesByPostSlug.get(slug) ?? [];
-      locales.push(locale);
-      localesByPostSlug.set(slug, locales);
-    }
+  for (const post of postRecords) {
+    const key =
+      post.translationId ?? `unlinked:${post.language}:${post.slug}`;
+    const locales = postsByGroup.get(key) ?? new Map<string, string>();
+    locales.set(post.language, post.slug);
+    postsByGroup.set(key, locales);
   }
 
-  const postEntries: MetadataRoute.Sitemap = postsByLocale.flatMap(
-    ({ locale, posts }) =>
-      posts.map((post) => {
-        const slug = postSlug(post);
-        const pathWithoutLocale = `/post/${slug}`;
-        const availableLocales = localesByPostSlug.get(slug) ?? [locale];
+  const postEntries: MetadataRoute.Sitemap = Array.from(
+    postsByGroup.values(),
+  ).flatMap((locales) => {
+    const languages = Object.fromEntries(
+      Array.from(locales.entries()).map(([locale, slug]) => [
+        locale,
+        absoluteUrl(`/${locale}/post/${slug}`),
+      ]),
+    );
 
-        return {
-          url: absoluteUrl(`/${locale}${pathWithoutLocale}`),
-          changeFrequency: "monthly" as const,
-          priority: 0.7,
-          alternates: {
-            languages: Object.fromEntries(
-              availableLocales.map((availableLocale) => [
-                availableLocale,
-                absoluteUrl(`/${availableLocale}${pathWithoutLocale}`),
-              ]),
-            ),
-          },
-        };
-      }),
-  );
+    return Array.from(locales.entries()).map(([locale, slug]) => ({
+      url: absoluteUrl(`/${locale}/post/${slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      alternates: { languages },
+    }));
+  });
 
   return [...staticEntries, ...projectEntries, ...postEntries];
 }
