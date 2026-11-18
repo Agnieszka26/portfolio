@@ -1,5 +1,5 @@
 import Heading from "@/typography/Heading/Heading";
-import pageStyles from "./BlogPageComponents.module.scss";
+import pageStyles from "./Header.module.scss";
 import Header from "@/typography/Header/Header";
 import Image from "next/image";
 import blogHeaderImage from "@/assets/images/pic1.png";
@@ -22,7 +22,13 @@ const HeroBlogPage = ({
                 <p className={pageStyles.description}>{description}</p>
             </div>
 
-            <Image src={blogHeaderImage} alt={"blog decorattive image"} height={300} />
+            <Image
+                src={blogHeaderImage}
+                alt="blog decorative image"
+                className={pageStyles.heroImage}
+                sizes="(max-width: 899px) 100vw, 40vw"
+                priority
+            />
 
         </header>
     );

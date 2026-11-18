@@ -16,7 +16,7 @@
   "BlogPage": {
     "label": "Blog",
     "title": "Wiedza, doświadczenie i przemyślenia o front-endzie",
-    "description": "Czytasz blog o front-endzie, gdzie dzielę się wiedzą, doświadczeniem i przemyśleniami o tworzeniu szybkich, przyjaznych dla SEO i dostępnych aplikacji internetowych przy użyciu React, Next.js i TypeScript.",
+    "description": "Czytasz mojego bloga o frontendzie, na którym dzielę się wiedzą, praktycznym doświadczeniem i przemyśleniami z mojej drogi jako programistki. Znajdziesz tu również artykuły o architekturze oprogramowania, wzorcach projektowych, rozwiązywaniu problemów i decyzjach technicznych, które wpływają na rozwój rzeczywistych aplikacji. Interesuje mnie nie tylko to, jak coś działa, ale również dlaczego jedno rozwiązanie może być lepsze od drugiego. To miejsce, w którym dokumentuję zdobytą wiedzę, dzielę się wnioskami z praktyki i eksploruję pomysły, które pomagają mi rozwijać się jako programistka.",
     "empty": "Brak opublikowanych wpisów. Wróć wkrótce.",
     "readMore": "Czytaj dalej",
     "allCategories": "Wszystkie",
@@ -34,11 +34,11 @@
     "ctaButton": "Zatrudnij mnie"
   },
   "Section": {
-    "learn_more": "dowiedz się więcej",
+    "learn_more": "Dowiedz się więcej",
     "latest work": "najnowszy projekt",
     "highlighted": "zrealizowany",
-    "see_project": "zobacz na żywo →",
-    "see_github": "zobacz na GitHubie"
+    "see_project": "Zobacz na żywo →",
+    "see_github": "Zobacz na GitHubie"
   },
   "ContactPage": {
     "title": "Stwórzmy coś niesamowitego razem",

@@ -1,0 +1,47 @@
+@import "../../../../assets/styles/colors";
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: $space-8;
+  margin-bottom: $space-section;
+  padding: 0;
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: $space-10 $space-12;
+    margin-bottom: $space-section-md;
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: $space-2;
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 600px;
+  min-width: 0;
+  margin-inline: auto;
+  object-fit: contain;
+
+  @media (min-width: 900px) {
+    margin-inline: 0;
+  }
+}
+
+.description {
+  margin: $space-2 0 0;
+  font-family: $font-mulish;
+  font-size: clamp($fontSizeSm, 2vw, $fontSizeMd);
+  line-height: 1.6;
+  color: $darkColor;
+  max-width: 34rem;
+}

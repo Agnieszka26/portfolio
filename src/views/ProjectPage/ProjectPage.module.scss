@@ -1,0 +1,29 @@
+@import "../../assets/styles/colors";
+
+.shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding: $space-nav-clearance $space-page-inline $space-page-end;
+
+  @media (min-width: 765px) {
+    padding: $space-nav-clearance-md $space-page-inline-md $space-page-end-md;
+  }
+
+  @media (min-width: 1200px) {
+    padding-inline: $space-page-inline-lg;
+  }
+}
+
+.pageTitle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

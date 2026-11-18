@@ -7,6 +7,10 @@
   position: fixed;
   @include bgGradient;
 
+  @media (min-width: 765px) {
+    padding-block: $space-4;
+  }
+
   .hamburger {
     .menuButton {
       width: 3.5rem;

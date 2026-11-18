@@ -1,27 +1,35 @@
 import styles from "@/assets/styles/index.module.scss";
-import { RoutesPath } from "@/constants";
 import {
   type Project,
-  projectSlug,
   toRemoteCoverImage,
 } from "@/types";
 import { getLocale, getTranslations } from "next-intl/server";
 import ProjectComponent from "../Project/Project";
+import sectionStyles from "./ProjectsSection.module.scss";
 
 interface ProjectsSectionProps {
   projectsDetails: Project[];
   sectionId?: string;
+  layout?: "page";
 }
 
 const ProjectsSection = async ({
   projectsDetails,
   sectionId,
+  layout,
 }: ProjectsSectionProps) => {
   const locale = await getLocale();
   const t = await getTranslations("Section");
 
   return (
-    <section className={styles.container} id={sectionId}>
+    <section
+      className={
+        layout === "page"
+          ? sectionStyles.list
+          : `${styles.container} ${sectionStyles.home}`
+      }
+      id={sectionId}
+    >
       {projectsDetails.map(
         (
           { header, paragraph, image, tags: tagString, linkToLive, linkToGithub, ...project },
@@ -50,6 +58,7 @@ const ProjectsSection = async ({
               learnMoreLabel={t("learn_more")}
               seeProjectLabel={t("see_project")}
               seeGithubLabel={t("see_github")}
+              layout={layout}
             />
           );
         },

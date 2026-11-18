@@ -16,7 +16,7 @@
   "BlogPage": {
     "label": "Blog",
     "title": "Knowledge, experience and reflections on frontend development",
-    "description": "You're reading the frontend blog where I share knowledge, experience, and reflections on building fast, SEO-friendly and accessible web applications using React, Next.js and TypeScript.",
+    "description": "You're reading my frontend development blog, where I share knowledge, hands-on experience, and reflections from my journey as a developer.  You'll also find articles about software architecture, design patterns, problem-solving, and the technical decisions that shape real-world applications. I enjoy exploring not only how things work, but also why certain approaches make more sense than others. This is a space where I document what I learn, share lessons from practical experience, and explore ideas that help me become a better developer.",
     "empty": "No posts published yet. Check back soon.",
     "readMore": "Read more",
     "allCategories": "All",

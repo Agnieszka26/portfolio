@@ -20,18 +20,20 @@ const HeroArea = async ({ scrollTargetId }: HeroAreaProps) => {
         <div className={cn(styles.containerLeft)}>
           <Header text={t("title")} color="light" as="h1" />
           <Paragraph text={t("description_1")} color="light" />
-          <Link
-            href={
-              "https://docs.google.com/forms/d/e/1FAIpQLSc_qJZfLheGYwedgUzP76BO-qpTuKBLfze30xUDdHWjXf5ptA/viewform"
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button text={t("ctaButton")} color={"dark"} aria-label={t("ctaButton")} />
-          </Link>
+          <div className={styles.heroActions}>
+            <Link
+              href={
+                "https://docs.google.com/forms/d/e/1FAIpQLSc_qJZfLheGYwedgUzP76BO-qpTuKBLfze30xUDdHWjXf5ptA/viewform"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button text={t("ctaButton")} color={"dark"} aria-label={t("ctaButton")} />
+            </Link>
             <Link href={"https://github.com/Agnieszka26"} aria-label={s("see_github")}>
-            <Button text={s("see_github")} color={"light"} />
-          </Link>
+              <Button text={s("see_github")} color={"light"} />
+            </Link>
+          </div>
         </div>
 
         <div className={styles.containerRight}>
