@@ -72,7 +72,6 @@ export default function LocaleSwitcher() {
   return (
     <li className={styles.wrapper}>
       <motion.button
-        layout
         whileTap={{ scale: .98 }}
         className={styles.trigger}
         onClick={() => setOpen(!open)}
@@ -88,7 +87,6 @@ export default function LocaleSwitcher() {
       <AnimatePresence>
         {open && (
           <motion.ul
-            layout
             initial={{
               opacity: 0,
               y: -10,
@@ -113,7 +111,6 @@ export default function LocaleSwitcher() {
             {locales.map(item => (
 
               <motion.li
-                layout
                 key={item.code}
                 whileHover={{
                   x: 4
