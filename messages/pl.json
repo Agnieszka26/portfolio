@@ -34,11 +34,11 @@
     "ctaButton": "Zatrudnij mnie"
   },
   "Section": {
-    "learn_more": "dowiedz się więcej",
+    "learn_more": "Dowiedz się więcej",
     "latest work": "najnowszy projekt",
     "highlighted": "zrealizowany",
-    "see_project": "zobacz na żywo →",
-    "see_github": "zobacz na GitHubie"
+    "see_project": "Zobacz na żywo →",
+    "see_github": "Zobacz na GitHubie"
   },
   "ContactPage": {
     "title": "Stwórzmy coś niesamowitego razem",

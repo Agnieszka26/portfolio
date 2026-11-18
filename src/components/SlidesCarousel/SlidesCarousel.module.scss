@@ -6,7 +6,7 @@ $carouselMaxHeight: 90vh;
 
 .root {
   width: 100%;
-  margin: 1.5rem 0;
+  margin: 0;
   outline: none;
 
   &:focus-visible {
@@ -60,15 +60,15 @@ $carouselMaxHeight: 90vh;
 
 .controls {
   @include center;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: $space-5;
+  margin-top: $space-6;
   flex-wrap: wrap;
 }
 
 .navButton {
   @include center;
   cursor: pointer;
-  padding: 0.65rem 0.85rem;
+  padding: $space-3 $space-4;
   border: 3px solid $darkColor;
   background: $lightColor;
   color: $darkColor;
@@ -91,7 +91,7 @@ $carouselMaxHeight: 90vh;
 
 .dots {
   display: flex;
-  gap: 0.5rem;
+  gap: $space-3;
   align-items: center;
 }
 

@@ -3,8 +3,23 @@
 .project {
   @include center;
   @include responsive;
-  padding: 1rem 0rem;
-  gap: 2rem;
+  padding: 0;
+  gap: $space-8;
+
+  .containerLeft {
+    container-type: inline-size;
+
+    @media (min-width: 765px) {
+      width: 58%;
+    }
+  }
+
+  .containerRight {
+    @media (min-width: 765px) {
+      width: 42%;
+    }
+  }
+
   &:nth-child(even) {
     flex-direction: row-reverse;
   }
@@ -40,4 +55,79 @@
 .tagContainer {
   display: flex;
   flex-wrap: wrap;
+  gap: $space-3 $space-4;
+
+  > div {
+    margin: 0;
+  }
+}
+
+.projectPage {
+  padding: 0;
+
+  @media (min-width: 765px) {
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 900px) {
+    flex-wrap: nowrap;
+    gap: $space-12;
+  }
+
+  .containerLeft,
+  .containerRight {
+    @media (min-width: 765px) {
+      width: 100%;
+    }
+  }
+
+  .containerLeft {
+    container-type: inline-size;
+
+    @media (min-width: 900px) {
+      width: 60%;
+    }
+  }
+
+  .containerRight {
+    @media (min-width: 900px) {
+      width: 40%;
+    }
+  }
+
+  .tagContainer {
+    gap: $space-3 $space-4;
+
+    > div {
+      margin: 0;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: clamp(#{$space-2}, 2cqi, #{$space-4});
+  margin-top: $space-5;
+
+  a {
+    flex: 0 0 auto;
+  }
+
+  button {
+    white-space: nowrap;
+    padding: clamp(10px, 2cqi, #{$space-4}) clamp(#{$space-2}, 1.6cqi, #{$space-4});
+    font-size: clamp(#{$fontSizeXS}, 2.8cqi, #{$fontSizeSm});
+  }
+
+  @media (max-width: 640px) {
+    flex-wrap: wrap;
+    gap: $space-4;
+
+    button {
+      padding: $space-3 $space-4;
+      font-size: $fontSizeSm;
+    }
+  }
 }

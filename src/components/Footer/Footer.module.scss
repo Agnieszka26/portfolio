@@ -4,31 +4,59 @@
 .footerContainer {
   background: $primaryColor;
   background: linear-gradient(90deg, $primaryColor 0%, $secondaryColor 100%);
+
   .footer {
     display: flex;
     @include responsive;
-    .a {
-      text-decoration: none;
+    box-sizing: border-box;
+    padding-block: $space-12;
+    gap: $space-8;
 
+    @media (min-width: 765px) {
+      padding-block: $space-16;
+      gap: $space-12;
+    }
+
+    .containerLeft,
+    .containerRight {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $space-5;
+
+      h2,
       p {
+        margin: 0;
+        padding-block: 0;
       }
     }
   }
+
   .paragraphReserved {
     font-family: $font-mulish;
     font-size: 12px;
-
     color: $lightColor;
     display: flex;
     align-items: center;
+    gap: $space-3;
+    padding: $space-4 $space-page-inline $space-6;
+
+    @media (min-width: 765px) {
+      padding-inline: $space-page-inline-md;
+    }
+
+    @media (min-width: 1200px) {
+      padding-inline: $space-page-inline-lg;
+    }
 
     span {
       img {
-        padding: 0 1rem;
+        padding: 0;
         height: 32px;
         width: 32px;
       }
     }
+
     @include center;
   }
 }

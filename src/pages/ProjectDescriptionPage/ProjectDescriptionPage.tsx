@@ -1,4 +1,3 @@
-import styles from "@/assets/styles/index.module.scss";
 import pageStyles from "./ProjectDescriptionPage.module.scss";
 import { type ProjectDetails, toSlideImages } from "@/types";
 import type { ReactNode } from "react";
@@ -60,7 +59,7 @@ export default async function TechnicalDescriptionPage({
 
   return (
     <ScrollToTopOnUnmount>
-      <div className={cn(styles.page, styles.container)}>
+      <div className={pageStyles.shell}>
         <article className={pageStyles.article}>
           <div className={pageStyles.headerBlock}>
             <Header text={detail.header} color="dark" as="h1" />
@@ -83,7 +82,8 @@ export default async function TechnicalDescriptionPage({
             >
               <Button text={t("see_live_preview")} color="light" />
             </Link>
-          ) : null}          <aside className={pageStyles.notice} role="note">
+          ) : null}
+          <aside className={pageStyles.notice} role="note">
             <Markdown>{detail.overview ?? ""}</Markdown>
           </aside>
           <div className={pageStyles.detailsGrid}>

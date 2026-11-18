@@ -11,6 +11,7 @@ import { FC } from "react";
 import styles from "./Project.module.scss";
 import { projectSlug, type RemoteCoverImage } from "@/types";
 import { RoutesPath } from "@/constants";
+import cn from "classnames";
 
 interface ProjectProps {
   heading: string;
@@ -26,6 +27,7 @@ interface ProjectProps {
   seeProjectLabel: string;
   id: string;
   seeGithubLabel: string;
+  layout?: "page";
 }
 
 const ProjectComponent: FC<ProjectProps> = ({
@@ -41,10 +43,11 @@ const ProjectComponent: FC<ProjectProps> = ({
   learnMoreLabel,
   seeProjectLabel,
   seeGithubLabel,
-  id
+  id,
+  layout,
 }) => {
   return (
-    <div className={styles.project}>
+    <div className={cn(styles.project, layout === "page" && styles.projectPage)}>
       <div className={styles.containerLeft}>
         <Animation
           type={index % 2 === 0 ? "slide-right" : "slide-left"}
@@ -59,20 +62,22 @@ const ProjectComponent: FC<ProjectProps> = ({
           </div>
           <Paragraph color="dark" text={paragraph} />
 
-          <Link
-            href={RoutesPath.PROJECTS + `/${projectSlug({ id, header })}`}
-            aria-label={learnMoreLabel + " of the " + header + " project"}
-            locale={locale}>
-            <Button text={learnMoreLabel} color={"dark"} />
-          </Link>
-          <Link href={linkToGithub} locale={locale}
-            aria-label={seeGithubLabel + " of the " + header + " project"}>
-            <Button text={seeGithubLabel} color={"light"} />
-          </Link>
-          <Link href={linkToLive} locale={locale}
-            aria-label={seeProjectLabel + " of the " + header + " project"}>
-            <Button text={seeProjectLabel} color={"blue"} />
-          </Link>
+          <div className={styles.actions}>
+            <Link
+              href={RoutesPath.PROJECTS + `/${projectSlug({ id, header })}`}
+              aria-label={learnMoreLabel + " of the " + header + " project"}
+              locale={locale}>
+              <Button text={learnMoreLabel} color={"dark"} />
+            </Link>
+            <Link href={linkToGithub} locale={locale}
+              aria-label={seeGithubLabel + " of the " + header + " project"}>
+              <Button text={seeGithubLabel} color={"light"} />
+            </Link>
+            <Link href={linkToLive} locale={locale}
+              aria-label={seeProjectLabel + " of the " + header + " project"}>
+              <Button text={seeProjectLabel} color={"blue"} />
+            </Link>
+          </div>
         </Animation>
       </div>
       <div className={styles.containerRight}>

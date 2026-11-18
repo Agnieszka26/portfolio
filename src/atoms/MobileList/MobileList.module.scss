@@ -24,7 +24,9 @@
 
 .list {
   position: fixed;
-  top: 42px;
+  top: 3.75rem;
+  margin: 0;
+  padding: $space-8 $space-page-inline;
   @include bgGradient;
   opacity: 0;
   height: 80%;

@@ -4,17 +4,8 @@
   padding: 16px;
   transition: all 0.5s;
   cursor: pointer;
-  font-size: larger;
-  @media (min-width: 768px) {
-    font-size: $fontSizeMd;
-  }
-  @media (min-width: 1280px) {
-    font-size: $fontSizeMd;
-  }
-
-  @media (min-width: 1536px) {
-    font-size: $fontSizeLg;
-  }
+  font-family: $font-mulish;
+  font-size: $fontSizeSm;
   &.color {
     &-dark {
       box-shadow: 0.5rem 0.5rem $darkColor;

@@ -1,0 +1,20 @@
+@import "../../assets/styles/colors";
+
+.list,
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+
+  @media (min-width: 765px) {
+    gap: $space-16;
+  }
+}
+
+.home {
+  padding-bottom: $space-page-end;
+
+  @media (min-width: 765px) {
+    padding-bottom: $space-page-end-md;
+  }
+}
