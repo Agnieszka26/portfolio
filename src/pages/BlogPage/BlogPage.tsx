@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { Post } from "@/types/post";
-import HeroBlogPage from "./components/Header";
-import BlogPostsSection from "./BlogPostsSection";
+import HeroBlogPage from "./components/Header/Header";
+import BlogPostsSection from "./components/BlogPostsSection/BlogPostsSection";
 import pageStyles from "./BlogPage.module.scss";
 
 type BlogPageProps = {

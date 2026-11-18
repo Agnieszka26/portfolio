@@ -1,4 +1,4 @@
-import BlogPage from "@/components/BlogPage/BlogPage";
+import BlogPage from "@/pages/BlogPage/BlogPage";
 import JsonLd from "@/components/JsonLd";
 import { createPageMetadata } from "@/lib/metadata";
 import { getPosts } from "@/lib/sanity/posts";

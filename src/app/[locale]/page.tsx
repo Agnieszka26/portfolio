@@ -1,4 +1,4 @@
-import HomePage from "@/components/Homepage";
+import HomePage from "@/pages/Homepage";
 import JsonLd from "@/components/JsonLd";
 import getProjects from "@/lib/getProjects";
 import { createPageMetadata } from "@/lib/metadata";
