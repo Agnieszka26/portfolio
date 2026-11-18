@@ -1,4 +1,4 @@
-import ContactPage from "@/pages/ContactPage";
+import ContactPage from "@/views/ContactPage";
 import { createPageMetadata } from "@/lib/metadata";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";

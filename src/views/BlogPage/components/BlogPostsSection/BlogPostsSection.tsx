@@ -1,6 +1,5 @@
 "use client";
 
-
 import type { Post } from "@/types/post";
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";

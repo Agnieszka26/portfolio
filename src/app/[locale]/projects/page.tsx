@@ -1,4 +1,4 @@
-import ProjectPage from "@/pages/ProjectPage/ProjectPage";
+import ProjectPage from "@/views/ProjectPage/ProjectPage";
 import getProjects from "@/lib/getProjects";
 import { createPageMetadata } from "@/lib/metadata";
 import { getTranslations, setRequestLocale } from "next-intl/server";
