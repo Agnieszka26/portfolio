@@ -26,6 +26,27 @@
   @media (min-width: 765px) {
     gap: $space-12;
   }
+
+  &.withToc {
+    @media (min-width: 1200px) {
+      display: grid;
+      grid-template-columns: minmax(0, 46rem) minmax(13.5rem, 16rem);
+      column-gap: $space-10;
+      row-gap: $space-12;
+      align-items: start;
+      max-width: calc(46rem + #{$space-10} + 16rem);
+
+      .header {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .body {
+        grid-column: 1;
+        grid-row: 2;
+      }
+    }
+  }
 }
 
 .header {
@@ -63,19 +84,46 @@
     margin-top: $space-stack;
   }
 
+  > * + h1,
   > * + h2 {
     margin-top: $space-heading;
   }
 
-  > * + h3 {
+  > * + h3,
+  > * + h4,
+  > * + h5,
+  > * + h6 {
     margin-top: $space-subheading;
   }
 
+  > h1 + *,
   > h2 + *,
-  > h3 + * {
+  > h3 + *,
+  > h4 + *,
+  > h5 + *,
+  > h6 + * {
     margin-top: $space-stack-tight;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: $space-anchor-offset;
+
+    @media (min-width: 765px) {
+      scroll-margin-top: $space-anchor-offset-md;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primaryColor;
+      outline-offset: $space-1;
+    }
+  }
+
+  h1,
   h2 {
     font-family: $font-mulish;
     font-size: $fontSizeXl;
@@ -89,16 +137,39 @@
     }
   }
 
-  h3 {
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: $font-mulish;
-    font-size: $fontSizeMd;
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.35;
     color: $darkColor;
+  }
+
+  h3 {
+    font-size: $fontSizeMd;
 
     @media (min-width: 765px) {
       font-size: $fontSizeXl;
+    }
+  }
+
+  h4 {
+    font-size: $fontSizeSm;
+
+    @media (min-width: 765px) {
+      font-size: $fontSizeMd;
+    }
+  }
+
+  h5,
+  h6 {
+    font-size: $fontSizeXS;
+
+    @media (min-width: 765px) {
+      font-size: $fontSizeSm;
     }
   }
 
@@ -147,8 +218,12 @@
 
   p,
   li,
+  h1,
   h2,
   h3,
+  h4,
+  h5,
+  h6,
   blockquote {
     > code,
     :global(code) {

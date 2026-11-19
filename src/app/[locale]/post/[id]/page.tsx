@@ -1,6 +1,8 @@
 import styles from "@/assets/styles/index.module.scss";
 import bodyStyles from "@/components/PostBody/PostBody.module.scss";
 import PostBody from "@/components/PostBody/PostBody";
+import TableOfContents from "@/components/TableOfContents/TableOfContents";
+import { articleHeadings } from "@/lib/portableText/headingOutline";
 import {
   createPageMetadata,
   truncateDescription,
@@ -104,11 +106,17 @@ const BlogPostPage = async ({ params }: PageParams) => {
   setRequestLocale(locale);
 
   const { post, alternates } = await loadPost(locale, id);
+  const headings = articleHeadings(post.body, post.title);
 
   return (
     <div className={bodyStyles.shell}>
       <SetPostAlternatePaths paths={alternatePaths(alternates)} />
-      <article className={bodyStyles.article}>
+      <article
+        className={cn(
+          bodyStyles.article,
+          headings.length > 0 && bodyStyles.withToc,
+        )}
+      >
         <header className={bodyStyles.header}>
           <Header text={post.title} color="dark" as="h1" />
           {post.excerpt ? (
@@ -122,7 +130,8 @@ const BlogPostPage = async ({ params }: PageParams) => {
             </div>
           ) : null}
         </header>
-        <PostBody value={post.body} />
+        <TableOfContents items={headings} />
+        <PostBody value={post.body} title={post.title} />
       </article>
     </div>
   );

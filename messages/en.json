@@ -21,7 +21,8 @@
     "readMore": "Read more",
     "allCategories": "All",
     "categoriesLabel": "Post categories",
-    "readingTime": "{minutes} min read"
+    "readingTime": "{minutes} min read",
+    "onThisPage": "On this page"
   },
   "LocaleSwitcher": {
     "label": "Change language",
