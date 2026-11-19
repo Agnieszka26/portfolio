@@ -35,7 +35,18 @@ type PageMetadataOptions = {
   path: string;
   image?: string;
   twitterImage?: string;
+  /**
+   * Locale-prefixed paths (`/pl/post/slug`) for hreflang.
+   * Omit on pages whose path segment is the same in every locale.
+   */
+  languagePaths?: Record<string, string>;
 };
+
+function absoluteSiteUrl(path: string): string {
+  if (/^https?:\/\//.test(path)) return path;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${SITE_URL}${normalized}`;
+}
 
 export function createPageMetadata({
   title,
@@ -43,22 +54,31 @@ export function createPageMetadata({
   path,
   image = "/og_image.webp",
   twitterImage = "/twitter_image.webp",
+  languagePaths,
 }: PageMetadataOptions): Metadata {
   const localizedPath = path.replace(
     new RegExp(`^/(${routing.locales.join("|")})`),
     "",
   );
+  const languages = languagePaths
+    ? Object.fromEntries(
+        Object.entries(languagePaths).map(([locale, localePath]) => [
+          locale,
+          absoluteSiteUrl(localePath),
+        ]),
+      )
+    : Object.fromEntries(
+        routing.locales.map((locale) => [
+          locale,
+          `${SITE_URL}/${locale}${localizedPath}`,
+        ]),
+      );
   return {
     title,
     description,
     alternates: {
       canonical: path,
-      languages: Object.fromEntries(
-        routing.locales.map((locale) => [
-          locale,
-          `${SITE_URL}/${locale}${localizedPath}`,
-        ]),
-      ),
+      languages,
     },
     openGraph: {
       title,

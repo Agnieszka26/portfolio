@@ -169,33 +169,6 @@ export const postsQuery = defineQuery(/* groq */ `
   }
 `);
 
-/**
- * Published posts with locale fallback:
- * - prefer requested locale
- * - include default-locale posts when no published translation exists for that slug
- */
-export const postsWithFallbackQuery = defineQuery(/* groq */ `
-  *[
-    _type == "post" &&
-    ${postPublishedFilter} &&
-    (
-      language == $locale ||
-      (
-        language == $defaultLocale &&
-        count(*[
-          _type == "post" &&
-          language == $locale &&
-          slug.current == ^.slug.current &&
-          defined(publishedAt) &&
-          publishedAt <= now()
-        ]) == 0
-      )
-    )
-  ] | order(publishedAt desc) {
-    ${postCardProjection}
-  }
-`);
-
 /** All published posts across locales — sitemaps / static params. */
 export const allPostsQuery = defineQuery(/* groq */ `
   *[
@@ -206,27 +179,69 @@ export const allPostsQuery = defineQuery(/* groq */ `
   }
 `);
 
-export const postDetailsQuery = defineQuery(/* groq */ `
-  *[
-    _type == "post" &&
-    language == $locale &&
-    slug.current == $slug &&
-    ${postPublishedFilter}
-  ][0] {
-    ${postDetailsProjection}
+/**
+ * Published siblings from the document-internationalization metadata document.
+ * Plugin v4 stores the locale on `translations[]._key`; `language` on the
+ * referenced post wins when it is set.
+ */
+const postTranslationProjection = /* groq */ `
+  *[_type == "translation.metadata" && references(^._id)][0].translations[
+    defined(value->slug.current) &&
+    defined(value->publishedAt) &&
+    value->publishedAt <= now()
+  ]{
+    "locale": coalesce(value->language, _key),
+    "slug": value->slug.current
+  }
+`;
+
+/**
+ * Resolve one public post URL.
+ * `current` is the published document for the requested locale and slug.
+ * `source` is a published document in another locale that uses this slug,
+ * used to find the requested locale's sibling when the slugs differ.
+ */
+export const postRouteQuery = defineQuery(/* groq */ `
+  {
+    "current": *[
+      _type == "post" &&
+      language == $locale &&
+      slug.current == $slug &&
+      ${postPublishedFilter}
+    ][0]{
+      ${postDetailsProjection},
+      "translations": ${postTranslationProjection}
+    },
+    "source": *[
+      _type == "post" &&
+      language != $locale &&
+      slug.current == $slug &&
+      ${postPublishedFilter}
+    ][0]{
+      "translations": ${postTranslationProjection}
+    }
   }
 `);
 
-/**
- * Prefer requested locale; fall back to default locale for the same slug.
- */
-export const postDetailsWithFallbackQuery = defineQuery(/* groq */ `
+/** Every slug in the translation group of a published post with this slug. */
+export const postGroupSlugsQuery = defineQuery(/* groq */ `
   *[
     _type == "post" &&
     slug.current == $slug &&
-    ${postPublishedFilter} &&
-    language in [$locale, $defaultLocale]
-  ] | order(select(language == $locale => 0, 1))[0] {
-    ${postDetailsProjection}
+    ${postPublishedFilter}
+  ]{
+    "slugs": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->slug.current
+  }
+`);
+
+/** Published posts plus the metadata document that joins their translations. */
+export const postSitemapQuery = defineQuery(/* groq */ `
+  *[
+    _type == "post" &&
+    ${postPublishedFilter}
+  ] | order(publishedAt desc) {
+    language,
+    "slug": slug.current,
+    "translationId": *[_type == "translation.metadata" && references(^._id)][0]._id
   }
 `);

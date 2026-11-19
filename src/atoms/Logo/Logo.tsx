@@ -1,6 +1,6 @@
 import { RoutesPath } from "@/constants";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import { FC } from "react";
 import logo from "../../../public/logo.svg";
 

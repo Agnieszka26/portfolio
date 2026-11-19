@@ -1,10 +1,9 @@
 import { RoutesPath } from "@/constants";
-import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import styles from "@/assets/styles/index.module.scss";
 export default function NotFound() {
-  const t = useTranslations("TechnicalDescriptionPage")
-  const locale = useLocale();
+  const t = useTranslations("TechnicalDescriptionPage");
 
   return (
     <div className={styles.page}
@@ -22,10 +21,7 @@ export default function NotFound() {
         <p style={{ margin: 0, opacity: 0.75 }}>
           {t("not_found_body")}
         </p>
-        <Link
-         href={`/${locale}${RoutesPath.PROJECTS}`}
-         className={styles.link}
-       >
+        <Link href={RoutesPath.PROJECTS} className={styles.link}>
          {t("not_found_link")}
         </Link>
       </div>
