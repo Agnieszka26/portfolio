@@ -21,7 +21,8 @@
     "readMore": "Czytaj dalej",
     "allCategories": "Wszystkie",
     "categoriesLabel": "Kategorie wpisów",
-    "readingTime": "{minutes} min czytania"
+    "readingTime": "{minutes} min czytania",
+    "onThisPage": "Spis treści"
   },
   "LocaleSwitcher": {
     "label": "Zmień język",

@@ -20,6 +20,9 @@ $space-page-end: $space-16;
 $space-page-end-md: $space-20;
 $space-nav-clearance: 5.5rem;
 $space-nav-clearance-md: 8rem;
+// Scroll targets and the sticky contents rail sit just below the fixed bar.
+$space-anchor-offset: $space-nav-clearance;
+$space-anchor-offset-md: $space-nav-clearance-md - $space-6;
 
 // Vertical rhythm.
 $space-section: $space-12;
