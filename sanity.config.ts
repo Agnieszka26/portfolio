@@ -10,7 +10,7 @@ import {
   documentInternationalization,
   DuplicateWithTranslationsAction,
 } from '@sanity/document-internationalization'
-import {defineConfig, type Template} from 'sanity'
+import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {markdownSchema} from 'sanity-plugin-markdown'
 
@@ -25,17 +25,12 @@ import {structure} from './src/sanity/structure'
 
 const translatableSchemaTypeSet = new Set<string>(TRANSLATABLE_SCHEMA_TYPES)
 
-function createLocaleTemplates(): Template[] {
-  return TRANSLATABLE_SCHEMA_TYPES.flatMap((schemaType) =>
-    SUPPORTED_LANGUAGES.map((language) => ({
-      id: `${schemaType}-${language.id}`,
-      title: `${schemaType.charAt(0).toUpperCase()}${schemaType.slice(1)} (${language.title})`,
-      schemaType,
-      parameters: [{name: 'language', type: 'string'}],
-      value: {language: language.id},
-    })),
-  )
-}
+/** Per-language templates registered by @sanity/document-internationalization (`post-en`, `post-pl`, …). */
+const languageTemplateIds = new Set<string>(
+  TRANSLATABLE_SCHEMA_TYPES.flatMap((schemaType) =>
+    SUPPORTED_LANGUAGES.map((language) => `${schemaType}-${language.id}`),
+  ),
+)
 
 export default defineConfig({
   basePath: '/studio',
@@ -55,23 +50,24 @@ export default defineConfig({
       allowCreateMetaDoc: true,
     }),
   ],
-  templates: (prev: Template[]) => [...prev, ...createLocaleTemplates()],
   document: {
-    newDocumentOptions: (prev, {creationContext}) => {
-      if (creationContext.type !== 'global') {
-        return prev
-      }
-
-      return prev.filter((option) => {
+    // Translatable documents must never be created without a language: the
+    // plain `post`/`project` templates (and `*-parameterized` with no argument)
+    // save documents that no language list or site query can see.
+    newDocumentOptions: (prev, {creationContext}) =>
+      prev.filter((option) => {
         const schemaType = option.templateId.split('-')[0]
 
         if (!translatableSchemaTypeSet.has(schemaType)) {
           return true
         }
 
-        return option.templateId.endsWith(`-${DEFAULT_LANGUAGE.id}`)
-      })
-    },
+        if (creationContext.type === 'global') {
+          return option.templateId === `${schemaType}-${DEFAULT_LANGUAGE.id}`
+        }
+
+        return languageTemplateIds.has(option.templateId)
+      }),
     actions: (prev, {schemaType}) => {
       if (!translatableSchemaTypeSet.has(schemaType)) {
         return prev
