@@ -80,13 +80,15 @@ export type PostSitemapRecord = {
  * Omit `locale` to fetch all published posts across languages.
  *
  * Cross-request cache via `unstable_cache` (tags: `posts`, `posts:{locale}`).
+ * The query text is part of the cache key so a changed projection never
+ * reuses results cached with the old shape.
  * Returns `[]` only when the query succeeds with no published posts; fetch
  * failures are logged and re-thrown so they are not treated as empty results.
  */
 export async function getPosts(locale?: string): Promise<Post[]> {
   try {
     if (!locale) {
-      return await unstable_cache(fetchAllPosts, ["posts", "all"], {
+      return await unstable_cache(fetchAllPosts, ["posts", "all", allPostsQuery], {
         tags: ["posts"],
         revalidate: REVALIDATE_SECONDS,
       })();
@@ -94,7 +96,7 @@ export async function getPosts(locale?: string): Promise<Post[]> {
 
     return await unstable_cache(
       () => fetchPostsList(locale),
-      ["posts", "locale-strict", locale],
+      ["posts", "locale-strict", locale, postsQuery],
       {
         tags: postsListTags(locale),
         revalidate: REVALIDATE_SECONDS,
@@ -220,7 +222,7 @@ export const resolvePublishedPost = cache(
       const groupSlugs = await fetchPostGroupSlugs(slug);
       const payload = await unstable_cache(
         () => fetchPostRoutePayload(slug, locale),
-        ["post-route", slug, locale, JSON.stringify(groupSlugs)],
+        ["post-route", slug, locale, JSON.stringify(groupSlugs), postRouteQuery],
         {
           tags: postDetailTags(groupSlugs),
           revalidate: REVALIDATE_SECONDS,

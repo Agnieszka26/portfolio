@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import cardStyles from "./BlogCard.module.scss";
 
-function estimateReadingMinutes(excerpt: string | null | undefined): number {
-    const words = (excerpt ?? "").trim().split(/\s+/).filter(Boolean).length;
-    return Math.max(3, Math.ceil(words / 40) || 3);
+/** ~200 words per minute at ~5 characters per word. */
+const CHARACTERS_PER_MINUTE = 1000;
+
+function estimateReadingMinutes(bodyCharacters: number | null | undefined): number {
+    return Math.max(1, Math.ceil((bodyCharacters ?? 0) / CHARACTERS_PER_MINUTE));
   }
 
   function formatPublishedDate(isoDate: string, locale: string): string {
@@ -29,7 +31,7 @@ const BlogCard = ({post, locale}: {post: Post, locale: string}) => {
     const slug = postSlug(post);
     const cover = toRemoteCoverImage(post.coverImage);
     const primaryTag = post.tags?.find((tag) => tag.trim())?.trim();
-    const readingMinutes = estimateReadingMinutes(post.excerpt);
+    const readingMinutes = estimateReadingMinutes(post.bodyCharacters);
     const t = useTranslations("BlogPage");
     
     return (

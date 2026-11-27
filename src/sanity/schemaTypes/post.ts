@@ -1,6 +1,7 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType, type SlugValidationContext} from 'sanity'
 
+import {TagsInput} from '../components/TagsInput'
 import {getLanguageTitle} from '../languages'
 import {languageField} from './fields/languageField'
 
@@ -139,7 +140,9 @@ export default defineType({
       type: 'datetime',
       fieldset: 'metadata',
       description:
-        'Required for the post to appear on the site. Leave empty while drafting; set to now (or a future time to schedule). Studio “Publish” alone is not enough.',    }),
+        'Required to publish. The post appears on the site once this time has passed; set it to now, or to a future time to schedule.',
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       name: 'updatedAt',
       title: 'Updated at',
@@ -168,6 +171,9 @@ export default defineType({
       ],
       options: {
         layout: 'tags',
+      },
+      components: {
+        input: TagsInput,
       },
     }),
     defineField({
