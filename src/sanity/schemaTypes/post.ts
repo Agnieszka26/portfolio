@@ -1,6 +1,7 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType, type SlugValidationContext} from 'sanity'
 
+import {TagsInput} from '../components/TagsInput'
 import {getLanguageTitle} from '../languages'
 import {languageField} from './fields/languageField'
 
@@ -168,6 +169,9 @@ export default defineType({
       ],
       options: {
         layout: 'tags',
+      },
+      components: {
+        input: TagsInput,
       },
     }),
     defineField({
