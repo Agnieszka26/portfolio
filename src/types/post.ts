@@ -66,6 +66,8 @@ export type Post = {
   title: string;
   slug: string;
   excerpt?: string | null;
+  /** Characters of body text and code blocks, computed in GROQ for reading time. */
+  bodyCharacters?: number | null;
   coverImage: PostCoverImage;
   tags?: string[] | null;
   featured?: boolean | null;

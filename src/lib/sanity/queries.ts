@@ -133,6 +133,8 @@ const postCardProjection = /* groq */ `
   title,
   "slug": slug.current,
   excerpt,
+  "bodyCharacters": length(pt::text(body)) +
+    coalesce(math::sum(body[_type == "codeBlock"]{"n": length(code)}.n), 0),
   coverImage {
     ${postCoverImageProjection}
   },
