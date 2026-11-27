@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import { PortableTextInput } from '../../components/PortableTextInput'
+
 /**
  * Blog body Portable Text: paragraphs, H2/H3, lists, quotes, marks, links,
  * inline code, and fenced `codeBlock` examples.
@@ -8,6 +10,9 @@ export const portableText = defineType({
   name: 'portableText',
   title: 'Portable Text',
   type: 'array',
+  components: {
+    input: PortableTextInput,
+  },
   of: [
     defineArrayMember({
       type: 'codeBlock',
